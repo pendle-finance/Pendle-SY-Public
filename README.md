@@ -39,4 +39,4 @@ BUSL-1.1
 
 - Website: https://pendle.finance
 - Documentation: https://docs.pendle.finance/Developers/Overview
-- GitHub: https://github.com/pendle-finance/pendle-sy
+- GitHub: https://github.com/pendle-finance/pendle-sy-public
