@@ -30,11 +30,12 @@ interface IStandardizedYieldExtended is IStandardizedYield {
     /**
      * @notice This function contains information to describe recommended pricing method for this SY
      * @return refToken the token should be referred to when pricing this SY
-     * @return refWithoutExRate whether the price of refToken should be multiplied with SY.exchangeRate() to obtain SY price
+     * @return refStrictlyEqual whether the price of SY is strictly equal to refToken
      *
      * @dev For pricing PT & YT of this SY, it's recommended that:
-     * - refWithoutExRate = true : use PYLpOracle.get{Token}ToSyRate() and multiply with refToken's according price
-     * - refWithoutExRate = false: use PYLpOracle.get{Token}ToAssetRate() and multiply with refToken's according price
+     * - refStrictlyEqual = true : use PYLpOracle.get{Token}ToSyRate() and multiply with refToken's according price
+     * - refStrictlyEqual = false: use PYLpOracle.get{Token}ToAssetRate() and multiply with refToken's according price. It is also 
+     *   highly recommended to contact us for discussion on this type of token
      */
-    function pricingInfo() external view returns (address refToken, bool refWithoutExRate);
+    function pricingInfo() external view returns (address refToken, bool refStrictlyEqual);
 }
