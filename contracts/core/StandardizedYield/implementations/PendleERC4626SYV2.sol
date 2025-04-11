@@ -52,7 +52,7 @@ contract PendleERC4626SYV2 is SYBase {
     function _previewRedeem(
         address tokenOut,
         uint256 amountSharesToRedeem
-    ) internal view override returns (uint256 /*amountTokenOut*/) {
+    ) internal view virtual override returns (uint256 /*amountTokenOut*/) {
         if (tokenOut == yieldToken) return amountSharesToRedeem;
         else return IERC4626(yieldToken).previewRedeem(amountSharesToRedeem);
     }
