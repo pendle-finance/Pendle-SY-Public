@@ -2,6 +2,7 @@
 pragma solidity ^0.8.17;
 
 import "./PendleMorphoMetaVaultSY.sol";
+import { IERC4626 as IMorphoVault } from "../../../../interfaces/IERC4626.sol";
 
 contract PendleMorpho4626AssetSY is PendleMorphoMetaVaultSY {
     address public immutable vault;
@@ -36,14 +37,14 @@ contract PendleMorpho4626AssetSY is PendleMorphoMetaVaultSY {
         uint256 amountSharesToRedeem
     ) internal virtual override returns (uint256 amountTokenOut) {
         if (tokenOut == erc4626Asset) {
-            uint256 amount4626Out = IERC4626(vault).redeem(amountSharesToRedeem, address(this), address(this));
+            uint256 amount4626Out = IMorphoVault(vault).redeem(amountSharesToRedeem, address(this), address(this));
             return IERC4626(erc4626).redeem(amount4626Out, receiver, address(this));
         }
         return super._redeem(receiver, tokenOut, amountSharesToRedeem);
     }
 
     function exchangeRate() public view virtual override returns (uint256) {
-        return IERC4626(erc4626).convertToAssets(IERC4626(vault).convertToAssets(PMath.ONE));
+        return IERC4626(erc4626).convertToAssets(IMorphoVault(vault).convertToAssets(PMath.ONE));
     }
 
     function _previewDeposit(
@@ -62,7 +63,7 @@ contract PendleMorpho4626AssetSY is PendleMorphoMetaVaultSY {
     ) internal view override returns (uint256 amountTokenOut) {
         amountTokenOut = amountSharesToRedeem;
         if (tokenOut != yieldToken) {
-            amountTokenOut = IERC4626(vault).previewRedeem(amountTokenOut);
+            amountTokenOut = IMorphoVault(vault).previewRedeem(amountTokenOut);
             if (tokenOut == erc4626Asset) {
                 amountTokenOut = IERC4626(erc4626).previewRedeem(amountTokenOut);
             }
