@@ -4,7 +4,6 @@ pragma solidity ^0.8.23;
 import "../../SYBase.sol";
 import "../../../../interfaces/Midas/IDepositVault.sol";
 import "../../../../interfaces/Midas/IRedemptionVault.sol";
-import "../../../../interfaces/Midas/IDataFeed.sol";
 import "./libraries/DecimalsCorrectionLibrary.sol";
 import "./libraries/MidasAdapterLib.sol";
 
@@ -54,6 +53,7 @@ contract PendleMidasSY is SYBase {
         uint256 amountSharesToRedeem
     ) internal override returns (uint256 amountTokenOut) {
         uint256 balanceBefore = _selfBalance(IERC20(tokenOut));
+        // no need to approve as it was already done in the constructor
         IRedemptionVault(redemptionVault).redeemInstant(tokenOut, amountSharesToRedeem, 0);
         amountTokenOut = balanceBefore - _selfBalance(IERC20(tokenOut));
         _transferOut(tokenOut, receiver, amountTokenOut);
