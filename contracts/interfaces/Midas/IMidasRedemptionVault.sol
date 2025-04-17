@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "./IManageableVault.sol";
+import "./IMidasManageableVault.sol";
 
-interface IRedemptionVault is IManageableVault {
+interface IMidasRedemptionVault is IMidasManageableVault {
     function redeemInstant(address tokenOut, uint256 amountMTokenIn, uint256 minReceiveAmount) external;
 }
