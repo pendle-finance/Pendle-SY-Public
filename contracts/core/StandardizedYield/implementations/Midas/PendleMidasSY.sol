@@ -76,7 +76,7 @@ contract PendleMidasSY is SYBaseUpg {
 
         uint256 balanceBefore = _selfBalance(tokenOut);
         IMidasRedemptionVault(redemptionVault).redeemInstant(tokenOut, amountSharesToRedeem, 0);
-        amountTokenOut = balanceBefore - _selfBalance(tokenOut);
+        amountTokenOut = _selfBalance(tokenOut) - balanceBefore;
         _transferOut(tokenOut, receiver, amountTokenOut);
     }
 
