@@ -3,9 +3,8 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
 
-import "../../../../../interfaces/Midas/IDepositVault.sol";
-import "../../../../../interfaces/Midas/IRedemptionVault.sol";
-import "../../../../../interfaces/Midas/IDataFeed.sol";
+import "../../../../../interfaces/Midas/IMidasManageableVault.sol";
+import "../../../../../interfaces/Midas/IMidasDataFeed.sol";
 import "../../../../libraries/math/PMath.sol";
 import "./DecimalsCorrectionLibrary.sol";
 
@@ -25,7 +24,9 @@ library MidasAdapterLib {
         uint8 tokenDecimals = getTokenDecimals(tokenIn);
         uint256 amountTokenInBase18 = tokenAmountToBase18(amountTokenIn, tokenDecimals);
 
-        IManageableVault.TokenConfig memory tokenConfig = IManageableVault(depositVault).tokensConfig(tokenIn);
+        IMidasManageableVault.TokenConfig memory tokenConfig = IMidasManageableVault(depositVault).tokensConfig(
+            tokenIn
+        );
 
         uint256 tokenInRate = getTokenRate(tokenConfig.dataFeed, tokenConfig.stable);
         require(tokenInRate > 0, "tokenInRate zero");
@@ -54,7 +55,9 @@ library MidasAdapterLib {
         address tokenOut,
         uint256 amountMTokenIn
     ) internal view returns (uint256 amountTokenOut) {
-        IManageableVault.TokenConfig memory tokenConfig = IManageableVault(redemptionVault).tokensConfig(tokenOut);
+        IMidasManageableVault.TokenConfig memory tokenConfig = IMidasManageableVault(redemptionVault).tokensConfig(
+            tokenOut
+        );
 
         uint256 mTokenRate = getTokenRate(mTokenDataFeed, false);
         require(mTokenRate > 0, "mTokenRate zero");
@@ -72,7 +75,7 @@ library MidasAdapterLib {
     }
 
     function getTokenRate(address dataFeed, bool stable) internal view returns (uint256) {
-        uint256 rate = IDataFeed(dataFeed).getDataInBase18();
+        uint256 rate = IMidasDataFeed(dataFeed).getDataInBase18();
         if (stable) return STABLECOIN_RATE;
         return rate;
     }
@@ -95,16 +98,16 @@ library MidasAdapterLib {
 
     function _getFeeAmount(
         address vault,
-        IManageableVault.TokenConfig memory tokenConfig,
+        IMidasManageableVault.TokenConfig memory tokenConfig,
         uint256 amount
     ) private view returns (uint256) {
-        if (IManageableVault(vault).waivedFeeRestriction(address(this))) return 0;
+        if (IMidasManageableVault(vault).waivedFeeRestriction(address(this))) return 0;
 
         uint256 feePercent;
 
         feePercent = tokenConfig.fee;
 
-        feePercent += IManageableVault(vault).instantFee();
+        feePercent += IMidasManageableVault(vault).instantFee();
 
         if (feePercent > ONE_HUNDRED_PERCENT) feePercent = ONE_HUNDRED_PERCENT;
 

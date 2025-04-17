@@ -26,20 +26,18 @@ contract PendleSuperOETHSY is PendleERC4626SYUpg {
         if (tokenIn == yieldToken) {
             return amountDeposited;
         } else {
-            if (tokenIn == WETH) {  
+            if (tokenIn == WETH) {
                 IOETHVault(OETH_VAULT).mint(WETH, amountDeposited, 0);
             }
             return IERC4626(yieldToken).deposit(amountDeposited, address(this));
         }
     }
 
-
     function getTokensIn() public view override returns (address[] memory res) {
         res = new address[](3);
         res[0] = WETH;
         res[1] = asset;
         res[2] = yieldToken;
-
     }
 
     function isValidTokenIn(address token) public view override returns (bool) {

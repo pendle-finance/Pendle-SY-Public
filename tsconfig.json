@@ -2,5 +2,12 @@
     "compilerOptions": {
       "module": "NodeNext",
       "moduleResolution": "NodeNext"
-    }
+    },
+    "ts-node": {
+      "files": true,
+      "ignore": ["/node_modules*"]
+    },
+    "files": [
+      "./hardhat.config.ts"
+    ]
   }
