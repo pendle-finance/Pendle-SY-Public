@@ -37,6 +37,23 @@ library ArrayLib {
         out[length] = element;
     }
 
+    function append(
+        address[] memory inp,
+        address element0,
+        address element1
+    ) internal pure returns (address[] memory out) {
+        uint256 length = inp.length;
+        out = new address[](length + 2);
+        for (uint256 i = 0; i < length; ) {
+            out[i] = inp[i];
+            unchecked {
+                i++;
+            }
+        }
+        out[length] = element0;
+        out[length + 1] = element1;
+    }
+
     function appendHead(address[] memory inp, address element) internal pure returns (address[] memory out) {
         uint256 length = inp.length;
         out = new address[](length + 1);

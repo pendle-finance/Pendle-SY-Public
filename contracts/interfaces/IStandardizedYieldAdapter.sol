@@ -1,0 +1,59 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+pragma solidity ^0.8.0;
+
+interface IStandardizedYieldAdapter {
+    /**
+     * @notice Converts a specified amount of an input token to the deposit token.
+     * @param tokenIn The address of the input token.
+     * @param amountTokenIn The amount of the input token to convert.
+     * @return tokenOut The address of the output deposit token.
+     * @return amountOut The amount of the output deposit token.
+     */
+    function convertToDeposit(
+        address tokenIn,
+        uint256 amountTokenIn
+    ) external returns (address tokenOut, uint256 amountOut);
+
+    /**
+     * @notice Converts yield token to the token requested for redemption.
+     * @param tokenOut The address of the output token.
+     * @param amountYieldTokenIn The amount of yield token to convert.
+     * @return amountOut The amount of the output token out.
+     */
+    function convertToRedeem(address tokenOut, uint256 amountYieldTokenIn) external returns (uint256 amountOut);
+
+    /**
+     * @notice Previews the conversion of a specified amount of an input token to the deposit token.
+     * @param tokenIn The address of the input token.
+     * @param amountTokenIn The amount of the input token to convert.
+     * @return tokenOut The address of the output deposit token.
+     * @return amountOut The estimated amount of the output deposit token.
+     */
+    function previewConvertToDeposit(
+        address tokenIn,
+        uint256 amountTokenIn
+    ) external view returns (address tokenOut, uint256 amountOut);
+
+    /**
+     * @notice Previews the conversion of yield token to the amount requested for redemption.
+     * @param tokenOut The address of the output token.
+     * @param amountYieldTokenIn The amount of yield token to convert.
+     * @return amountOut The estimated amount of the output token out.
+     */
+    function previewConvertToRedeem(
+        address tokenOut,
+        uint256 amountYieldTokenIn
+    ) external view returns (uint256 amountOut);
+
+    /**
+     * @notice Retrieves the list of tokens supported for deposits by the adapter.
+     * @return tokens An array of addresses of tokens supported for deposits.
+     */
+    function getAdapterTokensDeposit() external view returns (address[] memory tokens);
+
+    /**
+     * @notice Retrieves the list of tokens supported for redemptions by the adapter.
+     * @return tokens An array of addresses of tokens supported for redemptions.
+     */
+    function getAdapterTokensRedeem() external view returns (address[] memory tokens);
+}
