@@ -1,0 +1,15 @@
+{
+    "name": "COINSHIFT-CSUSDL-MAINNET-JUL2025",
+    "SY": "0x8077b6f34e9193D5bbb0eF06A73119060534d130",
+    "YT": "0x1b85471da5bD63cBE80bDFEA1E45B6a0215E2a54",
+    "PT": "0xf10A134A987E22ffa9463570A6D1eb92a63Fc178",
+    "market": "0x08bF93c8F85977c64069Dd34C5da7b1c636E104f",
+    "expiry": 1753920000,
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "17857954244300437349",
+    "initialRateAnchor": "1044749077054728778",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0x29a60653f72bc7f809a7ca57d23a25e44978ba077f8b40cff031cef8bf741cba",
+    "deployBlockNumber": 22294797,
+    "reversedFee": 0.9999999999830145
+}

@@ -1,0 +1,15 @@
+{
+    "name": "FALCON-SUSDF-MAINNET-SEP2025",
+    "SY": "0xa780d7F775B4eFf6846A8c28981f086bC6a7d637",
+    "YT": "0xFF1e55f96fA77bcFb5d40f6641E0AcaBd47AC34F",
+    "PT": "0xAB365C0879024481E4ad3b47bd6FeA9c10014FbC",
+    "market": "0x45F163E583D34b8E276445dd3Da9aE077D137d72",
+    "expiry": 1758758400,
+    "lnFeeRateRoot": "11928570865273801",
+    "scalarRoot": "17436827826989647230",
+    "initialRateAnchor": "1085147647060206425",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0x597410900ff4a519c632c7146a5343e69771cf46f3b778a518deae8a474fd70b",
+    "deployBlockNumber": 22294739,
+    "reversedFee": 1.19999999997229
+}
