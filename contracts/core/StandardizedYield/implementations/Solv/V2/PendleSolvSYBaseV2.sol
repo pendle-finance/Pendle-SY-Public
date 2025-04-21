@@ -6,16 +6,18 @@ import "../../../../../interfaces/Solv/ISolvRouterV2.sol";
 import "../../../../../interfaces/Solv/ISolvOpenFundMarket.sol";
 import "../../../../../interfaces/Solv/ISolvERC3525.sol";
 import "../../../../../interfaces/Solv/ISolvOracle.sol";
+import "hardhat/console.sol";
 
 abstract contract PendleSolvSYBaseV2 is SYBaseUpg {
     event SetNewExchangeRateOracle(address oracle);
 
     // solhint-disable immutable-vars-naming
     address public immutable solvRouterV2;
-    address public constant SOLV_OPEN_FUND_MARKET = 0x57bB6a8563a8e8478391C79F3F433C6BA077c567;
+    address public immutable SOLV_OPEN_FUND_MARKET;
 
     constructor(address _solvRouterV2, address _yieldToken) SYBaseUpg(_yieldToken) {
         solvRouterV2 = _solvRouterV2;
+        SOLV_OPEN_FUND_MARKET = ISolvRouterV2(_solvRouterV2).openFundMarket();
     }
 
     function _deposit(address tokenIn, uint256 amountDeposited) internal virtual override returns (uint256) {
