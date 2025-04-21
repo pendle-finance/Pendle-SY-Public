@@ -11,7 +11,6 @@ contract PendleMidasSY is SYBaseUpg {
     using DecimalsCorrectionLibrary for uint256;
     using PMath for uint256;
 
-
     bytes32 public constant PENDLE_REFERRER_ID = keccak256("midas.referrers.pendle");
 
     // solhint-disable immutable-vars-naming
@@ -68,7 +67,6 @@ contract PendleMidasSY is SYBaseUpg {
         address tokenOut,
         uint256 amountSharesToRedeem
     ) internal override returns (uint256 amountTokenOut) {
-
         if (tokenOut == yieldToken) {
             _transferOut(tokenOut, receiver, amountSharesToRedeem);
             return amountSharesToRedeem;
@@ -81,7 +79,7 @@ contract PendleMidasSY is SYBaseUpg {
     }
 
     function exchangeRate() public view virtual override returns (uint256) {
-        return IMidasDataFeed(mTokenDataFeed).getDataInBase18() * underlyingUnit / yieldTokenUnit;
+        return (IMidasDataFeed(mTokenDataFeed).getDataInBase18() * underlyingUnit) / yieldTokenUnit;
     }
 
     function _previewDeposit(

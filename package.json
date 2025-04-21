@@ -48,5 +48,5 @@
         "@openzeppelin/contracts-upgradeable": "4.9.3",
         "ethers": "^5.7.2"
     },
-    "packageManager": "yarn@3.3.1"
+    "packageManager": "yarn@3.6.4"
 }

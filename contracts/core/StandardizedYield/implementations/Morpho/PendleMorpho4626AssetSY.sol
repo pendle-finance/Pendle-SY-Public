@@ -2,7 +2,7 @@
 pragma solidity ^0.8.17;
 
 import "./PendleMorphoMetaVaultSY.sol";
-import { IERC4626 as IMorphoVault } from "../../../../interfaces/IERC4626.sol";
+import {IERC4626 as IMorphoVault} from "../../../../interfaces/IERC4626.sol";
 
 contract PendleMorpho4626AssetSY is PendleMorphoMetaVaultSY {
     address public immutable vault;

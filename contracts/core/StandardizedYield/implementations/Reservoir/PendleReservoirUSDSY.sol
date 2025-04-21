@@ -46,9 +46,8 @@ contract PendleReservoirUSDSY is SYBaseUpg {
             uint256 amtOut = amountSharesToRedeem / DECIMAL_FACTOR;
             IReservoirPSM(PSM).redeem(receiver, amtOut);
             return amtOut;
-        }
-        else {
-            _transferOut(tokenOut, receiver,amountSharesToRedeem);
+        } else {
+            _transferOut(tokenOut, receiver, amountSharesToRedeem);
             return amountSharesToRedeem;
         }
     }
