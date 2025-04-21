@@ -1,0 +1,15 @@
+{
+    "name": "SOLV-BNB-BTC-DEC2025",
+    "SY": "0x58b4441B97C577B66E46AA155e04dC4652FD0D34",
+    "YT": "0xA23e43Ff30b6BB9972a6C6617a9aEbAD34aDcA3F",
+    "PT": "0xEe61A49a180CD23C3E629c5A70c1eE6539c004bD",
+    "market": "0x527bE6FA23ff71e3FAf5c2C1511b0531b67a701D",
+    "expiry": 1766016000,
+    "lnFeeRateRoot": "4987541511039073",
+    "scalarRoot": "49800060939186738561",
+    "initialRateAnchor": "1038939511767072099",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0x3aefd7bf43423fa98f540882e685d52e2b8b4845424355448073e2d45d948398",
+    "deployBlockNumber": 48549822,
+    "reversedFee": 0.49999999999608136
+}
