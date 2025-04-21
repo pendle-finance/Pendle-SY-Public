@@ -1,0 +1,15 @@
+{
+    "name": "USR-BSC-NOV2025",
+    "SY": "0x414d3C8A26157085f286abE3BC6E1bb010733602",
+    "YT": "0xDCf4f4260ab766FD458E4D883ddf01522A7e4BB8",
+    "PT": "0x4a3846d069B800343D53e72B80a644Bb496D9aB2",
+    "market": "0x1630d8228588d406767C2225F927154c05d2E2bb",
+    "expiry": 1764201600,
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "19766465561488224260",
+    "initialRateAnchor": "1087893069640786222",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0xade519f51ba193bef7c458c6837402f1d9c068a55fcb5170d924c0663f58be3d",
+    "deployBlockNumber": 48541340,
+    "reversedFee": 0.9999999999830145
+}
