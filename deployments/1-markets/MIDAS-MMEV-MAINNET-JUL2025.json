@@ -1,0 +1,15 @@
+{
+    "name": "MIDAS-MMEV-MAINNET-JUL2025",
+    "SY": "0x77891c7f756d4f49d91E6aAbAE7DF5C1169F2AAA",
+    "YT": "0xe67377Eb4fFc6cDb85F421697a01ec98C0d6D5cd",
+    "PT": "0x1132065009850C72E27B7950C0f9285d1D103589",
+    "market": "0x266728b30c98B24De810E3325aDC615486988Cb2",
+    "expiry": 1753920000,
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "19710111969133450924",
+    "initialRateAnchor": "1044219743705360212",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0x30aa987cc0fbd2b78f07940568c36ccbc71fad989228527f1821fe290d63c02b",
+    "deployBlockNumber": 22317224,
+    "reversedFee": 0.9999999999830145
+}
