@@ -4,7 +4,6 @@ import "../../../../../interfaces/IStandardizedYieldAdapter.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "../../../../../interfaces/Reservoir/IReservoirCreditEnforcer.sol";
 import "../../../../../interfaces/Reservoir/IReservoirPSM.sol";
-import "hardhat/console.sol";
 
 contract PendleReservoirAdapter is IStandardizedYieldAdapter {
     using SafeERC20 for IERC20;
