@@ -19,6 +19,7 @@ contract PendleERC4626NoRedeemWithAdapterSY is SYBaseUpg, IPStandardizedYieldWit
 
     function initialize(string memory _name, string memory _symbol, address _adapter) external virtual initializer {
         __SYBaseUpg_init(_name, _symbol);
+        _safeApproveInf(asset, yieldToken);
         _setAdapter(_adapter);
     }
 

@@ -16,6 +16,7 @@ contract PendleSUSDSAdapter is IStandardizedYieldAdapter {
 
     constructor() {
         IERC20(DAI).safeApprove(CONVERTER, type(uint256).max);
+        IERC20(USDS).safeApprove(CONVERTER, type(uint256).max);
     }
 
     function convertToDeposit(
@@ -32,7 +33,7 @@ contract PendleSUSDSAdapter is IStandardizedYieldAdapter {
         address tokenOut,
         uint256 amountYieldTokenIn
     ) external override returns (uint256 amountOut) {
-        assert(tokenOut == SUSDS);
+        assert(tokenOut == DAI);
 
         uint256 amountUSDS = IERC4626(SUSDS).redeem(amountYieldTokenIn, address(this), address(this));
         ISkyConverter(CONVERTER).usdsToDai(msg.sender, amountUSDS);
