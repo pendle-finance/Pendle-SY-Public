@@ -6,7 +6,6 @@ import "../../../../../interfaces/Reservoir/IReservoirCreditEnforcer.sol";
 import "../../../../../interfaces/Reservoir/IReservoirPSM.sol";
 
 contract PendleReservoirAdapter is IStandardizedYieldAdapter {
-
     using SafeERC20 for IERC20;
 
     address public constant USDC = 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48;
@@ -26,7 +25,7 @@ contract PendleReservoirAdapter is IStandardizedYieldAdapter {
         address tokenIn,
         uint256 amountTokenIn
     ) external override returns (address tokenOut, uint256 amountOut) {
-        assert (tokenIn == USDC);
+        assert(tokenIn == USDC);
         tokenOut = RUSD;
         amountOut = IReservoirCreditEnforcer(CREDIT_ENFORSER).mintStablecoin(amountTokenIn) * DECIMAL_FACTOR;
         IERC20(tokenIn).safeTransfer(msg.sender, amountOut);
@@ -45,7 +44,7 @@ contract PendleReservoirAdapter is IStandardizedYieldAdapter {
         address tokenIn,
         uint256 amountIn
     ) external pure override returns (address /*tokenOut*/, uint256 /*amountOut*/) {
-        assert (tokenIn == USDC);
+        assert(tokenIn == USDC);
         return (RUSD, amountIn * DECIMAL_FACTOR);
     }
 
@@ -53,7 +52,7 @@ contract PendleReservoirAdapter is IStandardizedYieldAdapter {
         address tokenOut,
         uint256 amountOut
     ) external pure override returns (uint256 /*amountIn*/) {
-        assert (tokenOut == USDC);
+        assert(tokenOut == USDC);
         return amountOut / DECIMAL_FACTOR;
     }
 

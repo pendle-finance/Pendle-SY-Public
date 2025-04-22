@@ -3,30 +3,30 @@ pragma solidity ^0.8.17;
 
 import "../../../SYBaseUpg.sol";
 import "../../../../../interfaces/IStandardizedYieldAdapter.sol";
+import "../../../../../interfaces/IPStandardizedYieldWithAdapter.sol";
 
-contract PendleERC20WithAdapterSY is SYBaseUpg {
+contract PendleERC20WithAdapterSY is SYBaseUpg, IPStandardizedYieldWithAdapter {
     using PMath for uint256;
     using ArrayLib for address[];
 
     // solhint-disable immutable-vars-naming
-    address public immutable adapter;
+    address public adapter;
 
-    constructor(address _erc20, address _adapter) SYBaseUpg(_erc20) {
-        adapter = _adapter;
-        assert(adapter != address(0));
-    }
+    constructor(address _erc20) SYBaseUpg(_erc20) {}
 
-    function initialize(string memory _name, string memory _symbol) external virtual initializer {
+    function initialize(string memory _name, string memory _symbol, address _adapter) external virtual initializer {
         __SYBaseUpg_init(_name, _symbol);
-        approveForAdapter();
+        _setAdapter(_adapter);
     }
 
-    function approveForAdapter() public {
-        _safeApproveInf(yieldToken, adapter);
-        address[] memory tokensIn = IStandardizedYieldAdapter(adapter).getAdapterTokensDeposit();
-        for (uint256 i = 0; i < tokensIn.length; i++) {
-            _safeApproveInf(tokensIn[i], adapter);
-        }
+    function setAdapter(address _adapter) external virtual override onlyOwner {
+        _setAdapter(_adapter);
+    }
+
+    function _setAdapter(address _adapter) internal {
+        require(_adapter != address(0), "_setAdapter: zero address");
+        adapter = _adapter;
+        emit SetAdapter(_adapter);
     }
 
     function _deposit(
@@ -36,6 +36,7 @@ contract PendleERC20WithAdapterSY is SYBaseUpg {
         if (tokenIn == yieldToken) {
             return amountDeposited;
         } else {
+            _transferOut(tokenIn, adapter, amountDeposited);
             (, uint256 amountOut) = IStandardizedYieldAdapter(adapter).convertToDeposit(tokenIn, amountDeposited);
             return amountOut;
         }
@@ -50,6 +51,7 @@ contract PendleERC20WithAdapterSY is SYBaseUpg {
             _transferOut(yieldToken, receiver, amountSharesToRedeem);
             return amountSharesToRedeem;
         } else {
+            _transferOut(yieldToken, adapter, amountSharesToRedeem);
             uint256 amountOut = IStandardizedYieldAdapter(adapter).convertToRedeem(tokenOut, amountSharesToRedeem);
             _transferOut(tokenOut, receiver, amountOut);
             return amountOut;

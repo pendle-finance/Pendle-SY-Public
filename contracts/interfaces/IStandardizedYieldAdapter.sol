@@ -4,6 +4,7 @@ pragma solidity ^0.8.0;
 interface IStandardizedYieldAdapter {
     /**
      * @notice Converts a specified amount of an input token to the deposit token.
+     * @dev This function should expect the token has already been transferred to the adapter.
      * @param tokenIn The address of the input token.
      * @param amountTokenIn The amount of the input token to convert.
      * @return tokenOut The address of the output deposit token.
@@ -16,6 +17,7 @@ interface IStandardizedYieldAdapter {
 
     /**
      * @notice Converts yield token to the token requested for redemption.
+     * @dev This function should expect the token has already been transferred to the adapter.
      * @param tokenOut The address of the output token.
      * @param amountYieldTokenIn The amount of yield token to convert.
      * @return amountOut The amount of the output token out.

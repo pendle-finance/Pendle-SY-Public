@@ -4,34 +4,32 @@ pragma solidity ^0.8.17;
 import "../../../SYBaseUpg.sol";
 import "../../../../../interfaces/IERC4626.sol";
 import "../../../../../interfaces/IStandardizedYieldAdapter.sol";
+import "../../../../../interfaces/IPStandardizedYieldWithAdapter.sol";
 
-contract PendleERC4626NoRedeemWithAdapterSY is SYBaseUpg {
+contract PendleERC4626NoRedeemWithAdapterSY is SYBaseUpg, IPStandardizedYieldWithAdapter {
     using PMath for uint256;
     using ArrayLib for address[];
 
     address public immutable asset;
-    address public immutable adapter;
+    address public adapter;
 
-    constructor(address _erc4626, address _adapter) SYBaseUpg(_erc4626) {
+    constructor(address _erc4626) SYBaseUpg(_erc4626) {
         asset = IERC4626(_erc4626).asset();
-        adapter = _adapter;
-
-        assert(adapter != address(0));
     }
 
-    function initialize(string memory _name, string memory _symbol) external virtual initializer {
+    function initialize(string memory _name, string memory _symbol, address _adapter) external virtual initializer {
         __SYBaseUpg_init(_name, _symbol);
-        _safeApproveInf(asset, yieldToken);
-        approveForAdapter();
+        _setAdapter(_adapter);
     }
 
-    function approveForAdapter() public {
-        // no need to approve yield token to adapter
+    function setAdapter(address _adapter) external virtual override onlyOwner {
+        _setAdapter(_adapter);
+    }
 
-        address[] memory tokensIn = IStandardizedYieldAdapter(adapter).getAdapterTokensDeposit();
-        for (uint256 i = 0; i < tokensIn.length; i++) {
-            _safeApproveInf(tokensIn[i], adapter);
-        }
+    function _setAdapter(address _adapter) internal {
+        require(_adapter != address(0), "_setAdapter: zero address");
+        adapter = _adapter;
+        emit SetAdapter(_adapter);
     }
 
     function _deposit(
@@ -39,6 +37,7 @@ contract PendleERC4626NoRedeemWithAdapterSY is SYBaseUpg {
         uint256 amountDeposited
     ) internal virtual override returns (uint256 /*amountSharesOut*/) {
         if (tokenIn != yieldToken && tokenIn != asset) {
+            _transferOut(tokenIn, adapter, amountDeposited);
             (tokenIn, amountDeposited) = IStandardizedYieldAdapter(adapter).convertToDeposit(tokenIn, amountDeposited);
         }
 
