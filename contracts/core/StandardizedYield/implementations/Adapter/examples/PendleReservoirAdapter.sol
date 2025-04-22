@@ -4,6 +4,7 @@ import "../../../../../interfaces/IStandardizedYieldAdapter.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "../../../../../interfaces/Reservoir/IReservoirCreditEnforcer.sol";
 import "../../../../../interfaces/Reservoir/IReservoirPSM.sol";
+import "hardhat/console.sol";
 
 contract PendleReservoirAdapter is IStandardizedYieldAdapter {
     using SafeERC20 for IERC20;
@@ -28,7 +29,7 @@ contract PendleReservoirAdapter is IStandardizedYieldAdapter {
         assert(tokenIn == USDC);
         tokenOut = RUSD;
         amountOut = IReservoirCreditEnforcer(CREDIT_ENFORSER).mintStablecoin(amountTokenIn) * DECIMAL_FACTOR;
-        IERC20(tokenIn).safeTransfer(msg.sender, amountOut);
+        IERC20(RUSD).safeTransfer(msg.sender, amountOut);
     }
 
     function convertToRedeem(
