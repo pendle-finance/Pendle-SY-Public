@@ -10,8 +10,5 @@ interface ISolvRouterV2 {
 
     function poolIds(address targetToken_, address currency_) external view returns (bytes32);
 
-    function openFundMarket()
-        external
-        view
-        returns (address);
+    function openFundMarket() external view returns (address);
 }
