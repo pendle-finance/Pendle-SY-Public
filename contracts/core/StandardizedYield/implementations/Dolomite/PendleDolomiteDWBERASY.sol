@@ -19,11 +19,14 @@ contract PendleDolomiteDWBERASY is SYBaseWithRewardsUpg {
     function initialize(string memory _name, string memory _symbol) external virtual initializer {
         __SYBaseUpg_init(_name, _symbol);
         _safeApproveInf(asset, yieldToken);
+        _safeApproveInf(yieldToken, INFRARED_VAULT);
     }
 
     function depositToVault() external onlyOwner {
         _safeApproveInf(yieldToken, INFRARED_VAULT);
-        IInfraredBGTVault(INFRARED_VAULT).stake(_selfBalance(yieldToken));
+
+        uint256 tokenBal = IERC20(yieldToken).balanceOf(address(this));
+        if (tokenBal > 0) IInfraredBGTVault(INFRARED_VAULT).stake(tokenBal);
     }
 
     function _deposit(
