@@ -30,7 +30,7 @@ interface IStandardizedYieldAdapter {
     function convertToRedeem(address tokenOut, uint256 amountYieldTokenIn) external returns (uint256 amountOut);
 
     /**
-     * @notice Previews the conversion of a specified amount of an input token to the deposit token.
+     * @notice Previews the conversion of a specified amount of an input token to pivotToken.
      * @param tokenIn The address of the input token.
      * @param amountTokenIn The amount of the input token to convert.
      * @return amountOut The estimated amount of the output deposit token.
@@ -38,7 +38,7 @@ interface IStandardizedYieldAdapter {
     function previewConvertToDeposit(address tokenIn, uint256 amountTokenIn) external view returns (uint256 amountOut);
 
     /**
-     * @notice Previews the conversion of yield token to the amount requested for redemption.
+     * @notice Previews the conversion of pivot token to the amount requested for redemption.
      * @param tokenOut The address of the output token.
      * @param amountYieldTokenIn The amount of yield token to convert.
      * @return amountOut The estimated amount of the output token out.
