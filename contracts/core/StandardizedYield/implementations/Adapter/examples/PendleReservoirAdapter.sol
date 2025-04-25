@@ -17,8 +17,8 @@ contract PendleReservoirAdapter is IStandardizedYieldAdapter {
     uint256 public constant DECIMAL_FACTOR = 10 ** 12;
 
     constructor() {
-        IERC20(USDC).safeApprove(PSM, type(uint256).max);
-        IERC20(RUSD).safeApprove(PSM, type(uint256).max);
+        IERC20(USDC).forceApprove(PSM, type(uint256).max);
+        IERC20(RUSD).forceApprove(PSM, type(uint256).max);
     }
 
     function convertToDeposit(
@@ -35,7 +35,7 @@ contract PendleReservoirAdapter is IStandardizedYieldAdapter {
         address tokenOut,
         uint256 amountYieldTokenIn
     ) external override returns (uint256 amountOut) {
-        tokenOut = USDC;
+        assert(tokenOut == USDC);
         amountOut = amountYieldTokenIn / DECIMAL_FACTOR;
         IReservoirPSM(PSM).redeem(msg.sender, amountOut);
     }

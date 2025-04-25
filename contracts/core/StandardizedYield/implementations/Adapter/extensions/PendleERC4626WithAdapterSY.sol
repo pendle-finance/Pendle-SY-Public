@@ -36,17 +36,21 @@ contract PendleERC4626WithAdapterSY is SYBaseUpg, IPStandardizedYieldWithAdapter
     function _deposit(
         address tokenIn,
         uint256 amountDeposited
-    ) internal virtual override returns (uint256 /*amountSharesOut*/) {
+    ) internal virtual override returns (uint256 amountSharesOut) {
         if (tokenIn != yieldToken && tokenIn != asset) {
             _transferOut(tokenIn, adapter, amountDeposited);
             (tokenIn, amountDeposited) = IStandardizedYieldAdapter(adapter).convertToDeposit(tokenIn, amountDeposited);
         }
 
+        require(tokenIn == yieldToken || tokenIn == asset, "adapter: invalid tokenOut");
+
         if (tokenIn == yieldToken) {
-            return amountDeposited;
+            amountSharesOut = amountDeposited;
         } else {
-            return IERC4626(yieldToken).deposit(amountDeposited, address(this));
+            amountSharesOut = IERC4626(yieldToken).deposit(amountDeposited, address(this));
         }
+
+        require(_selfBalance(yieldToken) >= totalSupply() + amountSharesOut, "SY: insufficient shares");
     }
 
     function _redeem(

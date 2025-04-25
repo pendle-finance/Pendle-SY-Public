@@ -15,8 +15,8 @@ contract PendleSUSDSAdapter is IStandardizedYieldAdapter {
     address public constant USDS = 0xdC035D45d973E3EC169d2276DDab16f1e407384F;
 
     constructor() {
-        IERC20(DAI).safeApprove(CONVERTER, type(uint256).max);
-        IERC20(USDS).safeApprove(CONVERTER, type(uint256).max);
+        IERC20(DAI).forceApprove(CONVERTER, type(uint256).max);
+        IERC20(USDS).forceApprove(CONVERTER, type(uint256).max);
     }
 
     function convertToDeposit(

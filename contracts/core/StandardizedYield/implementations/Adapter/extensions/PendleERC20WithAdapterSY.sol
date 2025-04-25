@@ -32,14 +32,20 @@ contract PendleERC20WithAdapterSY is SYBaseUpg, IPStandardizedYieldWithAdapter {
     function _deposit(
         address tokenIn,
         uint256 amountDeposited
-    ) internal virtual override returns (uint256 /*amountSharesOut*/) {
+    ) internal virtual override returns (uint256 amountSharesOut) {
         if (tokenIn == yieldToken) {
-            return amountDeposited;
+            amountSharesOut = amountDeposited;
         } else {
             _transferOut(tokenIn, adapter, amountDeposited);
-            (, uint256 amountOut) = IStandardizedYieldAdapter(adapter).convertToDeposit(tokenIn, amountDeposited);
-            return amountOut;
+            (address tokenOut, uint256 amountOut) = IStandardizedYieldAdapter(adapter).convertToDeposit(
+                tokenIn,
+                amountDeposited
+            );
+            require(tokenOut == yieldToken, "adapter: invalid tokenOut");
+            amountSharesOut = amountOut;
         }
+
+        require(_selfBalance(yieldToken) >= totalSupply() + amountSharesOut, "SY: insufficient shares");
     }
 
     function _redeem(
