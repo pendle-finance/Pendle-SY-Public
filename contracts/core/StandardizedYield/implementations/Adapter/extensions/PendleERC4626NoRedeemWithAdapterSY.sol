@@ -29,6 +29,7 @@ contract PendleERC4626NoRedeemWithAdapterSY is SYBaseUpg, IPStandardizedYieldWit
 
     function _setAdapter(address _adapter) internal {
         require(_adapter != address(0), "_setAdapter: zero address");
+        require(IStandardizedYieldAdapter(_adapter).PIVOT_TOKEN() == asset, "_setAdapter: invalid adapter");
         adapter = _adapter;
         emit SetAdapter(_adapter);
     }
@@ -39,10 +40,11 @@ contract PendleERC4626NoRedeemWithAdapterSY is SYBaseUpg, IPStandardizedYieldWit
     ) internal virtual override returns (uint256 amountSharesOut) {
         if (tokenIn != yieldToken && tokenIn != asset) {
             _transferOut(tokenIn, adapter, amountDeposited);
-            (tokenIn, amountDeposited) = IStandardizedYieldAdapter(adapter).convertToDeposit(tokenIn, amountDeposited);
+            (tokenIn, amountDeposited) = (
+                asset,
+                IStandardizedYieldAdapter(adapter).convertToDeposit(tokenIn, amountDeposited)
+            );
         }
-
-        require(tokenIn == yieldToken || tokenIn == asset, "adapter: invalid tokenOut");
 
         if (tokenIn == yieldToken) {
             amountSharesOut = amountDeposited;
@@ -57,7 +59,7 @@ contract PendleERC4626NoRedeemWithAdapterSY is SYBaseUpg, IPStandardizedYieldWit
         address receiver,
         address /*tokenOut*/,
         uint256 amountSharesToRedeem
-    ) internal virtual override returns (uint256 amountTokenOut) {
+    ) internal virtual override returns (uint256) {
         _transferOut(yieldToken, receiver, amountSharesToRedeem);
         return amountSharesToRedeem;
     }
@@ -71,9 +73,9 @@ contract PendleERC4626NoRedeemWithAdapterSY is SYBaseUpg, IPStandardizedYieldWit
         uint256 amountTokenToDeposit
     ) internal view virtual override returns (uint256 /*amountSharesOut*/) {
         if (tokenIn != yieldToken && tokenIn != asset) {
-            (tokenIn, amountTokenToDeposit) = IStandardizedYieldAdapter(adapter).previewConvertToDeposit(
-                tokenIn,
-                amountTokenToDeposit
+            (tokenIn, amountTokenToDeposit) = (
+                asset,
+                IStandardizedYieldAdapter(adapter).previewConvertToDeposit(tokenIn, amountTokenToDeposit)
             );
         }
 

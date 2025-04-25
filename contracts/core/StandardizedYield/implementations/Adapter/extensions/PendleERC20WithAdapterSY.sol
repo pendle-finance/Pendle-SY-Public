@@ -25,6 +25,7 @@ contract PendleERC20WithAdapterSY is SYBaseUpg, IPStandardizedYieldWithAdapter {
 
     function _setAdapter(address _adapter) internal {
         require(_adapter != address(0), "_setAdapter: zero address");
+        require(IStandardizedYieldAdapter(_adapter).PIVOT_TOKEN() == yieldToken, "_setAdapter: invalid adapter");
         adapter = _adapter;
         emit SetAdapter(_adapter);
     }
@@ -36,13 +37,8 @@ contract PendleERC20WithAdapterSY is SYBaseUpg, IPStandardizedYieldWithAdapter {
         if (tokenIn == yieldToken) {
             amountSharesOut = amountDeposited;
         } else {
-            _transferOut(tokenIn, adapter, amountDeposited);
-            (address tokenOut, uint256 amountOut) = IStandardizedYieldAdapter(adapter).convertToDeposit(
-                tokenIn,
-                amountDeposited
-            );
-            require(tokenOut == yieldToken, "adapter: invalid tokenOut");
-            amountSharesOut = amountOut;
+            _transferOut(yieldToken, adapter, amountDeposited);
+            amountSharesOut = IStandardizedYieldAdapter(adapter).convertToDeposit(tokenIn, amountDeposited);
         }
 
         require(_selfBalance(yieldToken) >= totalSupply() + amountSharesOut, "SY: insufficient shares");
@@ -75,11 +71,7 @@ contract PendleERC20WithAdapterSY is SYBaseUpg, IPStandardizedYieldWithAdapter {
         if (tokenIn == yieldToken) {
             return amountTokenToDeposit;
         } else {
-            (, uint256 amountOut) = IStandardizedYieldAdapter(adapter).previewConvertToDeposit(
-                tokenIn,
-                amountTokenToDeposit
-            );
-            return amountOut;
+            return IStandardizedYieldAdapter(adapter).previewConvertToDeposit(tokenIn, amountTokenToDeposit);
         }
     }
 
@@ -90,11 +82,7 @@ contract PendleERC20WithAdapterSY is SYBaseUpg, IPStandardizedYieldWithAdapter {
         if (tokenOut == yieldToken) {
             return amountSharesToRedeem;
         } else {
-            uint256 amountOut = IStandardizedYieldAdapter(adapter).previewConvertToRedeem(
-                tokenOut,
-                amountSharesToRedeem
-            );
-            return amountOut;
+            return IStandardizedYieldAdapter(adapter).previewConvertToRedeem(tokenOut, amountSharesToRedeem);
         }
     }
 

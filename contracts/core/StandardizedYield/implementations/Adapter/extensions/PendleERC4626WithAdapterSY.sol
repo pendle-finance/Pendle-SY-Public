@@ -29,6 +29,7 @@ contract PendleERC4626WithAdapterSY is SYBaseUpg, IPStandardizedYieldWithAdapter
 
     function _setAdapter(address _adapter) internal {
         require(_adapter != address(0), "_setAdapter: zero address");
+        require(IStandardizedYieldAdapter(_adapter).PIVOT_TOKEN() == asset, "_setAdapter: invalid adapter");
         adapter = _adapter;
         emit SetAdapter(_adapter);
     }
@@ -39,10 +40,11 @@ contract PendleERC4626WithAdapterSY is SYBaseUpg, IPStandardizedYieldWithAdapter
     ) internal virtual override returns (uint256 amountSharesOut) {
         if (tokenIn != yieldToken && tokenIn != asset) {
             _transferOut(tokenIn, adapter, amountDeposited);
-            (tokenIn, amountDeposited) = IStandardizedYieldAdapter(adapter).convertToDeposit(tokenIn, amountDeposited);
+            (tokenIn, amountDeposited) = (
+                asset,
+                IStandardizedYieldAdapter(adapter).convertToDeposit(tokenIn, amountDeposited)
+            );
         }
-
-        require(tokenIn == yieldToken || tokenIn == asset, "adapter: invalid tokenOut");
 
         if (tokenIn == yieldToken) {
             amountSharesOut = amountDeposited;
@@ -57,16 +59,23 @@ contract PendleERC4626WithAdapterSY is SYBaseUpg, IPStandardizedYieldWithAdapter
         address receiver,
         address tokenOut,
         uint256 amountSharesToRedeem
-    ) internal virtual override returns (uint256 amountTokenOut) {
+    ) internal virtual override returns (uint256) {
         if (tokenOut == yieldToken) {
-            amountTokenOut = amountSharesToRedeem;
-            _transferOut(yieldToken, receiver, amountTokenOut);
-        } else if (tokenOut == asset) {
-            amountTokenOut = IERC4626(yieldToken).redeem(amountSharesToRedeem, receiver, address(this));
+            _transferOut(yieldToken, receiver, amountSharesToRedeem);
+            return amountSharesToRedeem;
         } else {
-            _transferOut(yieldToken, adapter, amountSharesToRedeem);
-            amountTokenOut = IStandardizedYieldAdapter(adapter).convertToRedeem(tokenOut, amountSharesToRedeem);
-            _transferOut(tokenOut, receiver, amountTokenOut);
+            if (tokenOut == asset) {
+                return IERC4626(yieldToken).redeem(amountSharesToRedeem, receiver, address(this));
+            } else {
+                uint256 amtAsset = IERC4626(yieldToken).redeem(amountSharesToRedeem, address(this), address(this));
+                _transferOut(asset, adapter, amtAsset);
+                uint256 amtTokenOut = IStandardizedYieldAdapter(adapter).convertToRedeem(
+                    tokenOut,
+                    amountSharesToRedeem
+                );
+                _transferOut(tokenOut, receiver, amtTokenOut);
+                return amtTokenOut;
+            }
         }
     }
 
@@ -79,9 +88,9 @@ contract PendleERC4626WithAdapterSY is SYBaseUpg, IPStandardizedYieldWithAdapter
         uint256 amountTokenToDeposit
     ) internal view virtual override returns (uint256 /*amountSharesOut*/) {
         if (tokenIn != yieldToken && tokenIn != asset) {
-            (tokenIn, amountTokenToDeposit) = IStandardizedYieldAdapter(adapter).previewConvertToDeposit(
-                tokenIn,
-                amountTokenToDeposit
+            (tokenIn, amountTokenToDeposit) = (
+                asset,
+                IStandardizedYieldAdapter(adapter).previewConvertToDeposit(tokenIn, amountTokenToDeposit)
             );
         }
 
@@ -98,10 +107,13 @@ contract PendleERC4626WithAdapterSY is SYBaseUpg, IPStandardizedYieldWithAdapter
     ) internal view virtual override returns (uint256 /*amountTokenOut*/) {
         if (tokenOut == yieldToken) {
             return amountSharesToRedeem;
-        } else if (tokenOut == asset) {
-            return IERC4626(yieldToken).previewRedeem(amountSharesToRedeem);
         } else {
-            return IStandardizedYieldAdapter(adapter).previewConvertToRedeem(tokenOut, amountSharesToRedeem);
+            uint256 amtAsset = IERC4626(yieldToken).previewRedeem(amountSharesToRedeem);
+            if (tokenOut != asset) {
+                return IStandardizedYieldAdapter(adapter).previewConvertToRedeem(tokenOut, amountSharesToRedeem);
+            } else {
+                return amtAsset;
+            }
         }
     }
 

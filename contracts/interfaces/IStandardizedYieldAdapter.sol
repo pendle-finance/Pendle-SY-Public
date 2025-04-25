@@ -2,43 +2,27 @@
 pragma solidity ^0.8.0;
 
 /**
- * This interface defines the functions of adapters for Pendle's Standardized Yield (SY) contracts.
- *
- *                                                      [DEPOSIT]
- * The contracts following this interface are responsible for converting supported tokens into yield token (ERC20_SY & ERC4626_SY) or asset (ERC4626_SY).
- *
- * convertToDeposit(tokenIn, amountTokenIn) => (tokenOut, amountOut)
- * previewConvertToDeposit(tokenIn, amountTokenIn) => (tokenOut, amountOut)
- * - Where all the tokenIn should be listed in getAdapterTokensDeposit()
- * - Token out should be either yieldToken (ERC20_SY & ERC4626_SY) or asset (ERC4626_SY)
- *
- *                                                      [REDEEM]
- * For redeeming, the adapter will take in the yield token (ERC20_SY & ERC4626_SY) and convert it to a supported token.
- *
- * convertToRedeem(tokenOut, amountYieldTokenIn) => amountOut
- * previewConvertToRedeem(tokenOut, amountYieldTokenIn) => amountOut
- * - Where all the tokenOut should be listed in getAdapterTokensRedeem()
- *
- *
  */
 
 interface IStandardizedYieldAdapter {
     /**
-     * @notice Converts a specified amount of an input token to the deposit token.
+     * @notice Retrieves the address of the pivot token.
+     * @return pivotToken The address of the pivot token.
+     */
+    function PIVOT_TOKEN() external view returns (address pivotToken);
+
+    /**
+     * @notice Converts a specified amount of an input token to pivotToken.
      * @dev This function should expect the token has already been transferred to the adapter.
      * @param tokenIn The address of the input token.
      * @param amountTokenIn The amount of the input token to convert.
-     * @return tokenOut The address of the output deposit token. This token should be able to be deposited into the yield token in the SY contract.
      * @return amountOut The amount of the output deposit token.
      */
-    function convertToDeposit(
-        address tokenIn,
-        uint256 amountTokenIn
-    ) external returns (address tokenOut, uint256 amountOut);
+    function convertToDeposit(address tokenIn, uint256 amountTokenIn) external returns (uint256 amountOut);
 
     /**
-     * @notice Converts yield token to the token requested for redemption.
-     * @dev This function should expect the token has already been transferred to the adapter.
+     * @notice Converts pivotToken to the token requested for redemption.
+     * @dev This function should expect pivotToken has already been transferred to the adapter.
      * @param tokenOut The address of the output token.
      * @param amountYieldTokenIn The amount of yield token to convert.
      * @return amountOut The amount of the output token out.
@@ -49,13 +33,9 @@ interface IStandardizedYieldAdapter {
      * @notice Previews the conversion of a specified amount of an input token to the deposit token.
      * @param tokenIn The address of the input token.
      * @param amountTokenIn The amount of the input token to convert.
-     * @return tokenOut The address of the output deposit token.
      * @return amountOut The estimated amount of the output deposit token.
      */
-    function previewConvertToDeposit(
-        address tokenIn,
-        uint256 amountTokenIn
-    ) external view returns (address tokenOut, uint256 amountOut);
+    function previewConvertToDeposit(address tokenIn, uint256 amountTokenIn) external view returns (uint256 amountOut);
 
     /**
      * @notice Previews the conversion of yield token to the amount requested for redemption.

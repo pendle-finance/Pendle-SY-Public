@@ -4,10 +4,12 @@ pragma solidity ^0.8.17;
 import "../../../../interfaces/IStandardizedYieldAdapter.sol";
 
 contract PendleEmptyAdapter is IStandardizedYieldAdapter {
+    address public constant PIVOT_TOKEN = address(0);
+
     function convertToDeposit(
         address /*tokenIn*/,
         uint256 /*amountTokenIn*/
-    ) external pure override returns (address /*tokenOut*/, uint256 /*amountOut*/) {
+    ) external pure override returns (uint256 /*amountOut*/) {
         revert("Adapter: Not implemented");
     }
 
@@ -21,7 +23,7 @@ contract PendleEmptyAdapter is IStandardizedYieldAdapter {
     function previewConvertToDeposit(
         address /*tokenIn*/,
         uint256 /*amountTokenIn*/
-    ) external pure override returns (address /*tokenOut*/, uint256 /*amountOut*/) {
+    ) external pure override returns (uint256 /*amountOut*/) {
         revert("Adapter: Not implemented");
     }
 

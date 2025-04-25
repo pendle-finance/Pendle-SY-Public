@@ -13,18 +13,15 @@ contract PendleSUSDSAdapter is IStandardizedYieldAdapter {
     address public constant CONVERTER = 0x3225737a9Bbb6473CB4a45b7244ACa2BeFdB276A;
     address public constant DAI = 0x6B175474E89094C44Da98b954EedeAC495271d0F;
     address public constant USDS = 0xdC035D45d973E3EC169d2276DDab16f1e407384F;
+    address public constant PIVOT_TOKEN = USDS;
 
     constructor() {
         IERC20(DAI).forceApprove(CONVERTER, type(uint256).max);
         IERC20(USDS).forceApprove(CONVERTER, type(uint256).max);
     }
 
-    function convertToDeposit(
-        address tokenIn,
-        uint256 amountTokenIn
-    ) external override returns (address tokenOut, uint256 amountOut) {
+    function convertToDeposit(address tokenIn, uint256 amountTokenIn) external override returns (uint256 amountOut) {
         assert(tokenIn == DAI);
-        tokenOut = USDS;
         ISkyConverter(CONVERTER).daiToUsds(msg.sender, amountTokenIn);
         amountOut = amountTokenIn;
     }
@@ -34,18 +31,16 @@ contract PendleSUSDSAdapter is IStandardizedYieldAdapter {
         uint256 amountYieldTokenIn
     ) external override returns (uint256 amountOut) {
         assert(tokenOut == DAI);
-
-        uint256 amountUSDS = IERC4626(SUSDS).redeem(amountYieldTokenIn, address(this), address(this));
-        ISkyConverter(CONVERTER).usdsToDai(msg.sender, amountUSDS);
-        amountOut = amountUSDS;
+        ISkyConverter(CONVERTER).usdsToDai(msg.sender, amountYieldTokenIn);
+        return amountYieldTokenIn;
     }
 
     function previewConvertToDeposit(
         address tokenIn,
         uint256 amountTokenIn
-    ) external pure override returns (address tokenOut, uint256 amountOut) {
+    ) external pure override returns (uint256 amountOut) {
         assert(tokenIn == DAI);
-        return (USDS, amountTokenIn);
+        return amountTokenIn;
     }
 
     function previewConvertToRedeem(
@@ -53,7 +48,7 @@ contract PendleSUSDSAdapter is IStandardizedYieldAdapter {
         uint256 amountYieldTokenIn
     ) external view override returns (uint256 amountOut) {
         assert(tokenOut == DAI);
-        return IERC4626(SUSDS).previewRedeem(amountYieldTokenIn);
+        return amountYieldTokenIn;
     }
 
     function getAdapterTokensDeposit() external pure override returns (address[] memory tokens) {
