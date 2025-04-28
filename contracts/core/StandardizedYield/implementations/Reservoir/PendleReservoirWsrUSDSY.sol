@@ -74,7 +74,7 @@ contract PendleReservoirWsrUSDSY is PendleERC4626UpgSYV2 {
         uint256 amountSharesToRedeem
     ) internal view override returns (uint256 /*amountTokenOut*/) {
         if (tokenOut == yieldToken) {
-            return amountSharesToRedeem * DECIMAL_FACTOR;
+            return amountSharesToRedeem;
         }
         return super._previewRedeem(asset, amountSharesToRedeem) / (tokenOut == USDC ? DECIMAL_FACTOR : 1);
     }
