@@ -6,7 +6,6 @@ import "../../../../interfaces/Reservoir/IReservoirCreditEnforcer.sol";
 import "../../../../interfaces/Reservoir/IReservoirPSM.sol";
 
 contract PendleReservoirWsrUSDSY is PendleERC4626UpgSYV2 {
-    
     address public constant USDC = 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48;
     address public constant RUSD = 0x09D4214C03D01F49544C0448DBE3A27f768F2b34;
     address public constant WSRUSD = 0xd3fD63209FA2D55B07A0f6db36C2f43900be3094;
@@ -24,7 +23,6 @@ contract PendleReservoirWsrUSDSY is PendleERC4626UpgSYV2 {
         _safeApproveInf(RUSD, WSRUSD);
     }
 
-
     /*///////////////////////////////////////////////////////////////
                     DEPOSIT/REDEEM USING BASE TOKENS
     //////////////////////////////////////////////////////////////*/
@@ -34,7 +32,10 @@ contract PendleReservoirWsrUSDSY is PendleERC4626UpgSYV2 {
         uint256 amountDeposited
     ) internal virtual override returns (uint256 /*amountSharesOut*/) {
         if (tokenIn == USDC) {
-            (tokenIn, amountDeposited) = (asset, IReservoirCreditEnforcer(CREDIT_ENFORSER).mintStablecoin(amountDeposited) * DECIMAL_FACTOR);
+            (tokenIn, amountDeposited) = (
+                asset,
+                IReservoirCreditEnforcer(CREDIT_ENFORSER).mintStablecoin(amountDeposited) * DECIMAL_FACTOR
+            );
         }
         return super._deposit(tokenIn, amountDeposited);
     }
