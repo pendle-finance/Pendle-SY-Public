@@ -20,34 +20,37 @@ contract PendleSUSDSAdapter is IStandardizedYieldAdapter {
         IERC20(USDS).forceApprove(CONVERTER, type(uint256).max);
     }
 
-    function convertToDeposit(address tokenIn, uint256 amountTokenIn) external override returns (uint256 amountOut) {
-        assert(tokenIn == DAI);
+    function convertToDeposit(
+        address /*tokenIn*/,
+        uint256 amountTokenIn
+    ) external override returns (uint256 amountOut) {
+        // assert(tokenIn == DAI);
         ISkyConverter(CONVERTER).daiToUsds(msg.sender, amountTokenIn);
         amountOut = amountTokenIn;
     }
 
     function convertToRedeem(
-        address tokenOut,
+        address /*tokenOut*/,
         uint256 amountYieldTokenIn
     ) external override returns (uint256 amountOut) {
-        assert(tokenOut == DAI);
+        // assert(tokenOut == DAI);
         ISkyConverter(CONVERTER).usdsToDai(msg.sender, amountYieldTokenIn);
         return amountYieldTokenIn;
     }
 
     function previewConvertToDeposit(
-        address tokenIn,
+        address /*tokenIn*/,
         uint256 amountTokenIn
     ) external pure override returns (uint256 amountOut) {
-        assert(tokenIn == DAI);
+        // assert(tokenIn == DAI);
         return amountTokenIn;
     }
 
     function previewConvertToRedeem(
-        address tokenOut,
+        address /*tokenOut*/,
         uint256 amountYieldTokenIn
     ) external view override returns (uint256 amountOut) {
-        assert(tokenOut == DAI);
+        // assert(tokenOut == DAI);
         return amountYieldTokenIn;
     }
 

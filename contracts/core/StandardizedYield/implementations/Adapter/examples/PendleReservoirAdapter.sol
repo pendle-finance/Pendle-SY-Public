@@ -23,34 +23,37 @@ contract PendleReservoirAdapter is IStandardizedYieldAdapter {
         IERC20(RUSD).forceApprove(PSM, type(uint256).max);
     }
 
-    function convertToDeposit(address tokenIn, uint256 amountTokenIn) external override returns (uint256 amountOut) {
-        assert(tokenIn == USDC);
+    function convertToDeposit(
+        address /*tokenIn*/,
+        uint256 amountTokenIn
+    ) external override returns (uint256 amountOut) {
+        // assert(tokenIn == USDC);
         amountOut = IReservoirCreditEnforcer(CREDIT_ENFORSER).mintStablecoin(amountTokenIn) * DECIMAL_FACTOR;
         IERC20(RUSD).safeTransfer(msg.sender, amountOut);
     }
 
     function convertToRedeem(
-        address tokenOut,
+        address /*tokenOut*/,
         uint256 amountYieldTokenIn
     ) external override returns (uint256 amountOut) {
-        assert(tokenOut == USDC);
+        // assert(tokenOut == USDC);
         amountOut = amountYieldTokenIn / DECIMAL_FACTOR;
         IReservoirPSM(PSM).redeem(msg.sender, amountOut);
     }
 
     function previewConvertToDeposit(
-        address tokenIn,
+        address /*tokenIn*/,
         uint256 amountIn
     ) external pure override returns (uint256 /*amountOut*/) {
-        assert(tokenIn == USDC);
+        // assert(tokenIn == USDC);
         return amountIn * DECIMAL_FACTOR;
     }
 
     function previewConvertToRedeem(
-        address tokenOut,
+        address /*tokenOut*/,
         uint256 amountOut
     ) external pure override returns (uint256 /*amountIn*/) {
-        assert(tokenOut == USDC);
+        // assert(tokenOut == USDC);
         return amountOut / DECIMAL_FACTOR;
     }
 
