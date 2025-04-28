@@ -37,7 +37,7 @@ contract PendleERC20WithAdapterSY is SYBaseUpg, IPStandardizedYieldWithAdapter {
         if (tokenIn == yieldToken) {
             amountSharesOut = amountDeposited;
         } else {
-            _transferOut(yieldToken, adapter, amountDeposited);
+            _transferOut(tokenIn, adapter, amountDeposited);
             amountSharesOut = IStandardizedYieldAdapter(adapter).convertToDeposit(tokenIn, amountDeposited);
         }
 
