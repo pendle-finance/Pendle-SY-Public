@@ -1,0 +1,15 @@
+{
+    "name": "AEGIS-SYUSD-MAINNET-JUL2025",
+    "SY": "0xeb91Df8db163AFc0dA16300D448FbD4D6b3F0D2C",
+    "YT": "0x23dbaaB01bdda67C6DaEA0F180d0BCCC5649A466",
+    "PT": "0x97E5a0EC276776c7CD551D6F90ed12e721Dce202",
+    "market": "0x53a10F17D941D62EF7c65f7c0fFbc91bE2613408",
+    "expiry": 1753315200,
+    "lnFeeRateRoot": "13902905168991418",
+    "scalarRoot": "15894534522281885499",
+    "initialRateAnchor": "1040885451301716055",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0xd9b3136c90ed84b96eabe3a00dc04b7d10dcb40b8fd09a01d4ecbf68a4bf3b8c",
+    "deployBlockNumber": 22368336,
+    "reversedFee": 1.3999999998994594
+}

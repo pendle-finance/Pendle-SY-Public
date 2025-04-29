@@ -1,0 +1,15 @@
+{
+    "name": "WSRUSD-MAINNET-JUL2025",
+    "SY": "0x212670E78Cbec6F219204c52889763628bEDD15e",
+    "YT": "0x9b7568E6f1703744705F673b6389bA49CFe3FB59",
+    "PT": "0x3bd0C522eA444eA2B3F28777e8C20248b6E33252",
+    "market": "0xD7a432f7962123561a63E60e7396B6ba622651b1",
+    "expiry": 1753920000,
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "15849097613211667245",
+    "initialRateAnchor": "1043920575744466829",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0x52940404cac12be933a32b9f554a4f3d0260f2942fc02d3ef69cd2483c3a71b3",
+    "deployBlockNumber": 22374106,
+    "reversedFee": 0.9999999999830145
+}
