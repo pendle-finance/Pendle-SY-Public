@@ -7,7 +7,6 @@ import "../../../../../interfaces/IStandardizedYieldAdapter.sol";
 import "../../../../../interfaces/IPStandardizedYieldWithAdapter.sol";
 
 contract PendleERC4626NoRedeemWithAdapterSY is SYBaseUpg, IPStandardizedYieldWithAdapter {
-    using PMath for uint256;
     using ArrayLib for address[];
 
     address public immutable asset;

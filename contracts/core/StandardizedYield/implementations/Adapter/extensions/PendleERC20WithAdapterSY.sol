@@ -6,7 +6,6 @@ import "../../../../../interfaces/IStandardizedYieldAdapter.sol";
 import "../../../../../interfaces/IPStandardizedYieldWithAdapter.sol";
 
 contract PendleERC20WithAdapterSY is SYBaseUpg, IPStandardizedYieldWithAdapter {
-    using PMath for uint256;
     using ArrayLib for address[];
 
     // solhint-disable immutable-vars-naming
