@@ -27,6 +27,7 @@ contract PendleWcgUSDSY is SYBaseUpg {
             (tokenIn, amountDeposited) = (CGUSD, _selfBalance(CGUSD));
         }
 
+
         if (tokenIn == CGUSD) {
             return ICygnusWstToken(WCGUSD).wrap(amountDeposited);
         } else {
@@ -41,8 +42,11 @@ contract PendleWcgUSDSY is SYBaseUpg {
     ) internal virtual override returns (uint256 amountTokenOut) {
         if (tokenOut == CGUSD) {
             amountTokenOut = ICygnusWstToken(WCGUSD).unwrap(amountSharesToRedeem);
+        } else {
+            amountTokenOut = amountSharesToRedeem;
         }
-        _transfer(tokenOut, receiver, amountTokenOut);
+
+        _transferOut(tokenOut, receiver, amountTokenOut);
     }
 
     /*///////////////////////////////////////////////////////////////
