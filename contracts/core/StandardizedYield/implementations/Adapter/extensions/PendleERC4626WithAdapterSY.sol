@@ -11,6 +11,7 @@ contract PendleERC4626WithAdapterSY is SYBaseUpg, IPStandardizedYieldWithAdapter
 
     address public immutable asset;
     address public adapter;
+    uint256[100] private __gap;
 
     constructor(address _erc4626) SYBaseUpg(_erc4626) {
         asset = IERC4626(_erc4626).asset();

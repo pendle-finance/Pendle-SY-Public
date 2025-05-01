@@ -10,6 +10,7 @@ contract PendleERC20WithAdapterSY is SYBaseUpg, IPStandardizedYieldWithAdapter {
 
     // solhint-disable immutable-vars-naming
     address public adapter;
+    uint256[100] private __gap;
 
     constructor(address _erc20) SYBaseUpg(_erc20) {}
 
@@ -109,6 +110,4 @@ contract PendleERC20WithAdapterSY is SYBaseUpg, IPStandardizedYieldWithAdapter {
     {
         return (AssetType.TOKEN, yieldToken, IERC20Metadata(yieldToken).decimals());
     }
-
-    uint256[100] private __gap;
 }
