@@ -1,0 +1,15 @@
+{
+    "name": "X33-SONIC-AUG2025",
+    "SY": "0x69A23F16974024A1b6A5362ac2A11BFeEEFd5827",
+    "YT": "0xad2afe99CF283C0751FcadE3C53575F0b3154bcF",
+    "PT": "0x3ce2972Ae5E7Ef2a6382644c6B75b6a333bcd604",
+    "market": "0x6d3ECf7a9fc726387bb6a91FfFB4f90D1F38139c",
+    "expiry": 1755129600,
+    "lnFeeRateRoot": "39220713153281296",
+    "scalarRoot": "4757890895024713990",
+    "initialRateAnchor": "1208549420031849721",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0x0933ce4478f21fac318e31d22cf8f57ba06a85c646d0dc1c0266608343e4b8b7",
+    "deployBlockNumber": 23726738,
+    "reversedFee": 3.999999999970738
+}
