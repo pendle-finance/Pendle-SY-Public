@@ -53,4 +53,8 @@ contract PendleSolvBNBBTCSY is PendleSolvSYBaseV2 {
     function isValidTokenIn(address token) public view virtual override returns (bool) {
         return token == BTC || token == SOLV_BTC_BNB || token == SOLV_BTC;
     }
+
+    function assetInfo() external override view returns (AssetType assetType, address assetAddress, uint8 assetDecimals) {
+        return (AssetType.TOKEN, BTC, IERC20Metadata(BTC).decimals());
+    }
 }
