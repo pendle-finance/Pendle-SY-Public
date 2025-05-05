@@ -6,7 +6,6 @@ import "../../../../../interfaces/Solv/ISolvRouterV2.sol";
 import "../../../../../interfaces/Solv/ISolvOpenFundMarket.sol";
 import "../../../../../interfaces/Solv/ISolvERC3525.sol";
 import "../../../../../interfaces/Solv/ISolvOracle.sol";
-import "hardhat/console.sol";
 
 abstract contract PendleSolvSYBaseV2 is SYBaseUpg {
     event SetNewExchangeRateOracle(address oracle);
