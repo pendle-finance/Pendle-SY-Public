@@ -1,0 +1,15 @@
+{
+    "name": "FLUID-GHO-MAINNET-JUL2025",
+    "SY": "0x4726FCb2FBE4398449bB7CE44EB458Dbd7141191",
+    "YT": "0x3992E4C12E22d7535d6144f3Af66E712963e9345",
+    "PT": "0xAAcAE34960CaC6F32826f81E15F855f8e8c7f39e",
+    "market": "0xC64D59eb11c869012C686349d24e1D7C91C86ee2",
+    "expiry": 1753920000,
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "28050142357003156764",
+    "initialRateAnchor": "1025650832113193051",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0x1a615efa081b7ec375004023b41b81d2d6502c88638469957dd27bb8ed6cadc9",
+    "deployBlockNumber": 22416007,
+    "reversedFee": 0.9999999999830145
+}

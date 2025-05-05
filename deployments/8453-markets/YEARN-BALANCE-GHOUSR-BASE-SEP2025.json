@@ -1,0 +1,15 @@
+{
+    "name": "YEARN-BALANCE-GHOUSR-BASE-SEP2025",
+    "SY": "0x66D32c781a5Be5A78ec9E260cad288D75DE80295",
+    "YT": "0xD7BC85f4AA2315C5Fe7F256B314ed9C083027C23",
+    "PT": "0xe4862dA6E20c3a2a4E437A0eCdb823a2aeBBf140",
+    "market": "0xA6b8cFE75Ca5e1b2A527AA255d10521FAaF24b61",
+    "expiry": 1758758400,
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "18184481984610052366",
+    "initialRateAnchor": "1060783679141676570",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0xbf0e60a1dabc33277cb7857df3992381b44519ffa8d14cd0dc2e206470d0c760",
+    "deployBlockNumber": 29819496,
+    "reversedFee": 0.9999999999830145
+}
