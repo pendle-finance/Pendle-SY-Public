@@ -12,4 +12,6 @@ interface ILevelMinterV2 {
     function mint(Order calldata order) external returns (uint256);
 
     function oracles(address token) external view returns (address);
+
+    function vaultManager() external view returns (address);
 }
