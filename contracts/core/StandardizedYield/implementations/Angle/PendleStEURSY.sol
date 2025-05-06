@@ -2,9 +2,9 @@
 pragma solidity ^0.8.17;
 
 import "../PendleERC4626UpgSYV2.sol";
-import "../../../../interfaces/Angles/IAnglesTransmuter.sol";
+import "../../../../interfaces/Angle/IAngleTransmuter.sol";
 
-contract PendleStUSRSY is PendleERC4626UpgSYV2 {
+contract PendleStEURSY is PendleERC4626UpgSYV2 {
     using SafeERC20 for IERC20;
 
     address public constant EURC = 0x1aBaEA1f7C830bD89Acc67eC4af516284b1bC33c;
