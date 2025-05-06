@@ -2,7 +2,8 @@
 pragma solidity ^0.8.17;
 
 import "../PendleERC4626UpgSYV2.sol";
-import "../../../../interfaces/Level/ILevelMinter.sol";
+// import "../../../../interfaces/Level/ILevelMinter.sol";
+import "../../../../interfaces/Level/ILevelMinterV2.sol";
 import {AggregatorV2V3Interface as IChainlinkAggregator} from "@chainlink/contracts/src/v0.8/interfaces/AggregatorV2V3Interface.sol";
 
 contract PendleStakedLevelUSDSY is PendleERC4626UpgSYV2 {
@@ -27,14 +28,12 @@ contract PendleStakedLevelUSDSY is PendleERC4626UpgSYV2 {
         uint256 amountDeposited
     ) internal virtual override returns (uint256 /*amountSharesOut*/) {
         if (tokenIn == USDT) {
-            ILevelMinter(LEVEL_MINTER).mintDefault(
-                ILevelMinter.Order({
-                    order_type: ILevelMinter.OrderType.MINT,
-                    benefactor: address(this),
+            ILevelMinterV2(LEVEL_MINTER).mint(
+                ILevelMinterV2.Order({
                     beneficiary: address(this),
                     collateral_asset: USDT,
                     collateral_amount: amountDeposited,
-                    lvlusd_amount: 0
+                    min_lvlusd_amount: 0
                 })
             );
             (tokenIn, amountDeposited) = (LVLUSD, _selfBalance(LVLUSD));
@@ -47,7 +46,7 @@ contract PendleStakedLevelUSDSY is PendleERC4626UpgSYV2 {
         uint256 amountTokenToDeposit
     ) internal view virtual override returns (uint256 amountSharesOut) {
         if (tokenIn == USDT) {
-            address oracle = ILevelMinter(LEVEL_MINTER).oracles(tokenIn);
+            address oracle = ILevelMinterV2(LEVEL_MINTER).oracles(tokenIn);
             uint8 tokenInDecimals = IERC20Metadata(tokenIn).decimals();
             uint8 oracleDecimals = IChainlinkAggregator(oracle).decimals();
 
