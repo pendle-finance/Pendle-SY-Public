@@ -1,0 +1,15 @@
+{
+    "name": "AAVE-GHO-BASE-JUL2025",
+    "SY": "0x540e181d4e3c70632e6bB153282BEAD2886d0768",
+    "YT": "0x5cD855D8dbE1E94065622D83D2E112a3A168d1CF",
+    "PT": "0xB1847B85da0595C6f72B0757Ee292Bd472DCa45e",
+    "market": "0x6144511E1BD935c258B7b9075F120474dF1b1e5f",
+    "expiry": 1753920000,
+    "lnFeeRateRoot": "4987541511039073",
+    "scalarRoot": "32055840630288480075",
+    "initialRateAnchor": "1017246070695877819",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0x76d4721a140548cd748bb066d16bc5310dacdf61b90d391613924bf4ad7b0e61",
+    "deployBlockNumber": 29867233,
+    "reversedFee": 0.49999999999608136
+}

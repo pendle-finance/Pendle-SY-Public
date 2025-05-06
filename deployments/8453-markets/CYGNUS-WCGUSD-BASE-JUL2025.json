@@ -1,0 +1,15 @@
+{
+    "name": "CYGNUS-WCGUSD-BASE-JUL2025",
+    "SY": "0x77d07ab8466a57fB8615AEB75c37aBFF25c06Ebf",
+    "YT": "0x24D852316BC60502982Cc0177E90433997c5E6af",
+    "PT": "0x43FE057B02cE301a2b09C9873676032892566DE7",
+    "market": "0xaD4e0eFc7b641591dC1a94eFc5d352d098516D2e",
+    "expiry": 1750896000,
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "22870282897369617492",
+    "initialRateAnchor": "1018096246534566460",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0x3057d411b6b28dc6eb858b1f35892df0462b9dfd42385ed246bcf087f18d6690",
+    "deployBlockNumber": 29867754,
+    "reversedFee": 0.9999999999830145
+}

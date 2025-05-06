@@ -1,0 +1,15 @@
+{
+    "name": "ANGLE-EUR-MAINNET-NOV2025",
+    "SY": "0xEc535Ae692F414C45cc4E2610D66Ffd1CbdDB02b",
+    "YT": "0xDE7AE7A07BEa6d1012dF17082f04C024146f7Fdc",
+    "PT": "0x9AC87302429A367cdE6df17E1f150B53E2967924",
+    "market": "0x593b67a445E836D0b4e9186D7604C53b0aE6A74b",
+    "expiry": 1762387200,
+    "lnFeeRateRoot": "2995508979798478",
+    "scalarRoot": "81562026123869754841",
+    "initialRateAnchor": "1021067717624837049",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0x8a70785f46b1d32157a2eaac37e56de60ebd7232d038aa2cddd9f33ca9383a23",
+    "deployBlockNumber": 22423836,
+    "reversedFee": 0.2999999999199199
+}
