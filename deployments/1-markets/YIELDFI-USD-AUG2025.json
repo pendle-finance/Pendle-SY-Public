@@ -1,0 +1,15 @@
+{
+    "name": "YIELDFI-USD-AUG2025",
+    "SY": "0xD3F2cC98Cf302365582757fcd6288EFb92E8d254",
+    "YT": "0x3dE3421A44Eb00b62d72Fb325b18cF2B155151db",
+    "PT": "0xD1d0fF7BB555f57A9604CE06bca704ab97A0049A",
+    "market": "0x1047a4D2dC60e6652B51e7c63bA276b501ad6bc8",
+    "expiry": 1754524800,
+    "lnFeeRateRoot": "13902905168991418",
+    "scalarRoot": "15826349222066285673",
+    "initialRateAnchor": "1045448060848912353",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0x89349b7eba4366f769a7456535dfa7e8fb9f5e1b70ca87dbfa7d5fd612fddc3a",
+    "deployBlockNumber": 22401883,
+    "reversedFee": 1.3999999998994594
+}
