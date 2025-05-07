@@ -1,0 +1,15 @@
+{
+    "name": "SDOLA-MAINNET-OCT2025",
+    "SY": "0x90a7E3396403634942AcC24906FBdA19f1418A41",
+    "YT": "0xBb606D98F9723Cb58F5c4ac1768DA2543F1B49D8",
+    "PT": "0x8891302D91dB6E7C2Ce6e82A8f6C952aB556eb7a",
+    "market": "0xE6723992EC43aa6011457bBBed7D6Cd7Db1407B6",
+    "expiry": 1759968000,
+    "lnFeeRateRoot": "11928570865273801",
+    "scalarRoot": "17618658661238944962",
+    "initialRateAnchor": "1072431056444621463",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0x676d1fcd4ab7d2858bbf1250a44e58619bac79378d726569e16f1a3d7099945e",
+    "deployBlockNumber": 22312624,
+    "reversedFee": 1.19999999997229
+}
