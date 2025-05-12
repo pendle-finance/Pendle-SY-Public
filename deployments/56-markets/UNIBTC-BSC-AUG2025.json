@@ -1,0 +1,15 @@
+{
+    "name": "UNIBTC-BSC-AUG2025",
+    "SY": "0x09f317B127bcC9d16f5dd17cadbeDA9D034C0F8c",
+    "YT": "0x22177Ce13E64E6432aB035b0aD1c39d8cF6e0169",
+    "PT": "0xE669B136CFfc8625096bA2B8451Ce3BFdeD81d23",
+    "market": "0x4C6c233b16fD3f9C4EC139174Ca8eE8BA0eB8A88",
+    "expiry": 1756339200,
+    "lnFeeRateRoot": "2995508979798478",
+    "scalarRoot": "58912688874824651463",
+    "initialRateAnchor": "1013363234990457730",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0xc6e3f90145ea2736a34d71025d41b73856c8b8ec69c195600455e42c5ba81109",
+    "deployBlockNumber": 49525135,
+    "reversedFee": 0.2999999999199199
+}
