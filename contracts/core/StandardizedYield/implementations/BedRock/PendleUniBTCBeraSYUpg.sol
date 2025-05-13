@@ -76,4 +76,9 @@ contract PendleUniBTCBeraSYUpg is SYBaseUpg {
     function assetInfo() external view returns (AssetType assetType, address assetAddress, uint8 assetDecimals) {
         return (AssetType.TOKEN, UNIBTC, IERC20Metadata(UNIBTC).decimals());
     }
+
+    function _beforeTokenTransfer(address from, address to, uint256 amount) internal override virtual {
+        super._beforeTokenTransfer(from, to, amount);
+        require (amount > 0, "transfer zero amount");
+    }
 }

@@ -60,4 +60,9 @@ contract PendleEBTCBeraSY is PendleERC20SYUpg {
     function getTokensIn() public pure override returns (address[] memory res) {
         return ArrayLib.create(wBTC, eBTC, LBTC);
     }
+
+    function _beforeTokenTransfer(address from, address to, uint256 amount) internal override virtual {
+        super._beforeTokenTransfer(from, to, amount);
+        require (amount > 0, "transfer zero amount");
+    }
 }
