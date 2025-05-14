@@ -1,0 +1,15 @@
+{
+    "name": "SUPERETH-MAINNET-SEP2025",
+    "SY": "0xeD5cC19927E3a4AC20e4A9e9e433dDd99138504e",
+    "YT": "0x220C37ee56f260111a1c3D5eF778a3556dE84B1c",
+    "PT": "0x860Ae8aAA07Bd743Ee7dD0EFF93E4bB8BD953497",
+    "market": "0x49AFd881Cd581CC0258ce6Db95e3fE167113c65b",
+    "expiry": 1753920000,
+    "lnFeeRateRoot": "5982071677547463",
+    "scalarRoot": "34610575638231323503",
+    "initialRateAnchor": "1016838455236344621",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0x3c3b902c5f79f599fd5813b9813c74c6728fbdae54948b0f3c76be8c6ae719fd",
+    "deployBlockNumber": 22474901,
+    "reversedFee": 0.5999999999449335
+}

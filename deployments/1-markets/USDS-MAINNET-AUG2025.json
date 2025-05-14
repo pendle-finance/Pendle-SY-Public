@@ -1,0 +1,15 @@
+{
+    "name": "USDS-MAINNET-AUG2025",
+    "SY": "0x508deFdB5DD2aDEEfe36f58fdCD75d6efa36697b",
+    "YT": "0x4EB0Bb058BCFEAc8a2b3c2fC3CaE2B8aD7fF7f6e",
+    "PT": "0xFfEc096c087C13Cc268497B89A613cACE4DF9A48",
+    "market": "0xdacE1121e10500e9e29d071F01593fD76B000f08",
+    "expiry": 1755129600,
+    "lnFeeRateRoot": "13902905168991418",
+    "scalarRoot": "15847586420535324605",
+    "initialRateAnchor": "1044021883237648619",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0xc4252e64c93ddc13edc6ca8c18605d6f3568aee18de4568508036a35576464a0",
+    "deployBlockNumber": 22472228,
+    "reversedFee": 1.3999999998994594
+}

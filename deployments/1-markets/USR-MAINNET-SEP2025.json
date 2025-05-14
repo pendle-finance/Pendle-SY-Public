@@ -1,0 +1,15 @@
+{
+    "name": "USR-MAINNET-SEP2025",
+    "SY": "0x6AFde97a0c27e57cf0582373F9D7dc2b9f1CC3A3",
+    "YT": "0x9ebd88a0368D53fdCAd9c72C47280fECBcCDCAA9",
+    "PT": "0x5a5b93F762739fa94F3EcC0b34Af2e56702E7f70",
+    "market": "0x33BdA865c6815c906e63878357335B28f063936c",
+    "expiry": 1756944000,
+    "lnFeeRateRoot": "11928570865273801",
+    "scalarRoot": "18785113728805746722",
+    "initialRateAnchor": "1048772789720748398",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0x764be61db8e7bfe744fd28ef6d404f986b25e9ccb4e8e785cd06c9801f597b03",
+    "deployBlockNumber": 22471997,
+    "reversedFee": 1.19999999997229
+}

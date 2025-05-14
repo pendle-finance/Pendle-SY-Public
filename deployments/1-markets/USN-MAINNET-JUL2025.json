@@ -1,0 +1,15 @@
+{
+    "name": "USN-MAINNET-JUL2025",
+    "SY": "0x2C452bDD2192A197fb085a7C73fe6C82782401dC",
+    "YT": "0x267F578f866617628386211Da738347e063eccb7",
+    "PT": "0xedCe58C0d14A9Beaa4F053EBdbdb2DF83F211118",
+    "market": "0x11f7f8AA7Bb5ABF819544d502D0f365C4cb0dFEB",
+    "expiry": 1753920000,
+    "lnFeeRateRoot": "15873349156290149",
+    "scalarRoot": "14460292396881366878",
+    "initialRateAnchor": "1056950740896881104",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0x04f209ba1e0dbf53652acbeacf118aec298694e30b7b8c3cb7123c9642cc1c41",
+    "deployBlockNumber": 22296616,
+    "reversedFee": 1.599999999970514
+}

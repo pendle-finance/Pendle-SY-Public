@@ -1,0 +1,15 @@
+{
+    "name": "USD0PP-MAINNET-NOV2025",
+    "SY": "0x52453825c287dDef62D647ce51C0979D27c461f7",
+    "YT": "0xB4cD5C5440eb69eDB6db878cA2aCD7C6b97B2ba5",
+    "PT": "0x136389D329968bD82efe05F0911Eeb20eE74A138",
+    "market": "0xF8094570485B124b4f2aBE98909A87511489C162",
+    "expiry": 1764201600,
+    "lnFeeRateRoot": "7968169649176873",
+    "scalarRoot": "30866490298958837193",
+    "initialRateAnchor": "1066671890317863952",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0xc36d79ff43ba692d3ca8abaefd9ba11573f04df77b57d33d74c45314f9513ebd",
+    "deployBlockNumber": 22444209,
+    "reversedFee": 0.7999999999821705
+}

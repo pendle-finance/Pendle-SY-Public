@@ -1,0 +1,15 @@
+{
+    "name": "EUSDE-MAINNET-AUG2025",
+    "SY": "0x7ac8ca87959b1d5EDfe2df5325A37c304DCea4D0",
+    "YT": "0xe8eF806c8aaDc541408dcAd36107c7d26a391712",
+    "PT": "0x14Bdc3A3AE09f5518b923b69489CBcAfB238e617",
+    "market": "0xE93B4A93e80BD3065B290394264af5d82422ee70",
+    "expiry": 1755129600,
+    "lnFeeRateRoot": "11137744410455925",
+    "scalarRoot": "21366085949604699487",
+    "initialRateAnchor": "1038610344320979680",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0xeb41d87f9f1c5c871f9eecd2676387e661bc984bbbb5153230f714e5943d9fc6",
+    "deployBlockNumber": 22472324,
+    "reversedFee": 1.1199999999538912
+}
