@@ -12,10 +12,9 @@ contract PendleLevelUSDSY is PendleERC20SYUpg {
     using PMath for int256;
 
     address public constant LVLUSD = 0x7C1156E515aA1A2E851674120074968C905aAF37;
-    
+
     address public constant USDT = 0xdAC17F958D2ee523a2206206994597C13D831ec7;
     address public constant USDC = 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48;
-
 
     address public constant LEVEL_MINTER = 0x9136aB0294986267b71BeED86A75eeb3336d09E1;
 
@@ -26,7 +25,7 @@ contract PendleLevelUSDSY is PendleERC20SYUpg {
         __SYBaseUpg_init("SY Level USD", "SY-lvlUSD");
     }
 
-    function approveForVault() onlyOwner external {
+    function approveForVault() external onlyOwner {
         address vault = ILevelVaultManagerV2(ILevelMinterV2(LEVEL_MINTER).vaultManager()).vault();
         _safeApproveInf(USDT, vault);
         _safeApproveInf(USDC, vault);

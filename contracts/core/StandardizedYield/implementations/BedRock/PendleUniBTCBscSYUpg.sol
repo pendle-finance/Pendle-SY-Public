@@ -29,7 +29,7 @@ contract PendleUniBTCBscSYUpg is SYBaseUpg {
             IBedrockUniBTCVault(VAULT).mint(tokenIn, amountDeposited);
             return _selfBalance(UNIBTC) - preBalance;
         }
-        return amountDeposited; 
+        return amountDeposited;
     }
 
     function _redeem(

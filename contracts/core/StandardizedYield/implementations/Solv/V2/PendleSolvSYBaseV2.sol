@@ -58,7 +58,12 @@ abstract contract PendleSolvSYBaseV2 is SYBaseUpg {
         return token == yieldToken;
     }
 
-    function assetInfo() external virtual view returns (AssetType assetType, address assetAddress, uint8 assetDecimals) {
+    function assetInfo()
+        external
+        view
+        virtual
+        returns (AssetType assetType, address assetAddress, uint8 assetDecimals)
+    {
         return (AssetType.TOKEN, yieldToken, IERC20Metadata(yieldToken).decimals());
     }
 

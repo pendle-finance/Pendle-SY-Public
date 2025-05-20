@@ -128,8 +128,8 @@ contract PendleLBTCBaseSY is SYBaseUpg, IPTokenWithSupplyCap {
         return ILBTCMinterBase(MINTER).stakeLimit();
     }
 
-    function _beforeTokenTransfer(address from, address to, uint256 amount) internal override virtual {
+    function _beforeTokenTransfer(address from, address to, uint256 amount) internal virtual override {
         super._beforeTokenTransfer(from, to, amount);
-        require (amount > 0, "transfer zero amount");
+        require(amount > 0, "transfer zero amount");
     }
 }

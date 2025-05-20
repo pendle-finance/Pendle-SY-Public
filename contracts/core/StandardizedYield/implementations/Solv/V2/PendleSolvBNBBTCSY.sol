@@ -13,7 +13,6 @@ contract PendleSolvBNBBTCSY is PendleSolvSYBaseV2 {
     address public constant NAV_ORACLE = 0x9C491539AeC346AAFeb0bee9a1e9D9c02AB50889;
     bytes32 public constant MAIN_POOL_ID = 0x02228958e4f53e94e09cc0afd49939bf93af0b991889fa5fe761672c0e9c3021;
 
-
     address[] internal FULL_PATH;
 
     constructor() PendleSolvSYBaseV2(SOLV_BNB_ROUTER_V2, SOLV_BTC_BNB) {}
@@ -54,7 +53,12 @@ contract PendleSolvBNBBTCSY is PendleSolvSYBaseV2 {
         return token == BTC || token == SOLV_BTC_BNB || token == SOLV_BTC;
     }
 
-    function assetInfo() external override view returns (AssetType assetType, address assetAddress, uint8 assetDecimals) {
+    function assetInfo()
+        external
+        view
+        override
+        returns (AssetType assetType, address assetAddress, uint8 assetDecimals)
+    {
         return (AssetType.TOKEN, BTC, IERC20Metadata(BTC).decimals());
     }
 }

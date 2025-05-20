@@ -27,7 +27,6 @@ contract PendleWcgUSDSY is SYBaseUpg {
             (tokenIn, amountDeposited) = (CGUSD, _selfBalance(CGUSD));
         }
 
-
         if (tokenIn == CGUSD) {
             return ICygnusWstToken(WCGUSD).wrap(amountDeposited);
         } else {

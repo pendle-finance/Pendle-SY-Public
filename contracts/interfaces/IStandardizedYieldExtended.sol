@@ -26,7 +26,6 @@ pragma solidity ^0.8.0;
 import "./IStandardizedYield.sol";
 
 interface IStandardizedYieldExtended is IStandardizedYield {
-    
     /**
      * @notice This function contains information to describe recommended pricing method for this SY
      * @return refToken the token should be referred to when pricing this SY
@@ -34,7 +33,7 @@ interface IStandardizedYieldExtended is IStandardizedYield {
      *
      * @dev For pricing PT & YT of this SY, it's recommended that:
      * - refStrictlyEqual = true : use PYLpOracle.get{Token}ToSyRate() and multiply with refToken's according price
-     * - refStrictlyEqual = false: use PYLpOracle.get{Token}ToAssetRate() and multiply with refToken's according price. It is also 
+     * - refStrictlyEqual = false: use PYLpOracle.get{Token}ToAssetRate() and multiply with refToken's according price. It is also
      *   highly recommended to contact us for discussion on this type of token
      */
     function pricingInfo() external view returns (address refToken, bool refStrictlyEqual);
