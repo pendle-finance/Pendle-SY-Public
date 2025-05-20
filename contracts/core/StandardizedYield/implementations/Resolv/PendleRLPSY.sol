@@ -11,13 +11,9 @@ contract PendleRLPSY is PendleERC20SYUpg {
     address public constant USDC = 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48;
     address public constant rlpPriceStorage = 0xaE2364579D6cB4Bbd6695846C1D595cA9AF3574d;
 
-    address public immutable exchangeRateOracle;
+    constructor() PendleERC20SYUpg(RLP) {}
 
-    constructor(address _exchangeRateOracle) PendleERC20SYUpg(RLP) {
-        exchangeRateOracle = _exchangeRateOracle;
-    }
-
-    function exchangeRate() public view virtual override returns (uint256 res) {
+    function exchangeRate() public view virtual override returns (uint256) {
         (uint256 price, ) = IRlpPriceStorage(rlpPriceStorage).lastPrice();
         return price;
     }
@@ -29,7 +25,7 @@ contract PendleRLPSY is PendleERC20SYUpg {
         override
         returns (AssetType assetType, address assetAddress, uint8 assetDecimals)
     {
-        return (AssetType.TOKEN, USDC, IERC20Metadata(USDC).decimals());
+        return (AssetType.TOKEN, USDC, 6);
     }
 }
 
