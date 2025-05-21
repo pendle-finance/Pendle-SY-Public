@@ -15,7 +15,7 @@ contract PendleRLPSY is PendleERC20SYUpg {
 
     function exchangeRate() public view virtual override returns (uint256) {
         (uint256 price, ) = IRlpPriceStorage(rlpPriceStorage).lastPrice();
-        return price;
+        return price / 1e12;
     }
 
     function assetInfo()
