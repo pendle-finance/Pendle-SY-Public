@@ -1,0 +1,15 @@
+{
+    "name": "EULER-PRIME-ETH-MAINNET-DEC2025",
+    "SY": "0x4EDE9C1Dd28dAc5356642663bEA5a72fe9b6B2A2",
+    "YT": "0x9686A5FDf8022eAF6613D39cac1633EEFE040433",
+    "PT": "0xf577439aF94dc7434143380Cd43Dee77B0cff607",
+    "market": "0x2CbB8eFe9a7ff340768A1b672475111672e7527e",
+    "expiry": 1766016000,
+    "lnFeeRateRoot": "4589452333807286",
+    "scalarRoot": "45081378006232936918",
+    "initialRateAnchor": "1037645702073185922",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0x7f853f5d4445d43802f86ca2d4dbd50a58bc45c082b1efd4cb735aed53f62b31",
+    "deployBlockNumber": 22493850,
+    "reversedFee": 0.45999999991890306
+}

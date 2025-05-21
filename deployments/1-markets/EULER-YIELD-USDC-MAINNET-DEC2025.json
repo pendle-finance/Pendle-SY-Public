@@ -1,0 +1,15 @@
+{
+    "name": "EULER-YIELD-USDC-MAINNET-DEC2025",
+    "SY": "0x31081a986F55d071Bd89E5F66eF5187e77383197",
+    "YT": "0xEcfbA66f021303080c4089050340AD3Fb34606D8",
+    "PT": "0x2c0FA52e70298Fbb5909a92F354585Da016254b7",
+    "market": "0x80c229544530c2bA693bF7e8A5AA76Ff98705C6E",
+    "expiry": 1766016000,
+    "lnFeeRateRoot": "7968169649176873",
+    "scalarRoot": "28754032330947745071",
+    "initialRateAnchor": "1068617523487677920",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0xecc2fc70a66ac82531075f91fb5583d3a0a28ff9183290860cdc23fdf07f839d",
+    "deployBlockNumber": 22493826,
+    "reversedFee": 0.7999999999821705
+}
