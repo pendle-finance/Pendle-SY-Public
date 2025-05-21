@@ -1,0 +1,15 @@
+{
+    "name": "UPT-BTC-MAINNET-AUG2025",
+    "SY": "0x690559C7bd75C9a301E15515a8EA3316840f17Be",
+    "YT": "0xDa23E4F55b258D35491d5826aD75e5AF01218DB2",
+    "PT": "0x7c853d6bFb49256af65AF672dCc3f66C015E96e0",
+    "market": "0x2e250f3E0Ca772E87f0C9E2aa55254F7Eb82EA58",
+    "expiry": 1755129600,
+    "lnFeeRateRoot": "3992021269537452",
+    "scalarRoot": "50849977784354670076",
+    "initialRateAnchor": "1012452134497550509",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0xd622e66cb7320eff6d5dae05e1865c89de9e23ab3f3f5d2555e3d63f2cf341da",
+    "deployBlockNumber": 22524146,
+    "reversedFee": 0.3999999999460435
+}
