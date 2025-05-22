@@ -24,10 +24,10 @@ interface IStandardizedYieldAdapter {
      * @notice Converts pivotToken to the token requested for redemption.
      * @dev This function should expect pivotToken has already been transferred to the adapter.
      * @param tokenOut The address of the output token.
-     * @param amountYieldTokenIn The amount of yield token to convert.
+     * @param amountPivotTokenIn The amount of pivot token to convert.
      * @return amountOut The amount of the output token out.
      */
-    function convertToRedeem(address tokenOut, uint256 amountYieldTokenIn) external returns (uint256 amountOut);
+    function convertToRedeem(address tokenOut, uint256 amountPivotTokenIn) external returns (uint256 amountOut);
 
     /**
      * @notice Previews the conversion of a specified amount of an input token to pivotToken.
@@ -40,12 +40,12 @@ interface IStandardizedYieldAdapter {
     /**
      * @notice Previews the conversion of pivot token to the amount requested for redemption.
      * @param tokenOut The address of the output token.
-     * @param amountYieldTokenIn The amount of yield token to convert.
+     * @param amountPivotTokenIn The amount of pivot token to convert.
      * @return amountOut The estimated amount of the output token out.
      */
     function previewConvertToRedeem(
         address tokenOut,
-        uint256 amountYieldTokenIn
+        uint256 amountPivotTokenIn
     ) external view returns (uint256 amountOut);
 
     /**
