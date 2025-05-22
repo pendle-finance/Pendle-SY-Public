@@ -12,10 +12,12 @@ contract PendleERC4626Adapter is IStandardizedYieldAdapter {
     address public immutable asset;
     address public immutable erc4626;
     address public immutable PIVOT_TOKEN;
+    bool public immutable isRedeemable;
 
-    constructor(address _erc4626) {
+    constructor(address _erc4626, bool _isRedeemable) {
         erc4626 = _erc4626;
         PIVOT_TOKEN = _erc4626;
+        isRedeemable = _isRedeemable;
         asset = IERC4626(_erc4626).asset();
     }
 
@@ -25,6 +27,7 @@ contract PendleERC4626Adapter is IStandardizedYieldAdapter {
     }
 
     function convertToRedeem(address /*tokenOut*/, uint256 amountPivotTokenIn) external override returns (uint256) {
+        require(isRedeemable, "Not redeemable");
         // assert(tokenOut == asset);
         return IERC4626(erc4626).redeem(amountPivotTokenIn, msg.sender, address(this));
     }
@@ -41,6 +44,7 @@ contract PendleERC4626Adapter is IStandardizedYieldAdapter {
         address /*tokenOut*/,
         uint256 amountPivotTokenIn
     ) external view override returns (uint256 amountOut) {
+        require(isRedeemable, "Not redeemable");
         // assert(tokenOut == asset);
         return IERC4626(erc4626).previewRedeem(amountPivotTokenIn);
     }
@@ -51,7 +55,9 @@ contract PendleERC4626Adapter is IStandardizedYieldAdapter {
     }
 
     function getAdapterTokensRedeem() external view override returns (address[] memory tokens) {
-        tokens = new address[](1);
-        tokens[0] = asset;
+        if (isRedeemable) {
+            tokens = new address[](1);
+            tokens[0] = asset;
+        }
     }
 }
