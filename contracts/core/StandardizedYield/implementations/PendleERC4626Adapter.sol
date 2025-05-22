@@ -19,6 +19,7 @@ contract PendleERC4626Adapter is IStandardizedYieldAdapter {
         PIVOT_TOKEN = _erc4626;
         isRedeemable = _isRedeemable;
         asset = IERC4626(_erc4626).asset();
+        IERC20(asset).forceApprove(_erc4626, type(uint256).max);
     }
 
     function convertToDeposit(address /*tokenIn*/, uint256 amountTokenIn) external override returns (uint256) {
