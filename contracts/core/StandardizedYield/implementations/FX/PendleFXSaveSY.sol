@@ -6,10 +6,12 @@ import "../../../../interfaces/FX/IFXBase.sol";
 import "./PendleFxCurvePoolHelper.sol";
 
 interface IFxUSDBasePool {
-    function redeem(
+    function instantRedeem(
         address receiver,
         uint256 amountSharesToRedeem
     ) external returns (uint256 amountYieldOut, uint256 amountStableOut);
+
+    function instantRedeemFeeRatio() external view returns (uint256);
 
     function previewRedeem(
         uint256 amountSharesToRedeem
@@ -17,6 +19,8 @@ interface IFxUSDBasePool {
 }
 
 contract PendleFXSaveSY is PendleERC4626UpgSYV2, PendleFxCurvePoolHelper {
+    using PMath for uint256;
+
     address public constant FXSAVE = 0x7743e50F534a7f9F1791DdE7dCD89F7783Eefc39;
     address public constant USDC = 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48;
     address public constant FXUSD = 0x085780639CC2cACd35E474e71f4d000e2405d8f6;
@@ -54,7 +58,7 @@ contract PendleFXSaveSY is PendleERC4626UpgSYV2, PendleFxCurvePoolHelper {
         } else {
             // tokenOut is either USDC or FXUSD
             uint256 amountAssetOut = IERC4626(yieldToken).redeem(amountSharesToRedeem, address(this), address(this));
-            (uint256 amtFxUSD, uint256 amtUSDC) = IFxUSDBasePool(asset).redeem(address(this), amountAssetOut);
+            (uint256 amtFxUSD, uint256 amtUSDC) = IFxUSDBasePool(asset).instantRedeem(address(this), amountAssetOut);
 
             uint256 amountToSwap = tokenOut == USDC ? amtFxUSD : amtUSDC;
             uint256 amountOut = tokenOut == USDC ? amtUSDC : amtFxUSD;
@@ -84,7 +88,13 @@ contract PendleFXSaveSY is PendleERC4626UpgSYV2, PendleFxCurvePoolHelper {
         } else {
             // tokenOut is either USDC or FXUSD
             uint256 amountAssetOut = IERC4626(yieldToken).previewRedeem(amountSharesToRedeem);
+
             (uint256 amtFxUSD, uint256 amtUSDC) = IFxUSDBasePool(asset).previewRedeem(amountAssetOut);
+            uint256 fee = IFxUSDBasePool(asset).instantRedeemFeeRatio();
+
+            amtFxUSD -= amtFxUSD.mulDown(fee);
+            amtUSDC -= amtUSDC.mulDown(fee);
+
             uint256 amountToSwap = tokenOut == USDC ? amtFxUSD : amtUSDC;
             uint256 amountOut = tokenOut == USDC ? amtUSDC : amtFxUSD;
             amountOut += _previewSwap(tokenOut, amountToSwap);
