@@ -30,6 +30,10 @@ contract PendleFXSaveSY is PendleERC4626UpgSYV2, PendleFxCurvePoolHelper {
         _safeApproveInf(FXUSD, asset);
     }
 
+    function approveForCurvePool() external virtual onlyOwner {
+        _approveForCurvePool();
+    }
+
     function _deposit(
         address tokenIn,
         uint256 amountDeposited
