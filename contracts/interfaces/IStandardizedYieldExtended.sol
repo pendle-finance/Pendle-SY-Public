@@ -32,7 +32,9 @@ interface IStandardizedYieldExtended is IStandardizedYield {
      * @return refStrictlyEqual whether the price of SY is strictly equal to refToken
      *
      * @dev For pricing PT & YT of this SY, it's recommended that:
-     * - refStrictlyEqual = true : use PYLpOracle.get{Token}ToSyRate() and multiply with refToken's according price
+     * - refStrictlyEqual = true : (1 natural unit of SY = 1 natural unit of refToken). Use PYLpOracle.get{Token}ToSyRate() and multiply with refToken's according price.
+     *   [CAUTION]: SY and refToken might have different decimals.
+     *
      * - refStrictlyEqual = false: use PYLpOracle.get{Token}ToAssetRate() and multiply with refToken's according price. It is also
      *   highly recommended to contact us for discussion on this type of token
      */
