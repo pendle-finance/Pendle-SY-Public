@@ -1,0 +1,15 @@
+{
+    "name": "LBTC-BASE-SEP2025",
+    "SY": "0x67E64AF30E04A7277ab2D4f09ACE3F77a15801F9",
+    "YT": "0x86725be2f3B01A2B18617F77542800eD4F4cfDca",
+    "PT": "0x7C3039d2385000cf366E3AC6AB9d7642E8440dd2",
+    "market": "0x4EaE2e40C6612005214ea919cc7653dA853Ed409",
+    "expiry": "1758758400",
+    "lnFeeRateRoot": "4987541511039073",
+    "scalarRoot": "64648394164276601007",
+    "initialRateAnchor": "1014425094992556509",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0xc268eacfbc36100f886cf57cf389476cd364ede40bfb819f780468ea3e9465d2",
+    "deployBlockNumber": 30809675,
+    "reversedFee": 0.49999999999608136
+}
