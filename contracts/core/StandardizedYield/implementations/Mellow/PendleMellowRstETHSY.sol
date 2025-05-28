@@ -5,7 +5,7 @@ import "../PendleERC4626NoRedeemUpgSY.sol";
 import "../../../../interfaces/IPTokenWithSupplyCap.sol";
 import "../../../../interfaces/IWstETH.sol";
 
-contract PendleMellow4626SYUpg is PendleERC4626NoRedeemUpgSY, IPTokenWithSupplyCap {
+contract PendleMellowRstETHSY is PendleERC4626NoRedeemUpgSY, IPTokenWithSupplyCap {
     error SupplyCapExceeded(uint256 totalSupply, uint256 supplyCap);
 
     constructor() PendleERC4626NoRedeemUpgSY(0x7a4EffD87C2f3C55CA251080b1343b605f327E3a) {}
