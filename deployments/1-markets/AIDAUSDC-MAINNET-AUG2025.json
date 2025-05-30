@@ -1,0 +1,15 @@
+{
+    "name": "AIDAUSDC-MAINNET-AUG2025",
+    "SY": "0xBDD578AB1A6AF894b9ABe1C9D97f183005e07B1d",
+    "YT": "0x05dB2D5F89b3e9eAB8f9c07149CD3A7575Db8b9D",
+    "PT": "0x6E6551A332c453eaD27bC3B2a084657dee1b5F76",
+    "market": "0x47306E3Cb4E325042556864B38aA0CBE8D928bE5",
+    "expiry": "1755129600",
+    "lnFeeRateRoot": "8959741371471904",
+    "scalarRoot": "18312182479450779868",
+    "initialRateAnchor": "1030992014547185293",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0x07718e18fc82ae0dc9ca128b3b53fe1bba8fefef4836b90149a31c52fa5c2c94",
+    "deployBlockNumber": 22594715,
+    "reversedFee": 0.8999999999523833
+}

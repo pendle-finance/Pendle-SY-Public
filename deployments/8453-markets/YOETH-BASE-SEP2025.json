@@ -1,0 +1,15 @@
+{
+    "name": "YOETH-BASE-SEP2025",
+    "SY": "0xE574de45b4eA2c5DB7Dd6F4074349F270EE97C64",
+    "YT": "0x621beDE1CA0043E96735BF7D1BEde903d55Cd62A",
+    "PT": "0xDe4f5ADc052AEd60000F3171785B168A3d27Dcd7",
+    "market": "0xEe2058f408A43f6D952Ebd55812b4bf0d1cA8854",
+    "expiry": "1758758400",
+    "lnFeeRateRoot": "4987541511039073",
+    "scalarRoot": "38800782144186128186",
+    "initialRateAnchor": "1027816594396235478",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0x29137d55c319a05da1bbf101d5004a8b51403d94f30652d6db5c71165463593b",
+    "deployBlockNumber": 30903786,
+    "reversedFee": 0.49999999999608136
+}

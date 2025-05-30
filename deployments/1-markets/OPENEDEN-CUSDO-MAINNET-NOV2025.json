@@ -1,0 +1,15 @@
+{
+    "name": "OPENEDEN-CUSDO-MAINNET-NOV2025",
+    "SY": "0x6aDA3D3a4304aA7c5D9E5801cbA45bC1e6c59319",
+    "YT": "0x19666817843B3CA6c053D5128123fbAdD75c7Ba4",
+    "PT": "0xB5202e3055964b88c8c4c33bCF2346dbBFCF3A9B",
+    "market": "0xfaA442D3bAbF60633c191C6A932a811893275C12",
+    "expiry": "1763596800",
+    "lnFeeRateRoot": "7968169649176873",
+    "scalarRoot": "23709044939753306542",
+    "initialRateAnchor": "1072973316506965576",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0x08cb7e76440ad21e7baa8f0dbcd2392d4071c108a01e88815a1ec241a5d07384",
+    "deployBlockNumber": 22581117,
+    "reversedFee": 0.7999999999821705
+}
