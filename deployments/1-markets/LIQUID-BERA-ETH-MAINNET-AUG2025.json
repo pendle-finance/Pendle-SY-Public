@@ -1,0 +1,15 @@
+{
+    "name": "LIQUID-BERA-ETH-MAINNET-AUG2025",
+    "SY": "0x042677ce7e0e63fA5881f44a0f00d33FEB5f55Da",
+    "YT": "0xDBD6B83Ae33952A2272eD3E900d3A00F1B2d611e",
+    "PT": "0xd2d0eD784F01DdE636d9925DA760e87F3aC5e721",
+    "market": "0x2d3BBC6e3FfeB584FC34B8C433F7170741Ad75c1",
+    "expiry": "1756339200",
+    "lnFeeRateRoot": "4987541511039073",
+    "scalarRoot": "39054899754325961892",
+    "initialRateAnchor": "1021083854055619709",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0xc8426ce834f13687884c5a62db568219efc60ffcf40f7400393504524a8f1d17",
+    "deployBlockNumber": 22594975,
+    "reversedFee": 0.49999999999608136
+}
