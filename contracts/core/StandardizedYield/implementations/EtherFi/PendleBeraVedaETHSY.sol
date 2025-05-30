@@ -9,7 +9,7 @@ contract PendleBeraVedaETHSY is PendleVedaBaseSY {
     // solhint-disable ordering
 
     address public constant liquidBeraETH = 0x83599937c2C9bEA0E0E8ac096c6f32e86486b410;
-    address public constant teller = 0xCbc0D2838256919e55eB302Ce8c46d7eE0E9d807;
+    address public constant teller = 0xd445C65e4821dbD4ed0114eCDF6325c69faD7653;
 
     address public constant WETH = 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2;
     address public constant WEETH = 0xCd5fE23C85820F7B72D0926FC9b05b43E359b7ee;
