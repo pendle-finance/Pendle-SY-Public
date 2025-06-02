@@ -23,9 +23,7 @@
 
 pragma solidity ^0.8.0;
 
-import "./IStandardizedYield.sol";
-
-interface IStandardizedYieldExtended is IStandardizedYield {
+interface IStandardizedYieldExtended {
     /**
      * @notice This function contains information to describe recommended pricing method for this SY
      * @return refToken the token should be referred to when pricing this SY

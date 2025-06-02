@@ -4,16 +4,29 @@ pragma solidity ^0.8.17;
 import "../PendleERC4626UpgSYV2.sol";
 import "../../SYBaseWithRewardsUpg.sol";
 import "../../../../interfaces/Silo/ISiloIncentiveController.sol";
+import "../../../../interfaces/IPDecimalsWrapperFactory.sol";
+import "../../../../interfaces/IStandardizedYieldExtended.sol";
 
-contract PendleSiloV2SY is SYBaseWithRewardsUpg {
+contract PendleSiloV2SY is SYBaseWithRewardsUpg, IStandardizedYieldExtended {
     address public constant SILO = 0x53f753E4B17F4075D6fa2c6909033d224b81e698;
     address public constant WS = 0x039e2fB66102314Ce7b64Ce5Ce3E5183bc94aD38;
 
     address public immutable asset;
+    address public immutable wrappedAsset;
     address public immutable incentiveController;
+    uint256 public immutable assetScalingOffset;
 
-    constructor(address _erc4626, address _incentiveController) SYBaseUpg(_erc4626) {
+    constructor(address _erc4626, address _incentiveController, address _decimalsWrapperFactory) SYBaseUpg(_erc4626) {
         asset = IERC4626(_erc4626).asset();
+
+        if (IERC20Metadata(asset).decimals() < 18) {
+            wrappedAsset = IPDecimalsWrapperFactory(_decimalsWrapperFactory).getOrCreate(asset, 18);
+            assetScalingOffset = 10 ** (18 - IERC20Metadata(asset).decimals());
+        } else {
+            wrappedAsset = asset;
+            assetScalingOffset = 1;
+        }
+
         incentiveController = _incentiveController;
     }
 
@@ -47,7 +60,7 @@ contract PendleSiloV2SY is SYBaseWithRewardsUpg {
     }
 
     function exchangeRate() public view virtual override returns (uint256) {
-        return IERC4626(yieldToken).convertToAssets(PMath.ONE);
+        return IERC4626(yieldToken).convertToAssets(PMath.ONE * assetScalingOffset);
     }
 
     function _previewDeposit(
@@ -92,8 +105,13 @@ contract PendleSiloV2SY is SYBaseWithRewardsUpg {
         virtual
         returns (AssetType assetType, address assetAddress, uint8 assetDecimals)
     {
-        return (AssetType.TOKEN, asset, IERC20Metadata(asset).decimals());
+        return (AssetType.TOKEN, wrappedAsset, 18);
     }
+
+    function pricingInfo() external view returns (address refToken, bool refStrictlyEqual) {
+        return (yieldToken, true);
+    }
+
 
     /*///////////////////////////////////////////////////////////////
                                REWARDS-RELATED
