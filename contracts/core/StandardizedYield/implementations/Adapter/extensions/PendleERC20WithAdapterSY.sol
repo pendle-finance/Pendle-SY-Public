@@ -24,8 +24,10 @@ contract PendleERC20WithAdapterSY is SYBaseUpg, IPStandardizedYieldWithAdapter {
     }
 
     function _setAdapter(address _adapter) internal {
-        require(_adapter != address(0), "_setAdapter: zero address");
-        require(IStandardizedYieldAdapter(_adapter).PIVOT_TOKEN() == yieldToken, "_setAdapter: invalid adapter");
+        require(
+            _adapter == address(0) || IStandardizedYieldAdapter(_adapter).PIVOT_TOKEN() == yieldToken,
+            "_setAdapter: invalid adapter"
+        );
         adapter = _adapter;
         emit SetAdapter(_adapter);
     }
@@ -87,18 +89,30 @@ contract PendleERC20WithAdapterSY is SYBaseUpg, IPStandardizedYieldWithAdapter {
     }
 
     function getTokensIn() public view virtual override returns (address[] memory res) {
+        if (adapter == address(0)) {
+            return ArrayLib.create(yieldToken);
+        }
         return IStandardizedYieldAdapter(adapter).getAdapterTokensDeposit().append(yieldToken);
     }
 
     function getTokensOut() public view override returns (address[] memory res) {
+        if (adapter == address(0)) {
+            return ArrayLib.create(yieldToken);
+        }
         return IStandardizedYieldAdapter(adapter).getAdapterTokensRedeem().append(yieldToken);
     }
 
     function isValidTokenIn(address token) public view virtual override returns (bool) {
+        if (adapter == address(0)) {
+            return token == yieldToken;
+        }
         return token == yieldToken || IStandardizedYieldAdapter(adapter).getAdapterTokensDeposit().contains(token);
     }
 
     function isValidTokenOut(address token) public view override returns (bool) {
+        if (adapter == address(0)) {
+            return token == yieldToken;
+        }
         return token == yieldToken || IStandardizedYieldAdapter(adapter).getAdapterTokensRedeem().contains(token);
     }
 

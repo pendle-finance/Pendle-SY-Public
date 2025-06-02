@@ -23,7 +23,7 @@ contract PendleDecimalsWrapperFactory is IPDecimalsWrapperFactory {
     }
 
     function _createDecimalWrapper(address _rawToken, uint8 _decimals) internal returns (address decimalWrapper) {
-        assert (_decimals == 18);
+        assert(_decimals == 18);
 
         string memory name = string(abi.encodePacked(IERC20Metadata(_rawToken).name(), " scaled18"));
         string memory symbol = string(abi.encodePacked(IERC20Metadata(_rawToken).symbol(), "-scaled18"));
