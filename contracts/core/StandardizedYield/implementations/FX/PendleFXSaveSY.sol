@@ -60,6 +60,12 @@ contract PendleFXSaveSY is PendleERC4626UpgSYV2, PendleFxCurvePoolHelper {
             uint256 amountAssetOut = IERC4626(yieldToken).redeem(amountSharesToRedeem, address(this), address(this));
             (uint256 amtFxUSD, uint256 amtUSDC) = IFxUSDBasePool(asset).instantRedeem(address(this), amountAssetOut);
 
+            if (amtFxUSD > _selfBalance(FXUSD) || amtUSDC > _selfBalance(USDC)) {
+                // [Audit]: When an FXSaveSY's strategy has insufficient principal to fulfill a withdrawal from FXSaveSY, instead of reverting, PendleFXSaveSY.asset.instantRedeem(receiver, amountSharesToRedeem) will 
+                // transfer a "smaller amount of the underlying asset to PendleFXSaveSY (the actual amount of the underlying asset transferred to PendleFXSaveSY is less than the amount returned by the instantRedeem() function)."
+                revert("FXSave: insufficient asset");
+            }
+
             uint256 amountToSwap = tokenOut == USDC ? amtFxUSD : amtUSDC;
             uint256 amountOut = tokenOut == USDC ? amtUSDC : amtFxUSD;
 
