@@ -8,16 +8,17 @@ import "../../../../interfaces/IPDecimalsWrapperFactory.sol";
 import "../../../../interfaces/IStandardizedYieldExtended.sol";
 
 contract PendleSiloV2SY is SYBaseWithRewardsUpg, IStandardizedYieldExtended {
-    address public constant SILO = 0x53f753E4B17F4075D6fa2c6909033d224b81e698;
-    address public constant WS = 0x039e2fB66102314Ce7b64Ce5Ce3E5183bc94aD38;
 
     address public immutable asset;
     address public immutable wrappedAsset;
     address public immutable incentiveController;
     uint256 public immutable assetScalingOffset;
 
+    address[] public rewardTokens;
+
     constructor(address _erc4626, address _incentiveController, address _decimalsWrapperFactory) SYBaseUpg(_erc4626) {
         asset = IERC4626(_erc4626).asset();
+        incentiveController = _incentiveController;
 
         if (IERC20Metadata(asset).decimals() < 18) {
             wrappedAsset = IPDecimalsWrapperFactory(_decimalsWrapperFactory).getOrCreate(asset, 18);
@@ -26,13 +27,12 @@ contract PendleSiloV2SY is SYBaseWithRewardsUpg, IStandardizedYieldExtended {
             wrappedAsset = asset;
             assetScalingOffset = 1;
         }
-
-        incentiveController = _incentiveController;
     }
 
-    function initialize(string memory _name, string memory _symbol) external virtual initializer {
+    function initialize(string memory _name, string memory _symbol, address[] memory _rewardTokens) external virtual initializer {
         __SYBaseUpg_init(_name, _symbol);
         _safeApproveInf(asset, yieldToken);
+        rewardTokens = _rewardTokens;
     }
 
     function _deposit(
@@ -120,8 +120,8 @@ contract PendleSiloV2SY is SYBaseWithRewardsUpg, IStandardizedYieldExtended {
     /**
      * @dev See {IStandardizedYield-getRewardTokens}
      */
-    function _getRewardTokens() internal pure override returns (address[] memory) {
-        return ArrayLib.create(SILO, WS);
+    function _getRewardTokens() internal view override returns (address[] memory) {
+        return rewardTokens;
     }
 
     function _redeemExternalReward() internal override {
