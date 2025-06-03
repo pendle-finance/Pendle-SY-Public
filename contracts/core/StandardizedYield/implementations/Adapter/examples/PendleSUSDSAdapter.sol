@@ -31,11 +31,11 @@ contract PendleSUSDSAdapter is IStandardizedYieldAdapter {
 
     function convertToRedeem(
         address /*tokenOut*/,
-        uint256 amountYieldTokenIn
+        uint256 amountPivotToken
     ) external override returns (uint256 amountOut) {
         // assert(tokenOut == DAI);
-        ISkyConverter(CONVERTER).usdsToDai(msg.sender, amountYieldTokenIn);
-        return amountYieldTokenIn;
+        ISkyConverter(CONVERTER).usdsToDai(msg.sender, amountPivotToken);
+        return amountPivotToken;
     }
 
     function previewConvertToDeposit(
@@ -48,10 +48,10 @@ contract PendleSUSDSAdapter is IStandardizedYieldAdapter {
 
     function previewConvertToRedeem(
         address /*tokenOut*/,
-        uint256 amountYieldTokenIn
+        uint256 amountPivotToken
     ) external view override returns (uint256 amountOut) {
         // assert(tokenOut == DAI);
-        return amountYieldTokenIn;
+        return amountPivotToken;
     }
 
     function getAdapterTokensDeposit() external pure override returns (address[] memory tokens) {

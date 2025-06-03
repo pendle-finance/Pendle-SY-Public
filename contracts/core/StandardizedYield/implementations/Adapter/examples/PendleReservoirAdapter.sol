@@ -34,10 +34,10 @@ contract PendleReservoirAdapter is IStandardizedYieldAdapter {
 
     function convertToRedeem(
         address /*tokenOut*/,
-        uint256 amountYieldTokenIn
+        uint256 amountPivotTokenIn
     ) external override returns (uint256 amountOut) {
         // assert(tokenOut == USDC);
-        amountOut = amountYieldTokenIn / DECIMAL_FACTOR;
+        amountOut = amountPivotTokenIn / DECIMAL_FACTOR;
         IReservoirPSM(PSM).redeem(msg.sender, amountOut);
     }
 

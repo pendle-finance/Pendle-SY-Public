@@ -15,7 +15,7 @@ contract PendleEmptyAdapter is IStandardizedYieldAdapter {
 
     function convertToRedeem(
         address /*tokenOut*/,
-        uint256 /*amountYieldTokenIn*/
+        uint256 /*amountPivotToken*/
     ) external pure override returns (uint256 /*amountOut*/) {
         revert("Adapter: Not implemented");
     }
@@ -29,7 +29,7 @@ contract PendleEmptyAdapter is IStandardizedYieldAdapter {
 
     function previewConvertToRedeem(
         address /*tokenOut*/,
-        uint256 /*amountYieldTokenIn*/
+        uint256 /*amountPivotToken*/
     ) external pure override returns (uint256 /*amountOut*/) {
         revert("Adapter: Not implemented");
     }
