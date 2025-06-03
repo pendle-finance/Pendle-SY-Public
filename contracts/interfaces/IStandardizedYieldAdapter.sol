@@ -16,7 +16,7 @@ interface IStandardizedYieldAdapter {
      * @dev This function should expect the token has already been transferred to the adapter.
      * @param tokenIn The address of the input token.
      * @param amountTokenIn The amount of the input token to convert.
-     * @return amountOut The amount of the output deposit token.
+     * @return amountOut The amount of the pivot token.
      */
     function convertToDeposit(address tokenIn, uint256 amountTokenIn) external returns (uint256 amountOut);
 
@@ -33,7 +33,7 @@ interface IStandardizedYieldAdapter {
      * @notice Previews the conversion of a specified amount of an input token to pivotToken.
      * @param tokenIn The address of the input token.
      * @param amountTokenIn The amount of the input token to convert.
-     * @return amountOut The estimated amount of the output deposit token.
+     * @return amountOut The estimated amount of the pivot token.
      */
     function previewConvertToDeposit(address tokenIn, uint256 amountTokenIn) external view returns (uint256 amountOut);
 
