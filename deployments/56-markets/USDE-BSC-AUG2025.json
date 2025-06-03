@@ -1,0 +1,15 @@
+{
+    "name": "USDE-BSC-AUG2025",
+    "SY": "0x5719AcDB9ABBBC6Ba414C9DBFf5B2967342f465d",
+    "YT": "0x7670557dB8891a3365350ad0899a096c967EBdB9",
+    "PT": "0x37fbFfE3a305E342c2cd00929A904e971c65Bafd",
+    "market": "0xfA4B91d63e7cAb716dD049A23C56F70237C6DDBB",
+    "expiry": "1754524800",
+    "lnFeeRateRoot": "7968169649176873",
+    "scalarRoot": "26954271472879255623",
+    "initialRateAnchor": "1021388136466183963",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0x2f4818fc9f35a20db7bf82d342e543c25617232ea440807a20e8a86d31586a4f",
+    "deployBlockNumber": 50800493,
+    "reversedFee": 0.7999999999821705
+}

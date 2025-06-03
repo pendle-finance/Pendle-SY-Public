@@ -1,0 +1,15 @@
+{
+    "name": "RSTETH-MAINNET-SEP2025",
+    "SY": "0x749087EE993FDFC141F6f0E0b1370feE2D0202f9",
+    "YT": "0x77407381FC56D6A870a8e58168f6A528FC0196F0",
+    "PT": "0x6eda24c7A5Ad869295B87a8C2628d39153954f86",
+    "market": "0x0440b356d6c47af727399cD7194def49AC1D9c1E",
+    "expiry": "1758758400",
+    "lnFeeRateRoot": "3992021269537452",
+    "scalarRoot": "50808968015489323580",
+    "initialRateAnchor": "1018102770674176273",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0x29dab1796888b3c0fd7e23492433a219aa9f04393a3f059ac9142780b86a3410",
+    "deployBlockNumber": 22623316,
+    "reversedFee": 0.3999999999460435
+}
