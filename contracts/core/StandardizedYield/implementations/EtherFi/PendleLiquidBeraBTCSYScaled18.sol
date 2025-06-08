@@ -74,7 +74,7 @@ contract PendleLiquidBeraBTCSYScaled18 is SYBaseUpg, IStandardizedYieldExtended 
         }
     }
 
-    function exchangeRate() public view virtual override(SYBaseUpg, IStandardizedYield) returns (uint256 res) {
+    function exchangeRate() public view virtual override returns (uint256 res) {
         // SY: decimals 18
         // getRateInQuoteSafe: decimals 8
         // wBTC: decimals 8
@@ -113,19 +113,19 @@ contract PendleLiquidBeraBTCSYScaled18 is SYBaseUpg, IStandardizedYieldExtended 
         return IPDecimalsWrapper(wrapper).wrappedToRaw(amountSharesToRedeem);
     }
 
-    function getTokensIn() public view override(SYBaseUpg, IStandardizedYield) returns (address[] memory res) {
+    function getTokensIn() public view override returns (address[] memory res) {
         return ArrayLib.create(WBTC, LBTC, EBTC, liquidBeraBTC, wrapper);
     }
 
-    function getTokensOut() public view override(SYBaseUpg, IStandardizedYield) returns (address[] memory res) {
+    function getTokensOut() public view override returns (address[] memory res) {
         return ArrayLib.create(liquidBeraBTC, wrapper);
     }
 
-    function isValidTokenIn(address token) public view override(SYBaseUpg, IStandardizedYield) returns (bool) {
+    function isValidTokenIn(address token) public view override returns (bool) {
         return token == liquidBeraBTC || token == EBTC || token == WBTC || token == LBTC || token == wrapper;
     }
 
-    function isValidTokenOut(address token) public view override(SYBaseUpg, IStandardizedYield) returns (bool) {
+    function isValidTokenOut(address token) public view override returns (bool) {
         return token == liquidBeraBTC || token == wrapper;
     }
 

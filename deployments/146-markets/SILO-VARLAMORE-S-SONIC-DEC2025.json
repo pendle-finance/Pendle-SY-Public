@@ -1,0 +1,15 @@
+{
+    "name": "SILO-Varlamore-S",
+    "SY": "0xaa3350c98A4a3a4CBBF35d0858420BC937579598",
+    "YT": "0x5902B89A2C79021dF9A6011fE58911804c8Ce68A",
+    "PT": "0xd8C09Ae367988A3b56E118977e0D98b9D223d071",
+    "market": "0x92A991E5cF27dE3FFd021d2fcf79f0b2f140AAd4",
+    "expiry": "1766016000",
+    "lnFeeRateRoot": "7968169649176873",
+    "scalarRoot": "30691929213756413021",
+    "initialRateAnchor": "1053585713794604768",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0x1c8c77aa12e09b5278b2b5e7b7f65e95b942e36345b100ddd876ccb13d2688d0",
+    "deployBlockNumber": 32590260,
+    "reversedFee": 0.7999999999821705
+}

@@ -1,0 +1,15 @@
+{
+    "name": "SY-APOSTRO-USDC-DEC2025",
+    "SY": "0x89a3CfaAC1905Bb42EE834AC79178705f098a76C",
+    "YT": "0x9c306E72771e77dCA71d608e4073926feFdf3480",
+    "PT": "0x4eC936df4A703929361BD7dEA86038FeBA6eBfAC",
+    "market": "0xb92DD6487A9644CE384B4A2198AA2Dd230e00B72",
+    "expiry": "1766016000",
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "25116849391326223933",
+    "initialRateAnchor": "1064584630631057721",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0x698695fe4a70db09318263c8062c44a2cd3af8fd4ab2ab7d4be7ea21dceffccc",
+    "deployBlockNumber": 32592106,
+    "reversedFee": 0.9999999999830145
+}

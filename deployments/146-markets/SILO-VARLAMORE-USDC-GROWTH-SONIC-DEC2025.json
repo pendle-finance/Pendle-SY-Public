@@ -1,0 +1,15 @@
+{
+    "name": "SILO-VARLAMORE-USDC-GROWTH-SONIC-DEC2025",
+    "SY": "0x3BA56bd2Ddf751c6d1929E9F499A1718D424811f",
+    "YT": "0xAeb470c21d7e0Afd071dfc885535d55D8f096E4A",
+    "PT": "0x3eD026Bd27F7b8435e8DaEfa4F4F4D8637890C12",
+    "market": "0xD0E59A083cC31356d29d9B6d2574024E945468a3",
+    "expiry": "1766016000",
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "25116814766066402874",
+    "initialRateAnchor": "1064586127883170173",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0xa225b1a142a66d522f5b0754430284f52cc794ba0b8766b076c42af27ac74bd4",
+    "deployBlockNumber": 32591312,
+    "reversedFee": 0.9999999999830145
+}

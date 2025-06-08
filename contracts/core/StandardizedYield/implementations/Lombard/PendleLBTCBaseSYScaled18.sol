@@ -65,7 +65,7 @@ contract PendleLBTCBaseSYScaled18 is SYBaseUpg, IStandardizedYieldExtended {
                                EXCHANGE-RATE
     //////////////////////////////////////////////////////////////*/
 
-    function exchangeRate() public view virtual override(SYBaseUpg, IStandardizedYield) returns (uint256) {
+    function exchangeRate() public view virtual override returns (uint256) {
         return PMath.ONE;
     }
 
@@ -97,19 +97,19 @@ contract PendleLBTCBaseSYScaled18 is SYBaseUpg, IStandardizedYieldExtended {
         }
     }
 
-    function getTokensIn() public view override(SYBaseUpg, IStandardizedYield) returns (address[] memory res) {
+    function getTokensIn() public view override returns (address[] memory res) {
         return ArrayLib.create(LBTC, wrapper);
     }
 
-    function getTokensOut() public view override(SYBaseUpg, IStandardizedYield) returns (address[] memory res) {
+    function getTokensOut() public view override returns (address[] memory res) {
         return ArrayLib.create(LBTC, wrapper);
     }
 
-    function isValidTokenIn(address token) public view override(SYBaseUpg, IStandardizedYield) returns (bool) {
+    function isValidTokenIn(address token) public view override returns (bool) {
         return token == LBTC || token == wrapper;
     }
 
-    function isValidTokenOut(address token) public view override(SYBaseUpg, IStandardizedYield) returns (bool) {
+    function isValidTokenOut(address token) public view override returns (bool) {
         return token == LBTC || token == wrapper;
     }
 
