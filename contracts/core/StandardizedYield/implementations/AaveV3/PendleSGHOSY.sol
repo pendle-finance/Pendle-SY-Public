@@ -4,22 +4,22 @@ pragma solidity ^0.8.17;
 import "../../SYBaseWithRewardsUpg.sol";
 import "../../../../interfaces/AaveV3/IAaveStkGHO.sol";
 import "../../../../interfaces/Angle/IAngleDistributor.sol";
+import "./PendleAaveMerit.sol";
 
-contract PendleStkGHOSY is SYBaseWithRewardsUpg {
+contract PendleSGHOSY is SYBaseWithRewardsUpg, PendleAaveMerit {
     using PMath for uint256;
 
     event ClaimedOffchainGHO(uint256 amountClaimed);
 
-    address public constant ANGLE_DISTRIBUTOR = 0x3Ef3D8bA38EBe18DB133cEc108f4D14CE00Dd9Ae;
     address public constant STKGHO = 0x1a88Df1cFe15Af22B3c4c783D4e6F7F9e0C1885d;
     address public constant GHO = 0x40D16FC0246aD3160Ccc09B8D0D3A2cD28aE6C2f;
     address public constant AAVE = 0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9;
     bytes32 public constant ZERO_REWARD_ERROR = 0x33d2eb294587ef7b32eb48e48695ebfec45a9c8922ec7d1c444cfad1fb208e8d;
 
-    constructor() SYBaseUpg(STKGHO) {}
+    constructor(address _offchainReceiver) SYBaseUpg(STKGHO) PendleAaveMerit(_offchainReceiver) {}
 
     function initialize() external initializer {
-        __SYBaseUpg_init("SY stk GHO", "SY-stkGHO");
+        __SYBaseUpg_init("SY staked GHO", "SY-sGHO");
         _safeApproveInf(GHO, STKGHO);
     }
 
@@ -70,22 +70,6 @@ contract PendleStkGHOSY is SYBaseWithRewardsUpg {
             if (keccak256(abi.encodePacked(errorString)) != ZERO_REWARD_ERROR) {
                 revert(errorString);
             }
-        }
-    }
-
-    function claimOffchainGHORewards(
-        address[] calldata users,
-        address[] calldata tokens,
-        uint256[] calldata amounts,
-        bytes32[][] calldata proofs
-    ) external onlyOwner {
-        uint256 preBalance = _selfBalance(GHO);
-        IAngleDistributor(ANGLE_DISTRIBUTOR).claim(users, tokens, amounts, proofs);
-        uint256 amountClaimed = _selfBalance(GHO) - preBalance;
-
-        if (amountClaimed > 0) {
-            _transferOut(GHO, msg.sender, amountClaimed);
-            emit ClaimedOffchainGHO(amountClaimed);
         }
     }
 
