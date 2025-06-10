@@ -70,10 +70,7 @@ contract PendleERC4626WithAdapterSY is SYBaseUpg, IPStandardizedYieldWithAdapter
                 return IERC4626(yieldToken).redeem(amountSharesToRedeem, receiver, address(this));
             } else {
                 uint256 amtAsset = IERC4626(yieldToken).redeem(amountSharesToRedeem, adapter, address(this));
-                uint256 amtTokenOut = IStandardizedYieldAdapter(adapter).convertToRedeem(
-                    tokenOut,
-                    amtAsset
-                );
+                uint256 amtTokenOut = IStandardizedYieldAdapter(adapter).convertToRedeem(tokenOut, amtAsset);
                 _transferOut(tokenOut, receiver, amtTokenOut);
                 return amtTokenOut;
             }

@@ -8,7 +8,6 @@ import "../../../../interfaces/IPDecimalsWrapperFactory.sol";
 import "../../../../interfaces/IStandardizedYieldExtended.sol";
 
 contract PendleSiloV2SY is SYBaseWithRewardsUpg, IStandardizedYieldExtended {
-
     address public immutable asset;
     address public immutable wrappedAsset;
     address public immutable incentiveController;
@@ -29,7 +28,11 @@ contract PendleSiloV2SY is SYBaseWithRewardsUpg, IStandardizedYieldExtended {
         }
     }
 
-    function initialize(string memory _name, string memory _symbol, address[] memory _rewardTokens) external virtual initializer {
+    function initialize(
+        string memory _name,
+        string memory _symbol,
+        address[] memory _rewardTokens
+    ) external virtual initializer {
         __SYBaseUpg_init(_name, _symbol);
         _safeApproveInf(asset, yieldToken);
         rewardTokens = _rewardTokens;
@@ -111,7 +114,6 @@ contract PendleSiloV2SY is SYBaseWithRewardsUpg, IStandardizedYieldExtended {
     function pricingInfo() external view returns (address refToken, bool refStrictlyEqual) {
         return (yieldToken, true);
     }
-
 
     /*///////////////////////////////////////////////////////////////
                                REWARDS-RELATED
