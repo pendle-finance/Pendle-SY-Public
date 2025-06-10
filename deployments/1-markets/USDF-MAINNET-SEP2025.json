@@ -1,0 +1,15 @@
+{
+    "name": "USDF-MAINNET-SEP2025",
+    "SY": "0x982bE58C67689e0BAb9e884C30E7a6e78E064C9D",
+    "YT": "0xC63c3e4F6B5899151b2a71fF908e2AafA4b270bD",
+    "PT": "0xEF2F8f0A3159cA952572D1E41336F0E0AF10413B",
+    "market": "0x4D2A10CC91F70C21A7c90C3b1A09498cD88e1435",
+    "expiry": "1758758400",
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "18454746008315492175",
+    "initialRateAnchor": "1044944512334754469",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0x224ed8de22a0cece0e6ada093aeaefdf80a4ecf7dd548134fbf169803eb19e72",
+    "deployBlockNumber": 22672036,
+    "reversedFee": 0.9999999999830145
+}
