@@ -1,0 +1,15 @@
+{
+    "name": "RIVER-SATUSDP-BSC-NOV2025",
+    "SY": "0x193b2f36957f7E9e498758bbF182273bc145bB92",
+    "YT": "0x950490F74DB75c60351ccD4468E755d131826672",
+    "PT": "0xB901c7A2D2Bc05D8B7e7eE4F7Fcf72CAaABd2F49",
+    "market": "0x74c5050a89046c40296a32aeaed31be89d6A6D87",
+    "expiry": "1757548800",
+    "lnFeeRateRoot": "11928570865273801",
+    "scalarRoot": "19770888448262843810",
+    "initialRateAnchor": "1040968472267735416",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0x887423f96eeedd9eebad0014da160eeae424d183c1b9b4eeb168fb7c84e5c5d0",
+    "deployBlockNumber": 51160967,
+    "reversedFee": 1.19999999997229
+}

@@ -1,0 +1,15 @@
+{
+    "name": "IUSD-MAINNET-SEP2025",
+    "SY": "0x47743a9203E636674467Ff58B7AB0aE0ee6f97cb",
+    "YT": "0x3D4BE24b33B56B1dC493067b65d91EB6639e1f72",
+    "PT": "0x5f2F6324AA5590e408BA892e39ceC4C0afB16068",
+    "market": "0x2353193fa14A6477a4523e2C078e4063022FCf66",
+    "expiry": "1756944000",
+    "lnFeeRateRoot": "11928570865273801",
+    "scalarRoot": "19002861707076097693",
+    "initialRateAnchor": "1036576577941463641",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0x08dcb599bd14111f94b962c17e8297c950a0c91bce0e3ec48bfe9226a903feaa",
+    "deployBlockNumber": 22669624,
+    "reversedFee": 1.19999999997229
+}
