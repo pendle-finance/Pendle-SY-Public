@@ -30,42 +30,32 @@ contract PendleInfiniFiAdapter is IStandardizedYieldAdapter {
         _;
     }
 
-    function convertToDeposit(address tokenIn, uint256 amountTokenIn)
-        external
-        override
-        onlyUSDC(tokenIn)
-        returns (uint256)
-    {
+    function convertToDeposit(
+        address tokenIn,
+        uint256 amountTokenIn
+    ) external override onlyUSDC(tokenIn) returns (uint256) {
         return InfiniFiGateway(GATEWAY_PROXY).mint(msg.sender, amountTokenIn);
     }
 
-    function convertToRedeem(address tokenOut, uint256 amountYieldTokenIn)
-        external
-        override
-        onlyUSDC(tokenOut)
-        returns (uint256)
-    {
+    function convertToRedeem(
+        address tokenOut,
+        uint256 amountYieldTokenIn
+    ) external override onlyUSDC(tokenOut) returns (uint256) {
         uint256 assetAmountOut = _receiptToAsset(amountYieldTokenIn);
         return InfiniFiGateway(GATEWAY_PROXY).redeem(msg.sender, amountYieldTokenIn, assetAmountOut);
     }
 
-    function previewConvertToDeposit(address tokenIn, uint256 amountTokenIn)
-        external
-        view
-        override
-        onlyUSDC(tokenIn)
-        returns (uint256 /*amountOut*/ )
-    {
+    function previewConvertToDeposit(
+        address tokenIn,
+        uint256 amountTokenIn
+    ) external view override onlyUSDC(tokenIn) returns (uint256 /*amountOut*/) {
         return _assetToReceipt(amountTokenIn);
     }
 
-    function previewConvertToRedeem(address tokenOut, uint256 amountYieldTokenIn)
-        external
-        view
-        override
-        onlyUSDC(tokenOut)
-        returns (uint256 /*amountOut*/ )
-    {
+    function previewConvertToRedeem(
+        address tokenOut,
+        uint256 amountYieldTokenIn
+    ) external view override onlyUSDC(tokenOut) returns (uint256 /*amountOut*/) {
         return _receiptToAsset(amountYieldTokenIn);
     }
 
