@@ -8,6 +8,8 @@ import "../../../../interfaces/IPDecimalsWrapperFactory.sol";
 import "../../../../interfaces/IStandardizedYieldExtended.sol";
 
 contract PendleSiloV2SY is SYBaseWithRewardsUpg, IStandardizedYieldExtended {
+    event RewardTokenAdded(address indexed rewardToken);
+
     address public immutable asset;
     address public immutable wrappedAsset;
     address public immutable incentiveController;
@@ -36,6 +38,15 @@ contract PendleSiloV2SY is SYBaseWithRewardsUpg, IStandardizedYieldExtended {
         __SYBaseUpg_init(_name, _symbol);
         _safeApproveInf(asset, yieldToken);
         rewardTokens = _rewardTokens;
+    }
+
+    function addRewardToken(address rewardToken) external virtual onlyOwner {
+        if (rewardToken == yieldToken || ArrayLib.contains(rewardTokens, rewardToken)) {
+            revert("PendleSiloV2SY: invalid rwdToken");
+        }
+
+        rewardTokens.push(rewardToken);
+        emit RewardTokenAdded(rewardToken);
     }
 
     function _deposit(
