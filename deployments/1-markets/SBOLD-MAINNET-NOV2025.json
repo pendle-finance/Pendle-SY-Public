@@ -1,0 +1,15 @@
+{
+    "name": "SBOLD-MAINNET-NOV2025",
+    "SY": "0xce133401B2214Ada39CACb23add4C9984F562293",
+    "YT": "0x2D2d86Af3EAE41A3741151D5a5d5221e98DD1E07",
+    "PT": "0x66526197a4BAf496D97e1004e43c2C374Fb7d2E7",
+    "market": "0xE467c5C54748f0125d729280F90DeD77C4e720a4",
+    "expiry": "1764201600",
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "19858306933831404155",
+    "initialRateAnchor": "1066493345783465555",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0xa01e46d0fa4defb65a3276b0d31d921455c9f54386b541c23f2313708a2fc03c",
+    "deployBlockNumber": 22730680,
+    "reversedFee": 0.9999999999830145
+}
