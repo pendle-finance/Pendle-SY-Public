@@ -1,21 +1,20 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.17;
 
-import "../PendleERC4626UpgSYV2.sol";
 import "../../SYBaseWithRewardsUpg.sol";
-import "../../../../interfaces/Silo/ISiloIncentiveController.sol";
+import "../../../../interfaces/IERC4626.sol";
+import "./UmbrellaLib.sol";
+import "../../../../interfaces/Umbrella/IUmbrellaDistributor.sol";
 
-contract PendleSiloV2SY_deprecated is SYBaseWithRewardsUpg {
-    address public constant SILO = 0x53f753E4B17F4075D6fa2c6909033d224b81e698;
-    address public constant WS = 0x039e2fB66102314Ce7b64Ce5Ce3E5183bc94aD38;
-    address public constant xSILO = 0x4451765739b2D7BCe5f8BC95Beaf966c45E1Dcc9;
+contract PendleUmbrellaStakeTokenSY is SYBaseWithRewardsUpg {
+    using PMath for uint256;
 
     address public immutable asset;
-    address public immutable incentiveController;
+    address public immutable distributor;
 
-    constructor(address _erc4626, address _incentiveController) SYBaseUpg(_erc4626) {
+    constructor(address _erc4626, address _distributor) SYBaseUpg(_erc4626) {
+        distributor = _distributor;
         asset = IERC4626(_erc4626).asset();
-        incentiveController = _incentiveController;
     }
 
     function initialize(string memory _name, string memory _symbol) external virtual initializer {
@@ -26,7 +25,7 @@ contract PendleSiloV2SY_deprecated is SYBaseWithRewardsUpg {
     function _deposit(
         address tokenIn,
         uint256 amountDeposited
-    ) internal virtual override returns (uint256 /*amountSharesOut*/) {
+    ) internal virtual override returns (uint256 amountSharesOut) {
         if (tokenIn == yieldToken) {
             return amountDeposited;
         } else {
@@ -36,47 +35,41 @@ contract PendleSiloV2SY_deprecated is SYBaseWithRewardsUpg {
 
     function _redeem(
         address receiver,
-        address tokenOut,
+        address /*tokenOut*/,
         uint256 amountSharesToRedeem
-    ) internal virtual override returns (uint256 amountTokenOut) {
-        if (tokenOut == yieldToken) {
-            amountTokenOut = amountSharesToRedeem;
-            _transferOut(yieldToken, receiver, amountTokenOut);
-        } else {
-            amountTokenOut = IERC4626(yieldToken).redeem(amountSharesToRedeem, receiver, address(this));
-        }
+    ) internal virtual override returns (uint256) {
+        _transferOut(yieldToken, receiver, amountSharesToRedeem);
+        return amountSharesToRedeem;
     }
 
     function exchangeRate() public view virtual override returns (uint256) {
-        return IERC4626(yieldToken).convertToAssets(PMath.ONE);
+        return IERC4626(yieldToken).convertToShares(PMath.ONE);
     }
 
     function _previewDeposit(
         address tokenIn,
         uint256 amountTokenToDeposit
-    ) internal view virtual override returns (uint256 /*amountSharesOut*/) {
-        if (tokenIn == yieldToken) return amountTokenToDeposit;
-        else return IERC4626(yieldToken).previewDeposit(amountTokenToDeposit);
+    ) internal view virtual override returns (uint256 amountSharesOut) {
+        if (tokenIn == yieldToken) {
+            return amountTokenToDeposit;
+        } else {
+            return IERC4626(yieldToken).previewDeposit(amountTokenToDeposit);
+        }
     }
 
     function _previewRedeem(
-        address tokenOut,
+        address /*tokenOut*/,
         uint256 amountSharesToRedeem
     ) internal view virtual override returns (uint256 /*amountTokenOut*/) {
-        if (tokenOut == yieldToken) return amountSharesToRedeem;
-        else return IERC4626(yieldToken).previewRedeem(amountSharesToRedeem);
+        return amountSharesToRedeem;
     }
 
     function getTokensIn() public view virtual override returns (address[] memory res) {
-        res = new address[](2);
-        res[0] = asset;
-        res[1] = yieldToken;
+        return ArrayLib.create(asset, yieldToken);
     }
 
     function getTokensOut() public view virtual override returns (address[] memory res) {
-        res = new address[](2);
-        res[0] = asset;
-        res[1] = yieldToken;
+        return ArrayLib.create(yieldToken);
     }
 
     function isValidTokenIn(address token) public view virtual override returns (bool) {
@@ -84,7 +77,7 @@ contract PendleSiloV2SY_deprecated is SYBaseWithRewardsUpg {
     }
 
     function isValidTokenOut(address token) public view virtual override returns (bool) {
-        return token == yieldToken || token == asset;
+        return token == yieldToken;
     }
 
     function assetInfo()
@@ -96,18 +89,25 @@ contract PendleSiloV2SY_deprecated is SYBaseWithRewardsUpg {
         return (AssetType.TOKEN, asset, IERC20Metadata(asset).decimals());
     }
 
+    function _getPath() internal view returns (address[] memory) {
+        return ArrayLib.create(asset, yieldToken);
+    }
+
     /*///////////////////////////////////////////////////////////////
                                REWARDS-RELATED
+                            (Leaving empty for now)
     //////////////////////////////////////////////////////////////*/
 
     /**
      * @dev See {IStandardizedYield-getRewardTokens}
      */
-    function _getRewardTokens() internal pure override returns (address[] memory) {
-        return ArrayLib.create(SILO, WS, xSILO);
+    function _getRewardTokens() internal view override returns (address[] memory) {
+        return ArrayLib.create(asset);
     }
 
     function _redeemExternalReward() internal override {
-        ISiloIncentiveController(incentiveController).claimRewards(address(this));
+        address[][] memory rwdTokens = new address[][](1);
+        rwdTokens[0] = ArrayLib.create(asset);
+        IUmbrellaDistributor(distributor).claimSelectedRewards(ArrayLib.create(yieldToken), rwdTokens, address(this));
     }
 }
