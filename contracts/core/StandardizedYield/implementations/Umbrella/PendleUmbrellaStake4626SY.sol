@@ -102,7 +102,6 @@ contract PendleUmbrellaStake4626SY is SYBaseWithRewardsUpg {
 
     /*///////////////////////////////////////////////////////////////
                                REWARDS-RELATED
-                            (Leaving empty for now)
     //////////////////////////////////////////////////////////////*/
 
     /**

@@ -95,7 +95,6 @@ contract PendleUmbrellaStakeTokenSY is SYBaseWithRewardsUpg {
 
     /*///////////////////////////////////////////////////////////////
                                REWARDS-RELATED
-                            (Leaving empty for now)
     //////////////////////////////////////////////////////////////*/
 
     /**
