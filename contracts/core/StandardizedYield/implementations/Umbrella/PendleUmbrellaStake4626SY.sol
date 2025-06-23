@@ -24,6 +24,7 @@ contract PendleUmbrellaStake4626SY is SYBaseWithRewardsUpg {
     function initialize(string memory _name, string memory _symbol) external virtual initializer {
         __SYBaseUpg_init(_name, _symbol);
         _safeApproveInf(rootAsset, asset);
+        _safeApproveInf(aToken, asset);
         _safeApproveInf(asset, yieldToken);
     }
 
