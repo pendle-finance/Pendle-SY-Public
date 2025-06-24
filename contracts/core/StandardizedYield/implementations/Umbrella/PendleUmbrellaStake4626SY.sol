@@ -51,7 +51,7 @@ contract PendleUmbrellaStake4626SY is SYBaseWithRewardsUpg {
     }
 
     function exchangeRate() public view virtual override returns (uint256) {
-        return IERC4626(asset).convertToAssets(IERC4626(yieldToken).convertToShares(PMath.ONE));
+        return IERC4626(asset).convertToAssets(IERC4626(yieldToken).convertToAssets(PMath.ONE));
     }
 
     function _previewDeposit(
