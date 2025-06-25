@@ -5,7 +5,7 @@ import "../../RewardManager/RewardManager.sol";
 import "./SYBaseV2.sol";
 
 /// NOTE: yieldToken MUST NEVER BE a rewardToken, else the rewardManager will behave erroneously
-abstract contract SYBaseWithRewards is SYBaseV2, RewardManager {
+abstract contract SYBaseWithRewardsV2 is SYBaseV2, RewardManager {
     using PMath for uint256;
     using ArrayLib for address[];
 
