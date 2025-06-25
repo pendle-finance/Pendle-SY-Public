@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.17;
 
-import "../../SYBaseWithRewardsUpg.sol";
+import "../../v2/SYBaseWithRewardsUpgV2.sol";
 import "../../../../interfaces/IERC4626.sol";
 import "./UmbrellaLib.sol";
 import "../../../../interfaces/Umbrella/IUmbrellaDistributor.sol";
 
-contract PendleUmbrellaStake4626SY is SYBaseWithRewardsUpg {
+contract PendleUmbrellaStake4626SY is SYBaseWithRewardsUpgV2 {
     using PMath for uint256;
 
     address public immutable rootAsset;
@@ -14,15 +14,15 @@ contract PendleUmbrellaStake4626SY is SYBaseWithRewardsUpg {
     address public immutable aToken;
     address public immutable distributor;
 
-    constructor(address _erc4626, address _distributor) SYBaseUpg(_erc4626) {
+    constructor(address _erc4626, address _distributor) SYBaseWithRewardsUpgV2(_erc4626) {
         distributor = _distributor;
         asset = IERC4626(_erc4626).asset();
         rootAsset = IERC4626(asset).asset();
         aToken = IAaveStataToken(asset).aToken();
     }
 
-    function initialize(string memory _name, string memory _symbol) external virtual initializer {
-        __SYBaseUpg_init(_name, _symbol);
+    function initialize(string memory _name, string memory _symbol, address _owner) external virtual initializer {
+        __SYBaseUpgV2_init(_name, _symbol, _owner);
         _safeApproveInf(rootAsset, asset);
         _safeApproveInf(aToken, asset);
         _safeApproveInf(asset, yieldToken);
