@@ -2,11 +2,11 @@
 pragma solidity ^0.8.17;
 
 import "@openzeppelin/contracts/proxy/utils/UUPSUpgradeable.sol";
-import "../../../libraries/BoringOwnableUpgradeable.sol";
+import "../../../libraries/BoringOwnableUpgradeable__deprecated.sol";
 import "../../../../interfaces/IPPriceFeed.sol";
 import "../../../../interfaces/IPOffchainStorage.sol";
 
-contract MlpPricingHelper is BoringOwnableUpgradeable, UUPSUpgradeable, IPPriceFeed {
+contract MlpPricingHelper is BoringOwnableUpgradeable__deprecated, UUPSUpgradeable, IPPriceFeed {
     address public immutable pendleStorage;
     bytes32 public constant KEY = keccak256("MLP.price");
 
@@ -15,7 +15,7 @@ contract MlpPricingHelper is BoringOwnableUpgradeable, UUPSUpgradeable, IPPriceF
     }
 
     function initialize() external initializer {
-        __BoringOwnable_init();
+        __BoringOwnable__deprecated_init();
     }
 
     function _authorizeUpgrade(address newImplementation) internal override onlyOwner {}

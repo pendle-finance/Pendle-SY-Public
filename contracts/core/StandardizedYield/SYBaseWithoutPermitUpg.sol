@@ -9,14 +9,14 @@ import "../libraries/math/PMath.sol";
 import "../libraries/ArrayLib.sol";
 import "../libraries/TokenHelper.sol";
 import "../libraries/Errors.sol";
-import "../libraries/BoringOwnableUpgradeable.sol";
+import "../libraries/BoringOwnableUpgradeable__deprecated.sol";
 import "@openzeppelin/contracts/security/Pausable.sol";
 
 abstract contract SYBaseWithoutPermitUpg is
     IStandardizedYield,
     PendleERC20Upg,
     TokenHelper,
-    BoringOwnableUpgradeable,
+    BoringOwnableUpgradeable__deprecated,
     Pausable
 {
     using PMath for uint256;
@@ -32,7 +32,7 @@ abstract contract SYBaseWithoutPermitUpg is
 
     function __SYBaseUpg_init(string memory name_, string memory symbol_) internal onlyInitializing {
         __ERC20Upg_init(name_, symbol_);
-        __BoringOwnable_init();
+        __BoringOwnable__deprecated_init();
     }
 
     // solhint-disable no-empty-blocks

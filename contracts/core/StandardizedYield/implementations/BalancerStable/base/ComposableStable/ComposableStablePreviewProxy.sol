@@ -3,11 +3,11 @@ pragma solidity ^0.8.17;
 
 import "@openzeppelin/contracts/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts/proxy/Proxy.sol";
-import "../../../../../libraries/BoringOwnableUpgradeable.sol";
+import "../../../../../libraries/BoringOwnableUpgradeable__deprecated.sol";
 import "../../../../../../interfaces/IStandardizedYield.sol";
 import "../../../../../../interfaces/Balancer/IVersion.sol";
 
-contract ComposableStablePreviewProxy is BoringOwnableUpgradeable, UUPSUpgradeable, Proxy {
+contract ComposableStablePreviewProxy is BoringOwnableUpgradeable__deprecated, UUPSUpgradeable, Proxy {
     address internal immutable implementationV4;
     address internal immutable implementationV5;
     address internal constant ETHX_BBAWETH_POOL = 0xbA72de8B5B56552e537994DddFe82e7ce43409f5;
@@ -36,7 +36,7 @@ contract ComposableStablePreviewProxy is BoringOwnableUpgradeable, UUPSUpgradeab
     }
 
     function initialize() external initializer {
-        __BoringOwnable_init();
+        __BoringOwnable__deprecated_init();
     }
 
     function _authorizeUpgrade(address newImplementation) internal override onlyOwner {}

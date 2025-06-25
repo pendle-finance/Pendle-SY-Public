@@ -1,22 +1,16 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.17;
 
-import "../../interfaces/IStandardizedYield.sol";
-import "../erc20/PendleERC20PermitUpg.sol";
-import "../libraries/math/PMath.sol";
-import "../libraries/ArrayLib.sol";
-import "../libraries/TokenHelper.sol";
-import "../libraries/Errors.sol";
-import "../libraries/BoringOwnableUpgradeable__deprecated.sol";
+import "../../../interfaces/IStandardizedYield.sol";
+import "../../erc20/PendleERC20Upg.sol";
+import "../../libraries/math/PMath.sol";
+import "../../libraries/ArrayLib.sol";
+import "../../libraries/TokenHelper.sol";
+import "../../libraries/Errors.sol";
+import "../../libraries/BoringOwnableUpgradeableV2.sol";
 import "@openzeppelin/contracts/security/Pausable.sol";
 
-abstract contract SYBaseUpg is
-    IStandardizedYield,
-    PendleERC20PermitUpg,
-    TokenHelper,
-    BoringOwnableUpgradeable__deprecated,
-    Pausable
-{
+abstract contract SYBaseUpgV2 is IStandardizedYield, PendleERC20Upg, TokenHelper, BoringOwnableUpgradeableV2, Pausable {
     using PMath for uint256;
 
     address public immutable yieldToken;
@@ -28,9 +22,9 @@ abstract contract SYBaseUpg is
         _disableInitializers();
     }
 
-    function __SYBaseUpg_init(string memory name_, string memory symbol_) internal onlyInitializing {
-        __ERC20PermitUpg_init(name_, symbol_);
-        __BoringOwnable__deprecated_init();
+    function __SYBaseUpgV2_init(string memory name_, string memory symbol_, address _owner) internal onlyInitializing {
+        __ERC20Upg_init(name_, symbol_);
+        __BoringOwnableV2_init(_owner);
     }
 
     // solhint-disable no-empty-blocks

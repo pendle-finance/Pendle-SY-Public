@@ -12,10 +12,10 @@ import "./libraries/QtyDeltaMath.sol";
 import {MathConstants as C} from "./libraries/MathConstants.sol";
 import "../../../libraries/math/PMath.sol";
 
-import "../../../libraries/BoringOwnableUpgradeable.sol";
+import "../../../libraries/BoringOwnableUpgradeable__deprecated.sol";
 import "@openzeppelin/contracts/proxy/utils/UUPSUpgradeable.sol";
 
-contract KyberMathHelper is BoringOwnableUpgradeable, UUPSUpgradeable {
+contract KyberMathHelper is BoringOwnableUpgradeable__deprecated, UUPSUpgradeable {
     using SafeCast for uint256;
     using SafeCast for int256;
     using SafeCast for int128;
@@ -36,7 +36,7 @@ contract KyberMathHelper is BoringOwnableUpgradeable, UUPSUpgradeable {
     function _authorizeUpgrade(address) internal virtual override onlyOwner {}
 
     function initialize() external initializer {
-        __BoringOwnable_init();
+        __BoringOwnable__deprecated_init();
         numBinarySearchIter = DEFAULT_NUMBER_OF_ITERS;
     }
 

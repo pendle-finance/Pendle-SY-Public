@@ -5,11 +5,11 @@ import "../../SYBase.sol";
 import "../../../../interfaces/IPOracleForSy.sol";
 
 // the Owner of this will be a timelock
-contract PendleOracleForSyProxy is BoringOwnableUpgradeable, IPOracleForSy {
+contract PendleOracleForSyProxy is BoringOwnableUpgradeable__deprecated, IPOracleForSy {
     address public oracleAddress;
 
     constructor(address _oracleAddress) initializer {
-        __BoringOwnable_init();
+        __BoringOwnable__deprecated_init();
         oracleAddress = _oracleAddress;
     }
 

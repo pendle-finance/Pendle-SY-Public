@@ -3,11 +3,11 @@ pragma solidity ^0.8.0;
 
 import "../../../../../../interfaces/Balancer/IVault.sol";
 import "../../../../../../interfaces/Balancer/IERC4626LinearPool.sol";
-import "../../../../../libraries/BoringOwnableUpgradeable.sol";
+import "../../../../../libraries/BoringOwnableUpgradeable__deprecated.sol";
 import "@openzeppelin/contracts/proxy/utils/UUPSUpgradeable.sol";
 import "./LinearMath.sol";
 
-contract LinearPreview is BoringOwnableUpgradeable, UUPSUpgradeable {
+contract LinearPreview is BoringOwnableUpgradeable__deprecated, UUPSUpgradeable {
     using FixedPoint for uint256;
 
     struct ImmutableData {
@@ -25,7 +25,7 @@ contract LinearPreview is BoringOwnableUpgradeable, UUPSUpgradeable {
     constructor() initializer {}
 
     function initialize() external initializer {
-        __BoringOwnable_init();
+        __BoringOwnable__deprecated_init();
     }
 
     function _authorizeUpgrade(address newImplementation) internal override onlyOwner {}

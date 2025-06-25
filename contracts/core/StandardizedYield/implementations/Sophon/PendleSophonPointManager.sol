@@ -2,12 +2,12 @@
 pragma solidity ^0.8.0;
 
 import "../../../erc20/PendleERC20.sol";
-import "../../../libraries/BoringOwnableUpgradeable.sol";
+import "../../../libraries/BoringOwnableUpgradeable__deprecated.sol";
 import "../../../../interfaces/Sophon/ISophonFarming.sol";
 import "../../../../interfaces/Sophon/IPSophonPointManager.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 
-contract PendleSophonPointManager is PendleERC20, BoringOwnableUpgradeable, IPSophonPointManager {
+contract PendleSophonPointManager is PendleERC20, BoringOwnableUpgradeable__deprecated, IPSophonPointManager {
     // solhint-disable immutable-vars-naming
     address public immutable sophonFarming;
     uint256 public immutable pid;
@@ -23,7 +23,7 @@ contract PendleSophonPointManager is PendleERC20, BoringOwnableUpgradeable, IPSo
         sophonFarming = _sophonFarming;
         pid = _pid;
         sy = _sy;
-        __BoringOwnable_init();
+        __BoringOwnable__deprecated_init();
     }
 
     function __getSpointSymbol(uint256 _pid) internal pure returns (string memory) {
