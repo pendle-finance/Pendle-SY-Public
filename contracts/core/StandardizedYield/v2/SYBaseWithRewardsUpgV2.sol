@@ -11,7 +11,7 @@ abstract contract SYBaseWithRewardsUpgV2 is SYBaseUpgV2, RewardManager {
 
     uint256[100] private __gap;
 
-    constructor(address _yieldToken) SYBaseUpgV2(yieldToken) {}
+    constructor(address _yieldToken) SYBaseUpgV2(_yieldToken) {}
 
     /*///////////////////////////////////////////////////////////////
                                REWARDS-RELATED
