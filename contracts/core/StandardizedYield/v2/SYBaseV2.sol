@@ -8,6 +8,7 @@ import "../../libraries/ArrayLib.sol";
 import "../../libraries/Errors.sol";
 import "../../libraries/BoringOwnableUpgradeableV2.sol";
 import "@openzeppelin/contracts/security/Pausable.sol";
+import "../../../interfaces/IStandardizedYieldExtended.sol";
 
 abstract contract SYBaseV2 is IStandardizedYield, PendleERC20, TokenHelper, BoringOwnableUpgradeableV2, Pausable {
     using PMath for uint256;
@@ -184,4 +185,8 @@ abstract contract SYBaseV2 is IStandardizedYield, PendleERC20, TokenHelper, Bori
     function isValidTokenIn(address token) public view virtual returns (bool);
 
     function isValidTokenOut(address token) public view virtual returns (bool);
+
+    function pricingInfo() external virtual view returns (address refToken, bool refStrictlyEqual) {
+        return (yieldToken, true);
+    }
 }
