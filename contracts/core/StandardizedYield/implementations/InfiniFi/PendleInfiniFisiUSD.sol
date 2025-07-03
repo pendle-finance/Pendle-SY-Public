@@ -46,9 +46,12 @@ contract PendleInfinifiSIUSD is PendleERC4626UpgSYV2 {
     {
         if (tokenIn == IUSD) {
             return IInfiniFiGateway(GATEWAY).stake(address(this), amountDeposited);
-        } else if (tokenIn == USDC) {
+        }
+
+        if (tokenIn == USDC) {
             return IInfiniFiGateway(GATEWAY).mintAndStake(address(this), amountDeposited);
         }
+
         return amountDeposited;
     }
 
@@ -60,11 +63,18 @@ contract PendleInfinifiSIUSD is PendleERC4626UpgSYV2 {
     {
         if (tokenOut == IUSD) {
             return IInfiniFiGateway(GATEWAY).unstake(receiver, amountSharesToRedeem);
-        } else if (tokenOut == USDC) {
-            uint256 unstaked = IInfiniFiGateway(GATEWAY).unstake(address(this), amountSharesToRedeem);
-            uint256 assetsOut = IERC4626(yieldToken).convertToAssets(unstaked);
-            return IInfiniFiGateway(GATEWAY).redeem(receiver, unstaked, assetsOut);
         }
+
+        if (tokenOut == USDC) {
+            // unstake from siUSD to iUSD
+            uint256 receiptOut = IInfiniFiGateway(GATEWAY).unstake(address(this), amountSharesToRedeem);
+            address redeemController = IInfiniFiGateway(GATEWAY).getAddress("redeemController");
+            // convert iUSD to USDC
+            uint256 assetsOut = IRedeemController(redeemController).receiptToAsset(receiptOut);
+            // redeem iUSD, assetsOut is in USDC
+            return IInfiniFiGateway(GATEWAY).redeem(receiver, receiptOut, assetsOut);
+        }
+
         return amountTokenOut;
     }
 
@@ -80,12 +90,18 @@ contract PendleInfinifiSIUSD is PendleERC4626UpgSYV2 {
         returns (uint256 /*amountSharesOut*/ )
     {
         if (tokenIn == IUSD) {
+            // preview iUSD to siUSD conversion
             return IERC4626(SIUSD).previewDeposit(amountTokenToDeposit);
-        } else if (tokenIn == USDC) {
+        }
+
+        if (tokenIn == USDC) {
             address mintController = IInfiniFiGateway(GATEWAY).getAddress("mintController");
+            // preview USDC to iUSD conversion
             uint256 receiptOut = IMintController(mintController).assetToReceipt(amountTokenToDeposit);
+            // preview iUSD to siUSD conversion
             return IERC4626(SIUSD).previewDeposit(receiptOut);
         }
+
         return amountTokenToDeposit;
     }
 
@@ -98,11 +114,16 @@ contract PendleInfinifiSIUSD is PendleERC4626UpgSYV2 {
     {
         if (tokenOut == IUSD) {
             return IERC4626(SIUSD).previewRedeem(amountSharesToRedeem);
-        } else if (tokenOut == USDC) {
+        }
+
+        if (tokenOut == USDC) {
+            // see how much iUSD we get from redeeming siUSD
             uint256 receiptOut = IERC4626(SIUSD).previewRedeem(amountSharesToRedeem);
             address redeemController = IInfiniFiGateway(GATEWAY).getAddress("redeemController");
+            // convert iUSD to USDC
             return IRedeemController(redeemController).receiptToAsset(receiptOut);
         }
+
         return amountSharesToRedeem;
     }
 
@@ -134,6 +155,6 @@ contract PendleInfinifiSIUSD is PendleERC4626UpgSYV2 {
         virtual
         returns (AssetType assetType, address assetAddress, uint8 assetDecimals)
     {
-        return (AssetType.TOKEN, asset, IERC20Metadata(asset).decimals());
+        return (AssetType.TOKEN, IUSD, 18);
     }
 }
