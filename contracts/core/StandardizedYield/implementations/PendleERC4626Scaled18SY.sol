@@ -4,8 +4,9 @@ pragma solidity ^0.8.17;
 import "../v2/SYBaseUpgV2.sol";
 import "../../../interfaces/IERC4626.sol";
 import "../../../interfaces/IPDecimalsWrapperFactory.sol";
+import "../../../interfaces/IPTokenWithSupplyCap.sol";
 
-contract PendleERC4626Scaled18SY is SYBaseUpgV2 {
+contract PendleERC4626Scaled18SY is SYBaseUpgV2, IPTokenWithSupplyCap {
     using PMath for uint256;
 
     address public immutable asset;
@@ -48,7 +49,7 @@ contract PendleERC4626Scaled18SY is SYBaseUpgV2 {
     }
 
     function exchangeRate() public view virtual override returns (uint256) {
-        return IERC4626(yieldToken).convertToAssets(PMath.ONE) * decimalsOffset;
+        return IERC4626(yieldToken).convertToAssets(PMath.ONE * decimalsOffset);
     }
 
     function _previewDeposit(
@@ -94,5 +95,13 @@ contract PendleERC4626Scaled18SY is SYBaseUpgV2 {
         returns (AssetType assetType, address assetAddress, uint8 assetDecimals)
     {
         return (AssetType.TOKEN, assetScaled18, 18);
+    }
+
+    function getAbsoluteSupplyCap() external view returns (uint256) {
+        return IERC4626(yieldToken).totalSupply() + IERC4626(yieldToken).maxMint(address(this));
+    }
+
+    function getAbsoluteTotalSupply() external view returns (uint256) {
+        return IERC4626(yieldToken).totalSupply();
     }
 }

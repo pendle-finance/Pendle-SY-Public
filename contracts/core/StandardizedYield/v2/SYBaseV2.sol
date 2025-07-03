@@ -186,7 +186,7 @@ abstract contract SYBaseV2 is IStandardizedYield, PendleERC20, TokenHelper, Bori
 
     function isValidTokenOut(address token) public view virtual returns (bool);
 
-    function pricingInfo() external virtual view returns (address refToken, bool refStrictlyEqual) {
+    function pricingInfo() external view virtual returns (address refToken, bool refStrictlyEqual) {
         return (yieldToken, true);
     }
 }
