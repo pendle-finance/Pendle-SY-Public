@@ -48,7 +48,10 @@ contract PendleInfinifiSIUSD is PendleERC4626UpgSYV2 {
         }
 
         if (tokenIn == USDC) {
-            return IInfiniFiGateway(GATEWAY).mintAndStake(address(this), amountDeposited);
+            uint256 amountBefore = IERC4626(SIUSD).balanceOf(address(this));
+            IInfiniFiGateway(GATEWAY).mintAndStake(address(this), amountDeposited);
+            uint256 amountAfter = IERC4626(SIUSD).balanceOf(address(this));
+            return amountAfter - amountBefore;
         }
 
         return amountDeposited;
