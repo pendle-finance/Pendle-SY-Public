@@ -31,7 +31,7 @@ contract PendleInfinifiSIUSD is PendleERC4626UpgSYV2 {
 
     constructor() PendleERC4626UpgSYV2(SIUSD) {}
 
-    function initialize(string memory _name, string memory _symbol) external virtual initializer {
+    function initialize(string memory _name, string memory _symbol) external override initializer {
         __SYBaseUpg_init(_name, _symbol);
         _safeApproveInf(IUSD, GATEWAY);
         _safeApproveInf(USDC, GATEWAY);
@@ -40,7 +40,6 @@ contract PendleInfinifiSIUSD is PendleERC4626UpgSYV2 {
 
     function _deposit(address tokenIn, uint256 amountDeposited)
         internal
-        virtual
         override
         returns (uint256 /*amountSharesOut*/ )
     {
@@ -57,7 +56,6 @@ contract PendleInfinifiSIUSD is PendleERC4626UpgSYV2 {
 
     function _redeem(address receiver, address tokenOut, uint256 amountSharesToRedeem)
         internal
-        virtual
         override
         returns (uint256 amountTokenOut)
     {
@@ -85,7 +83,6 @@ contract PendleInfinifiSIUSD is PendleERC4626UpgSYV2 {
     function _previewDeposit(address tokenIn, uint256 amountTokenToDeposit)
         internal
         view
-        virtual
         override
         returns (uint256 /*amountSharesOut*/ )
     {
@@ -108,7 +105,6 @@ contract PendleInfinifiSIUSD is PendleERC4626UpgSYV2 {
     function _previewRedeem(address tokenOut, uint256 amountSharesToRedeem)
         internal
         view
-        virtual
         override
         returns (uint256 /*amountTokenOut*/ )
     {
@@ -127,32 +123,32 @@ contract PendleInfinifiSIUSD is PendleERC4626UpgSYV2 {
         return amountSharesToRedeem;
     }
 
-    function getTokensIn() public view virtual override returns (address[] memory res) {
+    function getTokensIn() public pure override returns (address[] memory res) {
         res = new address[](3);
         res[0] = IUSD;
         res[1] = SIUSD;
         res[2] = USDC;
     }
 
-    function getTokensOut() public view virtual override returns (address[] memory res) {
+    function getTokensOut() public pure override returns (address[] memory res) {
         res = new address[](3);
         res[0] = IUSD;
         res[1] = SIUSD;
         res[2] = USDC;
     }
 
-    function isValidTokenIn(address token) public view virtual override returns (bool) {
+    function isValidTokenIn(address token) public pure override returns (bool) {
         return token == IUSD || token == SIUSD || token == USDC;
     }
 
-    function isValidTokenOut(address token) public view virtual override returns (bool) {
+    function isValidTokenOut(address token) public pure override returns (bool) {
         return token == IUSD || token == SIUSD || token == USDC;
     }
 
     function assetInfo()
         external
-        view
-        virtual
+        pure
+        override
         returns (AssetType assetType, address assetAddress, uint8 assetDecimals)
     {
         return (AssetType.TOKEN, IUSD, 18);
