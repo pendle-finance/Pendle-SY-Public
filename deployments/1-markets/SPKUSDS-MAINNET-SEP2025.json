@@ -1,0 +1,15 @@
+{
+    "name": "SPKUSDS-MAINNET-SEP2025",
+    "SY": "0x0EE69A11B4391c5af5Eb2fb088c2df5dd2a0D075",
+    "YT": "0xcE2308d36c59C5C18f161E65cbEE716Da619af32",
+    "PT": "0xC347584b415715B1b66774B2899Fef2FD3b56d6e",
+    "market": "0xff43e751f2f07BbF84Da1fc1fa12cE116bF447E5",
+    "expiry": "1758758400",
+    "lnFeeRateRoot": "4987541511039073",
+    "scalarRoot": "37748633160502527547",
+    "initialRateAnchor": "1021061390462882725",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0x38e94a19bffe8408ce35585b448170d4de53ed708724b0aa46b5fff8db0bf354",
+    "deployBlockNumber": 22842922,
+    "reversedFee": 0.49999999999608136
+}

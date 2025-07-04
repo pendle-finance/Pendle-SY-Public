@@ -1,0 +1,15 @@
+{
+    "name": "DWBTC-ARBITRUM-DEC2025",
+    "SY": "0x43Fe63E84f135a0C3B40270a03E6ddBCB393f9e9",
+    "YT": "0xb178DDf95eb08933583908F17BC522bb9A694bFd",
+    "PT": "0x21647C54FEc3F0a7C549A4B1D1B16c6cC6FC066A",
+    "market": "0x0eC0AbDD2245cD94a054483cCce50A38ac93Eb1B",
+    "expiry": "1766016000",
+    "lnFeeRateRoot": "1998002662673056",
+    "scalarRoot": "106259767137131756274",
+    "initialRateAnchor": "1013103862177320500",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0x50f7ed6e2a6a3bd3ce33c00209a4d7d4addf4e40b49c71748193b93809adc443",
+    "deployBlockNumber": 354020492,
+    "reversedFee": 0.19999999993256523
+}
