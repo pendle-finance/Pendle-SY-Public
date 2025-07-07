@@ -5,9 +5,10 @@ pragma solidity ^0.8.0;
 import "../../v2/SYBaseUpgV2.sol";
 import "../../../../interfaces/Terminal/ITerminalDepositVault.sol";
 import "../../../../interfaces/Terminal/ITerminalRedemptionVault.sol";
-
 import "../../../../interfaces/Terminal/ITerminalFeed.sol";
-contract PendleTerminalSY is SYBaseUpgV2 {
+import "../../../../interfaces/IPDecimalsWrapperFactory.sol";
+
+contract PendleTerminalSYScaled18 is SYBaseUpgV2 {
     address public immutable terminalDepositVault;
     address public immutable terminalRedemptionVault;
 
@@ -15,7 +16,7 @@ contract PendleTerminalSY is SYBaseUpgV2 {
     address public immutable vaultTokenOut;
 
     address public immutable asset;
-    uint256 public immutable fixedExchangeRate;
+    address public immutable assetScaled;
 
     bytes32 public constant REFERRAL_ID = 0x0000000000000000000000000000000000000000000000000000000000000021;
 
@@ -24,7 +25,8 @@ contract PendleTerminalSY is SYBaseUpgV2 {
         address _terminalRedemptionVault,
         address _vaultTokenIn,
         address _vaultTokenOut,
-        address _asset
+        address _asset,
+        address _decimalsWrapperFactory
     ) SYBaseUpgV2(ITerminalDepositVault(_terminalDepositVault).mToken()) {
         terminalDepositVault = _terminalDepositVault;
         terminalRedemptionVault = _terminalRedemptionVault;
@@ -32,9 +34,13 @@ contract PendleTerminalSY is SYBaseUpgV2 {
         vaultTokenOut = _vaultTokenOut;
         asset = _asset;
 
-        assert (asset == vaultTokenIn); // accurate assumption for now
+        assert(asset == vaultTokenIn); // accurate assumption for now
 
-        fixedExchangeRate = 10 ** IERC20Metadata(_asset).decimals();
+        if (IERC20Metadata(asset).decimals() < 18) {
+            assetScaled = IPDecimalsWrapperFactory(_decimalsWrapperFactory).getOrCreate(_asset, 18);
+        } else {
+            assetScaled = asset;
+        }
     }
 
     function initialize(string memory _name, string memory _symbol, address _owner) external virtual initializer {
@@ -77,10 +83,8 @@ contract PendleTerminalSY is SYBaseUpgV2 {
 
     function exchangeRate() public view virtual override returns (uint256) {
         // [SHOULD BE approx 1] As discussed by Terminal team, the exchange stays at 1 unless facing blackswan event
-        return PMath.divDown(
-            _getRate(terminalDepositVault, yieldToken),
-            _getRate(terminalDepositVault, vaultTokenIn)
-        );
+        // Asset is scaled to 18, and mToken is also 18. So this rate returned here matches its decimals
+        return PMath.divDown(_getRate(terminalDepositVault, yieldToken), _getRate(terminalDepositVault, vaultTokenIn));
     }
 
     function _previewDeposit(
@@ -91,6 +95,9 @@ contract PendleTerminalSY is SYBaseUpgV2 {
             return amountTokenToDeposit;
         }
 
+        // [NOTE]:
+        // - MTokens are always 18 decimals
+        // - Fees are currently 0 and will not be configured in the future (confirmed by Terminal team)
         return
             (_toBase18(amountTokenToDeposit, tokenIn) * _getRate(terminalDepositVault, vaultTokenIn)) /
             _getRate(terminalDepositVault, yieldToken);
@@ -104,6 +111,9 @@ contract PendleTerminalSY is SYBaseUpgV2 {
             return amountSharesToRedeem;
         }
 
+        // [NOTE]:
+        // - MTokens are always 18 decimals
+        // - Fees are currently 0 and will not be configured in the future (confirmed by Terminal team)
         return
             _fromBase18(
                 (amountSharesToRedeem * _getRate(terminalRedemptionVault, yieldToken)) /
@@ -134,7 +144,7 @@ contract PendleTerminalSY is SYBaseUpgV2 {
         virtual
         returns (AssetType assetType, address assetAddress, uint8 assetDecimals)
     {
-        return (AssetType.TOKEN, asset, IERC20Metadata(asset).decimals());
+        return (AssetType.TOKEN, assetScaled, 18);
     }
 
     function _getRate(address vault, address token) internal view returns (uint256 rate) {

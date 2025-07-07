@@ -20,7 +20,6 @@ contract PendleStakingSPKUSDSSY is SYBaseWithRewardsUpgV2 {
         _safeApproveInf(USDS, CONVERTER);
         _safeApproveInf(USDS, STAKING_CONTRACT);
     }
-        
 
     function _deposit(address tokenIn, uint256 amountDeposited) internal virtual override returns (uint256) {
         if (tokenIn == DAI) {
