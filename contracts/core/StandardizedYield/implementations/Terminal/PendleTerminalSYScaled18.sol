@@ -46,6 +46,7 @@ contract PendleTerminalSYScaled18 is SYBaseUpgV2 {
     function initialize(string memory _name, string memory _symbol, address _owner) external virtual initializer {
         __SYBaseUpgV2_init(_name, _symbol, _owner);
         _safeApproveInf(vaultTokenIn, terminalDepositVault);
+        _safeApproveInf(yieldToken, terminalRedemptionVault);
     }
 
     function _deposit(
@@ -144,7 +145,7 @@ contract PendleTerminalSYScaled18 is SYBaseUpgV2 {
         virtual
         returns (AssetType assetType, address assetAddress, uint8 assetDecimals)
     {
-        return (AssetType.TOKEN, assetScaled, 18);
+        return (AssetType.TOKEN, assetScaled, IERC20Metadata(assetScaled).decimals());
     }
 
     function _getRate(address vault, address token) internal view returns (uint256 rate) {
