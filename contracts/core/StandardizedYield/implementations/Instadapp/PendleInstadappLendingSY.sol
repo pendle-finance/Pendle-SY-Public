@@ -4,6 +4,7 @@ pragma solidity ^0.8.17;
 import "../../SYBaseWithRewardsUpg.sol";
 import "../../../../interfaces/IERC4626.sol";
 import "../../../../interfaces/Instadapp/IInstadappStakingRewards.sol";
+import "../../../../interfaces/Instadapp/IInstaMerkle.sol";
 
 contract PendleInstadappLendingSY is SYBaseWithRewardsUpg {
     using PMath for uint256;
@@ -12,6 +13,7 @@ contract PendleInstadappLendingSY is SYBaseWithRewardsUpg {
 
     address public constant LIQUIDITY = 0x52Aa899454998Be5b000Ad077a46Bbe360F4e497;
     address public constant INST = 0x6f40d4A6237C257fff2dB00FA0510DeEECd303eb;
+    address public constant INSTA_MERKLE = 0x7060FE0Dd3E31be01EFAc6B28C8D38018fD163B0;
 
     // solhint-disable immutable-vars-naming
     address public immutable asset;
@@ -132,5 +134,17 @@ contract PendleInstadappLendingSY is SYBaseWithRewardsUpg {
 
         stakingRewards = _newStakingRewards;
         emit NewStakingRewards(_newStakingRewards);
+    }
+
+    function claimMerkle(
+        address recipient_,
+        uint256 cumulativeAmount_,
+        uint8 positionType_,
+        bytes32 positionId_,
+        uint256 cycle_,
+        bytes32[] calldata merkleProof_,
+        bytes memory metadata_
+    ) external onlyOwner {
+        IInstaMerkle(INSTA_MERKLE).claim(recipient_, cumulativeAmount_, positionType_, positionId_, cycle_, merkleProof_, metadata_);
     }
 }
