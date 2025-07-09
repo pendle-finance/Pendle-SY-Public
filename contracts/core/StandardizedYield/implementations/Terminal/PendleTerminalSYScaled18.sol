@@ -46,7 +46,6 @@ contract PendleTerminalSYScaled18 is SYBaseUpgV2 {
     function initialize(string memory _name, string memory _symbol, address _owner) external virtual initializer {
         __SYBaseUpgV2_init(_name, _symbol, _owner);
         _safeApproveInf(vaultTokenIn, terminalDepositVault);
-        _safeApproveInf(yieldToken, terminalRedemptionVault);
     }
 
     function _deposit(
