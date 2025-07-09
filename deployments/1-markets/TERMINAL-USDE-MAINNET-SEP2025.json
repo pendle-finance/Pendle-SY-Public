@@ -1,0 +1,15 @@
+{
+    "name": "TERMINAL-USDE-MAINNET-SEP2025",
+    "SY": "0xee9BffF7da99e6f85AbC4f7FC33F5278473124e0",
+    "YT": "0x3FE980d9A60EC3C96Cfc8CD9c3cdF163b3E701Eb",
+    "PT": "0xd0a4B74A6B62aA2b6C02349463D9041606608F36",
+    "market": "0x07b1711d4af74Af661DDe3b774741993B79fC59C",
+    "expiry": "1758758400",
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "20525961567223351235",
+    "initialRateAnchor": "1031246005456092322",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0xd0fe0e583625348982f9a19d72fee42530f968d29f73cbdaf03cd0a3323ad9c9",
+    "deployBlockNumber": 22878737,
+    "reversedFee": 0.9999999999830145
+}

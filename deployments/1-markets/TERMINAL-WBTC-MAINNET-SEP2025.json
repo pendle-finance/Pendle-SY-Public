@@ -1,0 +1,15 @@
+{
+    "name": "TERMINAL-WBTC-MAINNET-SEP2025",
+    "SY": "0x0d298432833E0d60372C70801FEaf868eB7451b3",
+    "YT": "0xB951896d3bE82d48429f49aCc8D891B855b65EF8",
+    "PT": "0xDbC00a45E7530017E553fBFA340Be32dE89eA27b",
+    "market": "0x9F4C227b0fB30a02430D573D657c76AC2de4cEE7",
+    "expiry": "1758758400",
+    "lnFeeRateRoot": "2995508979798478",
+    "scalarRoot": "75520947295641940675",
+    "initialRateAnchor": "1008333250841124503",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0xe1965c9582f585fc78f66c70cc2dab0cd29f7115e817afabe86467caf97765e6",
+    "deployBlockNumber": 22878768,
+    "reversedFee": 0.2999999999199199
+}
