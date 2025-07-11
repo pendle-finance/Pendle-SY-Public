@@ -1,0 +1,15 @@
+{
+    "name": "SILO-GREENHOUSE-USDC-DEC2025",
+    "SY": "0x3a9DC0B33ab3b6e6cE1EaD61909F59ACD7682036",
+    "YT": "0xaD6825518B0d38200a2311489bB3b025df38EC72",
+    "PT": "0x01d6dafa8B3bD04bDf7bA6Ff76104d15E2B7485c",
+    "market": "0x784ABE614738E4b30aDd5Ae8Cc96e59b5728d936",
+    "expiry": "1766016000",
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "22554008739759870377",
+    "initialRateAnchor": "1059935246106925753",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0xb634a58e916c71f1bdbab00d6c6f45d4ee13e2d1e1dd313f2cdc9ea1be324972",
+    "deployBlockNumber": 37998583,
+    "reversedFee": 0.9999999999830145
+}
