@@ -14,6 +14,7 @@ contract PendleInstadappLendingSY is SYBaseWithRewardsUpg {
     address public constant LIQUIDITY = 0x52Aa899454998Be5b000Ad077a46Bbe360F4e497;
     address public constant INST = 0x6f40d4A6237C257fff2dB00FA0510DeEECd303eb;
     address public constant INSTA_MERKLE = 0x7060FE0Dd3E31be01EFAc6B28C8D38018fD163B0;
+    address public constant FLUID = 0x6f40d4A6237C257fff2dB00FA0510DeEECd303eb;
 
     // solhint-disable immutable-vars-naming
     address public immutable asset;
@@ -145,6 +146,8 @@ contract PendleInstadappLendingSY is SYBaseWithRewardsUpg {
         bytes32[] calldata merkleProof_,
         bytes memory metadata_
     ) external onlyOwner {
-        IInstaMerkle(INSTA_MERKLE).claim(recipient_, cumulativeAmount_, positionType_, positionId_, cycle_, merkleProof_, metadata_);
+        uint256 preBalance = _selfBalance(FLUID);
+        IInstaMerkle(INSTA_MERKLE).claim(address(this), cumulativeAmount_, positionType_, positionId_, cycle_, merkleProof_, metadata_);
+        _transferOut(FLUID, recipient_, _selfBalance(FLUID) - preBalance);
     }
 }
