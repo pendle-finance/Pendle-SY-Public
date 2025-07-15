@@ -91,7 +91,7 @@ contract PendleInfinifiSIUSD is PendleERC4626UpgSYV2 {
         }
 
         if (tokenOut == SIUSD) {
-            _transferOut(yieldToken, receiver, amountSharesToRedeem);
+            _transferOut(SIUSD, receiver, amountSharesToRedeem);
             return amountSharesToRedeem;
         }
 
