@@ -6,7 +6,7 @@ import "../../../interfaces/IERC4626.sol";
 import "../../../interfaces/IPDecimalsWrapperFactory.sol";
 import "../../../interfaces/IPTokenWithSupplyCap.sol";
 
-contract PendleERC4626Scaled18SY is SYBaseUpgV2, IPTokenWithSupplyCap {
+contract PendleERC4626SYScaled18 is SYBaseUpgV2, IPTokenWithSupplyCap {
     using PMath for uint256;
 
     address public immutable asset;
