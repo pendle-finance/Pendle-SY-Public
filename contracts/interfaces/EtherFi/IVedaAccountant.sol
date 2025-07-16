@@ -3,4 +3,6 @@ pragma solidity ^0.8.23;
 
 interface IVedaAccountant {
     function getRateInQuoteSafe(address quote) external view returns (uint256 rateInQuote);
+
+    function getRateSafe() external view returns (uint256 rate);
 }

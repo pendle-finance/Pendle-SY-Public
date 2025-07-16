@@ -147,7 +147,15 @@ contract PendleInstadappLendingSY is SYBaseWithRewardsUpg {
         bytes memory metadata_
     ) external onlyOwner {
         uint256 preBalance = _selfBalance(FLUID);
-        IInstaMerkle(INSTA_MERKLE).claim(address(this), cumulativeAmount_, positionType_, positionId_, cycle_, merkleProof_, metadata_);
+        IInstaMerkle(INSTA_MERKLE).claim(
+            address(this),
+            cumulativeAmount_,
+            positionType_,
+            positionId_,
+            cycle_,
+            merkleProof_,
+            metadata_
+        );
         _transferOut(FLUID, recipient_, _selfBalance(FLUID) - preBalance);
     }
 }
