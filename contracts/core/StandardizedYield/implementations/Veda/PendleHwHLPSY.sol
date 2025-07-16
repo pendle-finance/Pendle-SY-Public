@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.23;
 
-import "./PendleVedaBaseSYV2.sol";
+import "../EtherFi/PendleVedaBaseSYV2.sol";
 import "../../../misc/TokenWithSupplyCapUpg.sol";
 
 contract PendleHwHLPSY is PendleVedaBaseSYV2, TokenWithSupplyCapUpg {
