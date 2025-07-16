@@ -27,6 +27,8 @@ contract PendleHwHLPSY is PendleVedaBaseSYV2, TokenWithSupplyCapUpg {
     ) external virtual initializer {
         __SYBaseUpgV2_init(_name, _symbol, _owner);
         __tokenWithSupplyCap_init(_initialSupplyCap);
+        _safeApproveInf(USDT, yieldToken);
+        _safeApproveInf(USDE, yieldToken);
     }
 
     function exchangeRate() public view virtual override returns (uint256) {
@@ -39,6 +41,17 @@ contract PendleHwHLPSY is PendleVedaBaseSYV2, TokenWithSupplyCapUpg {
 
     function getTokensIn() public view override returns (address[] memory res) {
         return ArrayLib.create(USDT, USDE, yieldToken);
+    }
+
+    function _previewDeposit(
+        address tokenIn,
+        uint256 amountTokenToDeposit
+    ) internal view virtual override returns (uint256 amountSharesOut) {
+        if (tokenIn == yieldToken) {
+            return amountTokenToDeposit;
+        }
+        uint256 rate = IVedaAccountant(vedaAccountant).getRateInQuoteSafe(tokenIn);
+        amountSharesOut = (amountTokenToDeposit * ONE_SHARE) / rate;
     }
 
     function assetInfo()
