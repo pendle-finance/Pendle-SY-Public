@@ -17,10 +17,20 @@ abstract contract PendleVedaBaseSYV2 is PendleERC20SYUpgV2 {
     address public immutable vedaTeller;
     address public immutable vedaAccountant;
 
-    constructor(address _boringVault, address _vedaTeller, uint256 _ONE_SHARE) PendleERC20SYUpgV2(_boringVault) {
+    bool public immutable shouldAccountForPremium;
+
+    uint256[100] private __gap; // reserved for future use
+
+    constructor(
+        address _boringVault,
+        address _vedaTeller,
+        uint256 _ONE_SHARE,
+        bool _shouldAccountForPremium
+    ) PendleERC20SYUpgV2(_boringVault) {
         vedaTeller = _vedaTeller;
         vedaAccountant = IVedaTeller(_vedaTeller).accountant();
         ONE_SHARE = _ONE_SHARE;
+        shouldAccountForPremium = _shouldAccountForPremium;
     }
 
     function _deposit(
@@ -42,6 +52,10 @@ abstract contract PendleVedaBaseSYV2 is PendleERC20SYUpgV2 {
         }
         uint256 rate = IVedaAccountant(vedaAccountant).getRateInQuoteSafe(tokenIn);
         amountSharesOut = (amountTokenToDeposit * ONE_SHARE) / rate;
+
+        if (!shouldAccountForPremium) {
+            return amountSharesOut;
+        }
 
         IVedaTeller.Asset memory data = IVedaTeller(vedaTeller).assetData(tokenIn);
         amountSharesOut = (amountSharesOut * (PREMIUM_SHARE_BPS - data.sharePremium)) / PREMIUM_SHARE_BPS;

@@ -17,7 +17,7 @@ contract PendleHwHLPSY is PendleVedaBaseSYV2, TokenWithSupplyCapUpg {
     address public constant USDC = 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48;
     address public constant teller = 0xfA9D7D4709716b90Cd5013fD88fB17AEEDd24Bc4;
 
-    constructor() PendleVedaBaseSYV2(IVedaTeller(teller).vault(), teller, 10 ** 6) {}
+    constructor() PendleVedaBaseSYV2(IVedaTeller(teller).vault(), teller, 10 ** 6, false) {}
 
     function initialize(
         string memory _name,
@@ -41,17 +41,6 @@ contract PendleHwHLPSY is PendleVedaBaseSYV2, TokenWithSupplyCapUpg {
 
     function getTokensIn() public view override returns (address[] memory res) {
         return ArrayLib.create(USDT, USDE, yieldToken);
-    }
-
-    function _previewDeposit(
-        address tokenIn,
-        uint256 amountTokenToDeposit
-    ) internal view virtual override returns (uint256 amountSharesOut) {
-        if (tokenIn == yieldToken) {
-            return amountTokenToDeposit;
-        }
-        uint256 rate = IVedaAccountant(vedaAccountant).getRateInQuoteSafe(tokenIn);
-        amountSharesOut = (amountTokenToDeposit * ONE_SHARE) / rate;
     }
 
     function assetInfo()
