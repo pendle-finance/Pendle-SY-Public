@@ -3,11 +3,12 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
-abstract contract BoringOwnableUpgradeableV2 is Initializable {
+contract BoringOwnableUpgradeableData {
     address public owner;
     address public pendingOwner;
-    uint256[48] private __gap;
+}
 
+abstract contract BoringOwnableUpgradeableV2 is BoringOwnableUpgradeableData, Initializable {
     event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
 
     function __BoringOwnableV2_init(address _owner) internal onlyInitializing {
@@ -53,4 +54,5 @@ abstract contract BoringOwnableUpgradeableV2 is Initializable {
         _;
     }
 
+    uint256[48] private __gap;
 }
