@@ -3,7 +3,6 @@ pragma solidity ^0.8.23;
 
 import "../EtherFi/PendleVedaBaseSYV2.sol";
 import "../../../misc/TokenWithSupplyCapUpg.sol";
-
 contract PendleHwHLPSY is PendleVedaBaseSYV2, TokenWithSupplyCapUpg {
     // solhint-disable immutable-vars-naming
     // solhint-disable const-name-snakecase
@@ -32,7 +31,7 @@ contract PendleHwHLPSY is PendleVedaBaseSYV2, TokenWithSupplyCapUpg {
     }
 
     function exchangeRate() public view virtual override returns (uint256) {
-        return IVedaAccountant(vedaAccountant).getRateSafe();
+        return IVedaAccountant(vedaAccountant).getRateSafe() * (10**12);
     }
 
     function isValidTokenIn(address token) public view override returns (bool) {
@@ -50,5 +49,15 @@ contract PendleHwHLPSY is PendleVedaBaseSYV2, TokenWithSupplyCapUpg {
         returns (AssetType assetType, address assetAddress, uint8 assetDecimals)
     {
         return (AssetType.TOKEN, USDC, 6);
+    }
+
+    function getAbsoluteTotalSupply() external view returns (uint256) {
+        return totalSupply();
+    }
+
+    function _afterTokenTransfer(address from, address, uint256) internal view override {
+        if (from != address(0)) {
+            _checkSupplyCap(totalSupply());
+        }
     }
 }
