@@ -57,7 +57,8 @@ contract PendleHwHLPSY is PendleVedaBaseSYV2, TokenWithSupplyCapUpg {
 
     function _afterTokenTransfer(address from, address, uint256) internal view override {
         if (from != address(0)) {
-            _checkSupplyCap(totalSupply());
+            return;
         }
+        _checkSupplyCap(totalSupply());
     }
 }
