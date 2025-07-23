@@ -16,7 +16,7 @@ contract PendleUniBTCBeraSYUpgScaled18 is SYBaseUpg {
     constructor() SYBaseUpg(UNIBTC) {
         _disableInitializers();
     }
-    
+
     function initialize() external initializer {
         _safeApproveInf(WBTC, VAULT);
         __SYBaseUpg_init("SY Bedrock uniBTC scaled18", "SY-uniBTC-scaled18");

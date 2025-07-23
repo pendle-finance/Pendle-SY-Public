@@ -31,7 +31,7 @@ contract PendleHwHLPSY is PendleVedaBaseSYV2, TokenWithSupplyCapUpg {
     }
 
     function exchangeRate() public view virtual override returns (uint256) {
-        return IVedaAccountant(vedaAccountant).getRateSafe() * (10**12);
+        return IVedaAccountant(vedaAccountant).getRateSafe() * (10 ** 12);
     }
 
     function isValidTokenIn(address token) public view override returns (bool) {
