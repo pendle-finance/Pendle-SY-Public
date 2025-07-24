@@ -85,7 +85,12 @@ contract PendleStrataUSDESY is SYBaseUpgV2 {
     }
 
     function getTokensOut() public view virtual override returns (address[] memory res) {
-        return ArrayLib.create(USDE, EUSDE, STRATA_META_VAULT);
+        if (_isPreYieldPhase()) {
+            return ArrayLib.create(USDE, EUSDE, STRATA_META_VAULT);
+        } else {
+            return ArrayLib.create(STRATA_META_VAULT);
+        }
+
     }
 
     function isValidTokenIn(address token) public view virtual override returns (bool) {
@@ -93,7 +98,11 @@ contract PendleStrataUSDESY is SYBaseUpgV2 {
     }
 
     function isValidTokenOut(address token) public view virtual override returns (bool) {
-        return token == USDE || token == EUSDE || token == STRATA_META_VAULT;
+        if (_isPreYieldPhase()) {
+            return token == USDE || token == EUSDE || token == STRATA_META_VAULT;
+        } else {
+            return token == STRATA_META_VAULT;
+        }
     }
 
     function assetInfo()
@@ -103,5 +112,9 @@ contract PendleStrataUSDESY is SYBaseUpgV2 {
         returns (AssetType assetType, address assetAddress, uint8 assetDecimals)
     {
         return (AssetType.TOKEN, USDE, IERC20Metadata(USDE).decimals());
+    }
+
+    function _isPreYieldPhase() internal view returns (bool) {
+        return IStrataMetaVault(STRATA_META_VAULT).currentPhase() != IStrataMetaVault.PreDepositPhase.YieldPhase;
     }
 }
