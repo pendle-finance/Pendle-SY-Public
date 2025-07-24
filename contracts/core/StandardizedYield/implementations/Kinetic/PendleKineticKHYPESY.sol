@@ -50,7 +50,7 @@ contract PendleKineticKHYPESY is SYBaseUpgV2 {
         uint256 amountTokenToDeposit
     ) internal view virtual override returns (uint256 /*amountSharesOut*/) {
         if (tokenIn == NATIVE) {
-            return IKineticStakingAccountant(STAKING_ACCOUNTANT).HYPEToKHYPE(amountTokenToDeposit);
+            return IKineticStakingAccountant(STAKING_ACCOUNTANT).HYPEToKHYPE(_truncAmount(amountTokenToDeposit));
         }
         return amountTokenToDeposit;
     }
