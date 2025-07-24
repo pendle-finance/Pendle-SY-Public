@@ -72,12 +72,11 @@ contract PendleStrataUSDESY is SYBaseUpgV2 {
     ) internal view virtual override returns (uint256 /*amountTokenOut*/) {
         if (tokenOut == STRATA_META_VAULT) {
             return amountSharesToRedeem;
-        }
-        else if (tokenOut == USDE) {
+        } else if (tokenOut == USDE) {
             // SY Strata Meta Vault ---redeem---> USDE --- deposit ---> EUSDE
-            return IERC4626(EUSDE).previewDeposit(IERC4626(STRATA_META_VAULT).previewRedeem(amountSharesToRedeem));
-        } else {
             return IERC4626(STRATA_META_VAULT).previewRedeem(amountSharesToRedeem);
+        } else {
+            return IERC4626(EUSDE).previewWithdraw(IERC4626(STRATA_META_VAULT).previewRedeem(amountSharesToRedeem));
         }
     }
 
