@@ -1,0 +1,15 @@
+{
+    "name": "STRATA-USDE-MAINNET-OCT2025",
+    "SY": "0x33e88943B00e699FC5B6597c5F8BcB0872AF8bee",
+    "YT": "0xE49462fFd604D35061fb6937626f675873314C93",
+    "PT": "0xF3f491e5608f8B8a6Fd9E9d66a4a4036d7FD282C",
+    "market": "0xf4C449d6a2D1840625211769779ADA42857d04dD",
+    "expiry": "1760572800",
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "20511585361295392245",
+    "initialRateAnchor": "1031976582373257051",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0xc819a7048d0c2652d7de49d89488153185c18dc4a644f0012f5ce62cc2ebf4a8",
+    "deployBlockNumber": 23016339,
+    "reversedFee": 0.9999999999830145
+}
