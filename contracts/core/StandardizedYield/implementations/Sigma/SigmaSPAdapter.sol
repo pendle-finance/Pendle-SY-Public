@@ -22,6 +22,7 @@ contract SigmaSPAdapter is IStandardizedYieldAdapter {
 
     function convertToDeposit(address tokenIn, uint256 amountTokenIn) external override returns (uint256 amountOut) {
         _validAdapterTokenIn(tokenIn);
+
         IERC20(tokenIn).forceApprove(SP, amountTokenIn);
         amountOut = ISigmaSP(SP).deposit(msg.sender, tokenIn, amountTokenIn, 0);
     }
