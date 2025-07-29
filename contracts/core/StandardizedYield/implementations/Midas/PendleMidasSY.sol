@@ -110,7 +110,7 @@ contract PendleMidasSY is SYBaseUpg {
         return ArrayLib.append(IMidasManageableVault(depositVault).getPaymentTokens(), yieldToken);
     }
 
-    function getTokensOut() public view override returns (address[] memory res) {
+    function getTokensOut() public view override virtual returns (address[] memory res) {
         return ArrayLib.append(IMidasManageableVault(redemptionVault).getPaymentTokens(), yieldToken);
     }
 
@@ -118,7 +118,7 @@ contract PendleMidasSY is SYBaseUpg {
         return token == yieldToken || IMidasManageableVault(depositVault).tokensConfig(token).dataFeed != address(0);
     }
 
-    function isValidTokenOut(address token) public view override returns (bool) {
+    function isValidTokenOut(address token) public view override virtual returns (bool) {
         return token == yieldToken || IMidasManageableVault(redemptionVault).tokensConfig(token).dataFeed != address(0);
     }
 
