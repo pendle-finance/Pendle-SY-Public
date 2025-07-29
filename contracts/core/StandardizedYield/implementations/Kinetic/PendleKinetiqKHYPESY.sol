@@ -2,15 +2,21 @@
 pragma solidity ^0.8.17;
 
 import "../../v2/SYBaseUpgV2.sol";
-import "../../../../interfaces/Kinetic/IKineticStakingAccountant.sol";
-import "../../../../interfaces/Kinetic/IKineticStakingManager.sol";
+import "../../../../interfaces/Kinetiq/IKinetiqStakingAccountant.sol";
+import "../../../../interfaces/Kinetiq/IKinetiqStakingManager.sol";
+import "../../../../interfaces/Kinetiq/IKinetiqValidatorManager.sol";
+import "../../../../interfaces/IPTokenWithSupplyCap.sol";
 
-contract PendleKineticKHYPESY is SYBaseUpgV2 {
+contract PendleKinetiqKHYPESY is SYBaseUpgV2, IPTokenWithSupplyCap {
     using PMath for uint256;
+
+    error KinetiqMinStakeNotMet();
+    error KinetiqMaxStakeExceeded();
 
     address public constant KHYPE = 0xfD739d4e423301CE9385c1fb8850539D657C296D;
     address public constant STAKING_MANAGER = 0x393D0B87Ed38fc779FD9611144aE649BA6082109;
     address public constant STAKING_ACCOUNTANT = 0x9209648Ec9D448EF57116B73A2f081835643dc7A;
+    address public constant VALIDATOR_MANAGER = 0x4b797A93DfC3D18Cf98B7322a2b142FA8007508f;
     uint256 public constant DEPOSIT_DENOM = 1e10;
 
     constructor() SYBaseUpgV2(KHYPE) {}
@@ -28,7 +34,8 @@ contract PendleKineticKHYPESY is SYBaseUpgV2 {
         }
 
         uint256 preBalance = _selfBalance(yieldToken);
-        IKineticStakingManager(STAKING_MANAGER).stake{value: _truncAmount(amountDeposited)}();
+        // Hot path, ignoring min, max check
+        IKinetiqStakingManager(STAKING_MANAGER).stake{value: _truncAmount(amountDeposited)}();
         return _selfBalance(yieldToken) - preBalance;
     }
 
@@ -42,7 +49,7 @@ contract PendleKineticKHYPESY is SYBaseUpgV2 {
     }
 
     function exchangeRate() public view virtual override returns (uint256) {
-        return IKineticStakingAccountant(STAKING_ACCOUNTANT).kHYPEToHYPE(1 ether);
+        return IKinetiqStakingAccountant(STAKING_ACCOUNTANT).kHYPEToHYPE(1 ether);
     }
 
     function _previewDeposit(
@@ -50,7 +57,9 @@ contract PendleKineticKHYPESY is SYBaseUpgV2 {
         uint256 amountTokenToDeposit
     ) internal view virtual override returns (uint256 /*amountSharesOut*/) {
         if (tokenIn == NATIVE) {
-            return IKineticStakingAccountant(STAKING_ACCOUNTANT).HYPEToKHYPE(_truncAmount(amountTokenToDeposit));
+            amountTokenToDeposit = _truncAmount(amountTokenToDeposit);
+            _validateStakeAmount(amountTokenToDeposit);
+            return IKinetiqStakingAccountant(STAKING_ACCOUNTANT).HYPEToKHYPE(amountTokenToDeposit);
         }
         return amountTokenToDeposit;
     }
@@ -89,5 +98,27 @@ contract PendleKineticKHYPESY is SYBaseUpgV2 {
 
     function _truncAmount(uint256 amount) internal pure virtual returns (uint256) {
         return amount - (amount % DEPOSIT_DENOM);
+    }
+
+    function _validateStakeAmount(uint256 amount) internal view virtual {
+        uint256 minStake = IKinetiqStakingManager(STAKING_MANAGER).minStakeAmount();
+        uint256 maxStake = IKinetiqStakingManager(STAKING_MANAGER).maxStakeAmount();
+        if (amount < minStake) {
+            revert KinetiqMinStakeNotMet();
+        }
+        if (maxStake > 0 && amount > maxStake) {
+            revert KinetiqMaxStakeExceeded();
+        }
+    }
+
+    function getAbsoluteSupplyCap() external view returns (uint256) {
+        return IKinetiqStakingManager(STAKING_MANAGER).stakingLimit();
+    }
+
+    function getAbsoluteTotalSupply() external view returns (uint256) {
+        return
+            IKinetiqStakingManager(STAKING_MANAGER).totalStaked() +
+            IKinetiqValidatorManager(VALIDATOR_MANAGER).totalRewards() -
+            IKinetiqStakingManager(STAKING_MANAGER).totalClaimed();
     }
 }
