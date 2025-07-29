@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 
 import "../Midas/PendleMidasSY.sol";
 
-contract PendleHyperbeatBEHYPESY is PendleMidasSY {
+contract PendleHyperbeatLiquidHYPESY is PendleMidasSY {
     constructor(
         address _mToken,
         address _depositVault,
