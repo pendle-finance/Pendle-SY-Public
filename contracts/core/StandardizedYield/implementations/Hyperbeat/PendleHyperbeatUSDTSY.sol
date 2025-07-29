@@ -4,8 +4,6 @@ pragma solidity ^0.8.0;
 import "../Midas/PendleMidasSY.sol";
 
 contract PendleHyperbeatUSDTSY is PendleMidasSY {
-    bytes32 public constant PENDLE_HYPERBEAT_REFERRER_ID = keccak256("hyperbeat.referrers.pendle");
-
     constructor(
         address _mToken,
         address _depositVault,
@@ -14,21 +12,8 @@ contract PendleHyperbeatUSDTSY is PendleMidasSY {
         address _underlying
     ) PendleMidasSY(_mToken, _depositVault, _redemptionVault, _mTokenDataFeed, _underlying) {}
 
-    function _deposit(address tokenIn, uint256 amountDeposited)
-        internal
-        virtual
-        override
-        returns (uint256 /*amountSharesOut*/ )
-    {
-        if (tokenIn == yieldToken) {
-            return amountDeposited;
-        }
-
-        uint256 balanceBefore = _selfBalance(yieldToken);
-        _safeApproveInf(tokenIn, depositVault);
-        IMidasDepositVault(depositVault).depositInstant(
-            tokenIn, MidasAdapterLib.tokenAmountToBase18(tokenIn, amountDeposited), 0, PENDLE_HYPERBEAT_REFERRER_ID
-        );
-        return _selfBalance(yieldToken) - balanceBefore;
+    /// @dev keccak256("hyperbeat.referrers.pendle")
+    function PENDLE_REFERRER_ID() public pure override returns (bytes32) {
+        return 0x2a176b24a5fec3af048070ad484d82fe4152c8b8eb2edc993ef5700c58ef3d53;
     }
 }

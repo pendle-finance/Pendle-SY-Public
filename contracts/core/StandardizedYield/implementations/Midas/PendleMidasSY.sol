@@ -11,8 +11,6 @@ contract PendleMidasSY is SYBaseUpg {
     using DecimalsCorrectionLibrary for uint256;
     using PMath for uint256;
 
-    bytes32 public constant PENDLE_REFERRER_ID = keccak256("midas.referrers.pendle");
-
     // solhint-disable immutable-vars-naming
     address public immutable depositVault;
     address public immutable redemptionVault;
@@ -43,6 +41,11 @@ contract PendleMidasSY is SYBaseUpg {
         _safeApproveInf(yieldToken, redemptionVault);
     }
 
+    /// @dev keccak256("midas.referrers.pendle")
+    function PENDLE_REFERRER_ID() public pure virtual returns (bytes32) {
+        return 0xeebc7fb7758166393aa5eeda20861581606265fd83e1f138b4d07d0a78a0f769;
+    }
+
     function _deposit(
         address tokenIn,
         uint256 amountDeposited
@@ -54,10 +57,7 @@ contract PendleMidasSY is SYBaseUpg {
         uint256 balanceBefore = _selfBalance(yieldToken);
         _safeApproveInf(tokenIn, depositVault);
         IMidasDepositVault(depositVault).depositInstant(
-            tokenIn,
-            MidasAdapterLib.tokenAmountToBase18(tokenIn, amountDeposited),
-            0,
-            PENDLE_REFERRER_ID
+            tokenIn, MidasAdapterLib.tokenAmountToBase18(tokenIn, amountDeposited), 0, PENDLE_REFERRER_ID()
         );
         return _selfBalance(yieldToken) - balanceBefore;
     }
