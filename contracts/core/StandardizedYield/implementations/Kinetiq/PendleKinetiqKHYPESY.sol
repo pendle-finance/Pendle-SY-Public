@@ -112,7 +112,8 @@ contract PendleKinetiqKHYPESY is SYBaseUpgV2, IPTokenWithSupplyCap {
     }
 
     function getAbsoluteSupplyCap() external view returns (uint256) {
-        return IKinetiqStakingManager(STAKING_MANAGER).stakingLimit();
+        uint256 limit = IKinetiqStakingManager(STAKING_MANAGER).stakingLimit();
+        return limit > 0 ? limit : type(uint256).max;
     }
 
     function getAbsoluteTotalSupply() external view returns (uint256) {
