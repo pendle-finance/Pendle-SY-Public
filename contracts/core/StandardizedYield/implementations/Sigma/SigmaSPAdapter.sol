@@ -22,6 +22,7 @@ contract SigmaSPAdapter is IStandardizedYieldAdapter {
 
     function convertToDeposit(address tokenIn, uint256 amountTokenIn) external override returns (uint256 amountOut) {
         _validAdapterTokenIn(tokenIn);
+        IERC20(tokenIn).forceApprove(SP, amountTokenIn);
         amountOut = ISigmaSP(SP).deposit(msg.sender, tokenIn, amountTokenIn, 0);
     }
 
@@ -29,6 +30,7 @@ contract SigmaSPAdapter is IStandardizedYieldAdapter {
         _validAdapterTokenOut(tokenOut);
 
         uint256 minOut = (amountPivotToken * (SLIPPAGE_PRESISION - CURVE_POOL_EXCHANGE_SLIPPAGE)) / SLIPPAGE_PRESISION;
+        IERC20(SP).forceApprove(CURVE_POOL, amountPivotToken);
         amountOut = ICurveStableSwapNG(CURVE_POOL).exchange(1, 0, amountPivotToken, minOut, msg.sender);
     }
 
