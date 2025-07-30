@@ -1,0 +1,15 @@
+{
+    "name": "UNIBTC-BERA-DEC2025",
+    "SY": "0x6E7F7A2C3AB10ce93E49AA889E4E09ff7703B218",
+    "YT": "0xcEa976Df7803e7a32513FfDbE692aE01353657Be",
+    "PT": "0x6Fa48156a2e843E0A90b70A1dEFc8ef868815270",
+    "market": "0x158c7D15f5ebC0f9412Ed5a2997DFaAa06Ea349d",
+    "expiry": "1766016000",
+    "lnFeeRateRoot": "1998002662673056",
+    "scalarRoot": "81475542025785870505",
+    "initialRateAnchor": "1012318311012231673",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0xbc696586e3a04dcd6177f5a3fc3f51e4e11a9caa6306f084c6c7dba549e653cd",
+    "deployBlockNumber": 8422124,
+    "reversedFee": 0.19999999993256523
+}
