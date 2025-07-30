@@ -5,7 +5,9 @@ import "../../SYBaseUpg.sol";
 import "../../../../interfaces/Bedrock/IBedrockUniBTCVault.sol";
 import "../../../../interfaces/IPDecimalsWrapperFactory.sol";
 
-contract PendleUniBTCBeraSYUpgScaled18 is SYBaseUpg {
+import "../../../misc/ScaledTokenMath.sol";
+
+contract PendleUniBTCBeraSYUpgScaled18 is SYBaseUpg, ScaledTokenMath {
     address public constant VAULT = 0xE0240d05Ae9eF703E2b71F3f4Eb326ea1888DEa3;
     address public constant UNIBTC = 0xC3827A4BC8224ee2D116637023b124CED6db6e90;
     address public constant WBTC = 0x0555E30da8f98308EdB960aa94C0Db47230d2B9c;
@@ -13,7 +15,7 @@ contract PendleUniBTCBeraSYUpgScaled18 is SYBaseUpg {
 
     address public immutable wrappedAsset = IPDecimalsWrapperFactory(DECIMALS_WRAPPER_FACTORY).getOrCreate(UNIBTC, 18);
 
-    constructor() SYBaseUpg(UNIBTC) {
+    constructor() SYBaseUpg(UNIBTC) ScaledTokenMath(UNIBTC, wrappedAsset) {
         _disableInitializers();
     }
 
@@ -44,7 +46,7 @@ contract PendleUniBTCBeraSYUpgScaled18 is SYBaseUpg {
     }
 
     function exchangeRate() public view virtual override returns (uint256 res) {
-        return PMath.ONE;
+        return _toScaled(PMath.ONE); // exchange rate returns amount of asset equivalent to 1 share, asset is scaled, so using toScaled
     }
 
     function _previewDeposit(
