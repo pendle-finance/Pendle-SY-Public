@@ -23,7 +23,7 @@ contract PendleInfraredBYUSDSY is SYBaseWithRewardsUpg {
         address /*tokenIn*/,
         uint256 amountDeposited
     ) internal virtual override returns (uint256 /*amountSharesOut*/) {
-        IInfraredBGTVault(VAULT).stake(amountDeposited);
+        IInfraredBYUSDVault(VAULT).stake(amountDeposited);
         return amountDeposited;
     }
 
@@ -32,7 +32,7 @@ contract PendleInfraredBYUSDSY is SYBaseWithRewardsUpg {
         address /*tokenOut*/,
         uint256 amountSharesToRedeem
     ) internal override returns (uint256) {
-        IInfraredBGTVault(VAULT).withdraw(amountSharesToRedeem);
+        IInfraredBYUSDVault(VAULT).withdraw(amountSharesToRedeem);
         _transferOut(BYUSD_HONEY_LP, receiver, amountSharesToRedeem);
         return amountSharesToRedeem;
     }
@@ -88,7 +88,7 @@ contract PendleInfraredBYUSDSY is SYBaseWithRewardsUpg {
         // check balance before getting rewards
         uint256 amountWBYUSD = WBYUSD.balanceOf(address(this));
 
-        IInfraredBGTVault(VAULT).getRewardForUser(address(this));
+        IInfraredBYUSDVault(VAULT).getRewardForUser(address(this));
         
         // restrict redeem amounts to that gained on this call
         amountWBYUSD = WBYUSD.balanceOf(address(this)) - amountWBYUSD;
