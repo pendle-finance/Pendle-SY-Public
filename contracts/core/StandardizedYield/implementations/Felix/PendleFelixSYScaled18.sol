@@ -25,6 +25,8 @@ contract PendleFelixSYScaled18 is PendleERC4626SYScaled18 {
     ) external {
         uint256 preBalance = _selfBalance(_token);
         IFelixDistributor(DISTRIBUTOR).claimReward(_claimInfos, _proofs);
-        _transferOut(_token, _tokenReceiver, _selfBalance(_token) - preBalance);
+        uint256 postBalance = _selfBalance(_token);
+        require(postBalance > preBalance, "PFSY: no rewards claimed");
+        _transferOut(_token, _tokenReceiver, postBalance - preBalance);
     }
 }
