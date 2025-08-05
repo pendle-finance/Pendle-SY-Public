@@ -90,7 +90,6 @@ contract PendleStrataUSDESY is SYBaseUpgV2 {
         } else {
             return ArrayLib.create(STRATA_META_VAULT);
         }
-
     }
 
     function isValidTokenIn(address token) public view virtual override returns (bool) {

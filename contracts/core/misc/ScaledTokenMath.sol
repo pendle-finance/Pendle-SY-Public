@@ -13,10 +13,10 @@ abstract contract ScaledTokenMath {
     }
 
     function _toScaled(uint256 value) internal view returns (uint256) {
-        return value * (10 ** scaledDecimals) / (10 ** originalDecimals);
+        return (value * (10 ** scaledDecimals)) / (10 ** originalDecimals);
     }
 
     function _toOriginal(uint256 value) internal view returns (uint256) {
-        return value * (10 ** originalDecimals) / (10 ** scaledDecimals);
+        return (value * (10 ** originalDecimals)) / (10 ** scaledDecimals);
     }
 }

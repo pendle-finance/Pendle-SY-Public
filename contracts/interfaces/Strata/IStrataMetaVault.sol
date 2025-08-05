@@ -3,13 +3,10 @@
 pragma solidity ^0.8.0;
 
 interface IStrataMetaVault {
-
-    
     enum PreDepositPhase {
         PointsPhase,
         YieldPhase
     }
-
 
     function deposit(address token, uint256 tokenAssets, address receiver) external returns (uint256);
 

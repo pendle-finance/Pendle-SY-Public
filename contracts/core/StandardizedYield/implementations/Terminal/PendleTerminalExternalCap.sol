@@ -27,8 +27,8 @@ contract PendleTerminalExternalCap is IPTokenWithSupplyCap {
     }
 
     function getAbsoluteSupplyCap() external view returns (uint256) {
-        ITerminalGenericVault.TokenConfig memory tokenInConfig =
-            ITerminalGenericVault(terminalDepositVault).tokensConfig(vaultTokenIn);
+        ITerminalGenericVault.TokenConfig memory tokenInConfig = ITerminalGenericVault(terminalDepositVault)
+            .tokensConfig(vaultTokenIn);
 
         uint256 tokenInRate = _getTokenRate(tokenInConfig.dataFeed, tokenInConfig.stable);
         uint256 mTokenRate = _getTokenRate(mTokenDataFeed, false);

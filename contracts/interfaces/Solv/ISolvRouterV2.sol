@@ -6,7 +6,7 @@ interface ISolvRouterV2 {
         address targetToken_,
         address currency_,
         uint256 currencyAmount_,
-        uint256 minimumTargetTokenAmount_, 
+        uint256 minimumTargetTokenAmount_,
         uint64 expireTime_
     ) external returns (uint256 targetTokenAmount_);
 

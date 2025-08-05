@@ -12,7 +12,6 @@ contract PendleUSDSSYWithCap is PendleERC20WithAdapterSY, IPTokenWithSupplyCap {
 
     constructor(address _erc20) PendleERC20WithAdapterSY(_erc20) {}
 
-
     function getAbsoluteSupplyCap() external view returns (uint256) {
         return supplyCap;
     }
@@ -21,16 +20,14 @@ contract PendleUSDSSYWithCap is PendleERC20WithAdapterSY, IPTokenWithSupplyCap {
         return totalSupply();
     }
 
-
     function updateSupplyCap(uint256 newSupplyCap) external onlyOwner {
         _updateSupplyCap(newSupplyCap);
     }
-    
+
     function _updateSupplyCap(uint256 newSupplyCap) internal {
         supplyCap = newSupplyCap;
         emit SupplyCapUpdated(newSupplyCap);
     }
-
 
     // @dev: whenNotPaused not needed as it has already been added to beforeTransfer
     function _afterTokenTransfer(address from, address, uint256) internal virtual override {

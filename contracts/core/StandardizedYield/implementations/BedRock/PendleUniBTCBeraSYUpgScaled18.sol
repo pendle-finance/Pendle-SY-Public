@@ -15,7 +15,10 @@ contract PendleUniBTCBeraSYUpgScaled18 is SYBaseUpg, ScaledTokenMath {
 
     address public immutable wrappedAsset = IPDecimalsWrapperFactory(DECIMALS_WRAPPER_FACTORY).getOrCreate(UNIBTC, 18);
 
-    constructor() SYBaseUpg(UNIBTC) ScaledTokenMath(UNIBTC, IPDecimalsWrapperFactory(DECIMALS_WRAPPER_FACTORY).getOrCreate(UNIBTC, 18)) {
+    constructor()
+        SYBaseUpg(UNIBTC)
+        ScaledTokenMath(UNIBTC, IPDecimalsWrapperFactory(DECIMALS_WRAPPER_FACTORY).getOrCreate(UNIBTC, 18))
+    {
         _disableInitializers();
     }
 
