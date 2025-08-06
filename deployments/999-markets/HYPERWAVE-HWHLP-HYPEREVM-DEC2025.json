@@ -1,0 +1,15 @@
+{
+    "name": "HYPERWAVE-HWHLP-HYPEREVM-DEC2025",
+    "SY": "0xc3bc221de037908Fd24c79602b731df848b12157",
+    "YT": "0xC7A567cB16D863B069212cA8Df1797b6aF7b2342",
+    "PT": "0xfdF1704a7D60Ab07D9889f33951633e7a80E34a3",
+    "market": "0x905A911E627EcCc7A0Ee3A30bb4f7e98501A1fB1",
+    "expiry": "1766016000",
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "16134171716822786870",
+    "initialRateAnchor": "1057179236707160289",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0x310175ca0ca43b5189e11298eedf32618acbacce2f713ed3142635129f26a5d1",
+    "deployBlockNumber": 10380094,
+    "reversedFee": 0.9999999999830145
+}
