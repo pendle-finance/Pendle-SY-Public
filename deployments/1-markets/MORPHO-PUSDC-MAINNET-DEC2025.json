@@ -1,0 +1,15 @@
+{
+    "name": "MORPHO-PUSDC-MAINNET-DEC2025",
+    "SY": "0x4E91F1eb389242B0f718859158C1D912055AFb32",
+    "YT": "0x08f5c4187F70d4c232a0AF6083664140eD1D3D02",
+    "PT": "0x3e3A6d9dE6930B706f2cdb2136379C9AeFd05d1b",
+    "market": "0x7057c9e6f213bbb9B845FC57010034E9e4A69E8A",
+    "expiry": "1766016000",
+    "lnFeeRateRoot": "4987541511039073",
+    "scalarRoot": "38654272440589180501",
+    "initialRateAnchor": "1031744293729785340",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0x3d0f89c466f9b3e4bad0def98493593fa74f73ed68244ae12a40ac4eb7ead70f",
+    "deployBlockNumber": 23079357,
+    "reversedFee": 0.49999999999608136
+}
