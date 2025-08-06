@@ -1,0 +1,15 @@
+{
+    "name": "FELIX-HLUSD-HYPEREVM-OCT2025",
+    "SY": "0x02Adf72d5D06a9C92136562Eb237C07696833a84",
+    "YT": "0x5E31DFBb1c2e2d82dEE92A31D862f3FA042Fdc74",
+    "PT": "0x2E47C58bC6559601954E36E6523509c1076DA2B8",
+    "market": "0x52ca3f2a42CF6b89746A385f8D290CFf419EEea8",
+    "expiry": "1761782400",
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "24419712656201374514",
+    "initialRateAnchor": "1032268687739919884",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0x3c0bfd535349db0d3ddf57fe74eaf82aeb3eeeb95baa64ecc243101cdd669016",
+    "deployBlockNumber": 10382473,
+    "reversedFee": 0.9999999999830145
+}
