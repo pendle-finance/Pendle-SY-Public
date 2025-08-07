@@ -72,6 +72,7 @@ contract PendleLBTCBaseSYScaled18 is SYBaseUpg, IStandardizedYieldExtended {
     //////////////////////////////////////////////////////////////*/
 
     function exchangeRate() public view virtual override returns (uint256) {
+        // Both yield token and asset are wrapped to 18 decimals
         return IPExchangeRateOracle(oracle).getExchangeRate();
     }
 
