@@ -23,8 +23,7 @@ contract PendleFelixSYScaled18 is PendleERC4626SYScaled18 {
         IFelixDistributor.ClaimInfo calldata _claimInfos,
         bytes32[] calldata _proofs
     ) external {
-
-        require (msg.sender == offchainRewardManager, "PFSY: unauthorized");
+        require(msg.sender == offchainRewardManager, "PFSY: unauthorized");
 
         uint256 preBalance = _selfBalance(_token);
         IFelixDistributor(DISTRIBUTOR).claimReward(_claimInfos, _proofs);
