@@ -1,0 +1,15 @@
+{
+    "name": "LHYPE-HYPEREVM-NOV2025",
+    "SY": "0x8608cC009e64D0ebe6ae071a3c6107e0124EFF41",
+    "YT": "0x75cE4957ba535FBEF6569Ec4621E9bF2E17477Fc",
+    "PT": "0x3603363b7B46dffAfF79017aec7c3d87a291082E",
+    "market": "0x25E8a59E7b42fD3e805EDfADDd2e558BB6394682",
+    "expiry": "1762992000",
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "19957270123208142302",
+    "initialRateAnchor": "1036653857246717319",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0x1523e3fa93cbc6365cb98f3e135ef03a134b6aa9121647e6b7796f71d8f4fb4f",
+    "deployBlockNumber": 10928324,
+    "reversedFee": 0.9999999999830145
+}

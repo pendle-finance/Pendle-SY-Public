@@ -1,0 +1,15 @@
+{
+    "name": "WHLP-HYPEREVM-DEC2025",
+    "SY": "0xE1e22D55e23900f30599D8Bee74A0801F09b4e58",
+    "YT": "0x5600EfdA9B4721d110683121b3dEa8E31D57A787",
+    "PT": "0x45CeD175f65Ea71e3d78E72e33661243fe4ec0be",
+    "market": "0x181C9118A16e7aC4Bb6ea545ADAA119dcAF7e307",
+    "expiry": "1766016000",
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "16783604053263616028",
+    "initialRateAnchor": "1056115811600457426",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0x1d9a20a8587e76e24db092b1ecaeb2d199be7054b68be03431c963d42e7a62d3",
+    "deployBlockNumber": 10926250,
+    "reversedFee": 0.9999999999830145
+}
