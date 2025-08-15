@@ -26,4 +26,6 @@ interface IVedaTeller {
     function assetData(address) external view returns (Asset memory);
 
     function vault() external view returns (address);
+
+    function depositCap() external view returns (uint112);
 }
