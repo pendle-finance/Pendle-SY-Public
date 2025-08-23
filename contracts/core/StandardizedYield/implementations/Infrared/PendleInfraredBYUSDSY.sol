@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.17;
 
-import "../../SYBaseWithRewardsUpg.sol";
+import "../../v2/SYBaseWithRewardsUpgV2.sol";
 import "../../../../interfaces/Infrared/IInfraredBYUSDVault.sol";
 import "../../../../interfaces/Infrared/IWrappedRewardToken.sol";
 
-contract PendleInfraredBYUSDSY is SYBaseWithRewardsUpg {
+contract PendleInfraredBYUSDSY is SYBaseWithRewardsUpgV2 {
     address public constant VAULT = 0xbbB228B0D7D83F86e23a5eF3B1007D0100581613;
     address public constant IBGT = 0xac03CABA51e17c86c921E1f6CBFBdC91F8BB2E6b;
     address public constant BYUSD = 0x688e72142674041f8f6Af4c808a4045cA1D6aC82;
