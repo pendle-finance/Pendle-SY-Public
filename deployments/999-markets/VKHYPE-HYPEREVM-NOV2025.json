@@ -1,0 +1,15 @@
+{
+    "name": "VKHYPE-HYPEREVM-NOV2025",
+    "SY": "0x457904B54F47dD7A91253f225237A5B02ca059D6",
+    "YT": "0x928294e0A7dbe6bD0779B5769E2c3E4D1b3fEcab",
+    "PT": "0x31CC92a2f8c02b8F9f427c48f12E21a848e69847",
+    "market": "0x61E4A41853550dc09DC296088AC83d770CD45C5a",
+    "expiry": "1762992000",
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "20532159435126155279",
+    "initialRateAnchor": "1039956230260022588",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0x2296bd5f4d8c4b6eb67f592b35c8d553782d87c465d841b2516279bec3146a8a",
+    "deployBlockNumber": 10846584,
+    "reversedFee": 0.9999999999830145
+}

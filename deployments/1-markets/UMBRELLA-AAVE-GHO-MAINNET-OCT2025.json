@@ -1,0 +1,15 @@
+{
+    "name": "UMBRELLA-AAVE-GHO-MAINNET-OCT2025",
+    "SY": "0x1d292b43171209Ef02F00a239353f316c3D93151",
+    "YT": "0xc1a51c6a7A199E1f2085f6521Bfb23e52C31D5dD",
+    "PT": "0x43Ca553398042069786Fa20ffAc05F44A62d0FE5",
+    "market": "0x28CEf9526F3Af7A96A10823f79dD7bcE1940791F",
+    "expiry": "1761782400",
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "34716283676190871079",
+    "initialRateAnchor": "1032601742564944031",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0x3334becc86df93d41a8823eecc0cdff7303462fc9530abdc469112159b25adc8",
+    "deployBlockNumber": 22816656,
+    "reversedFee": 0.9999999999830145
+}

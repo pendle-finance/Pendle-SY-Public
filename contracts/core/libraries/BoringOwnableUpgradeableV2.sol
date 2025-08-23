@@ -8,11 +8,11 @@ contract BoringOwnableUpgradeableData {
     address public pendingOwner;
 }
 
-abstract contract BoringOwnableUpgradeable is BoringOwnableUpgradeableData, Initializable {
+abstract contract BoringOwnableUpgradeableV2 is BoringOwnableUpgradeableData, Initializable {
     event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
 
-    function __BoringOwnable_init() internal onlyInitializing {
-        owner = msg.sender;
+    function __BoringOwnableV2_init(address _owner) internal onlyInitializing {
+        owner = _owner;
     }
 
     /// @notice Transfers ownership to `newOwner`. Either directly or claimable by the new pending owner.

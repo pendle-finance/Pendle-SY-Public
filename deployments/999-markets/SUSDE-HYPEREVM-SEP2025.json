@@ -1,0 +1,15 @@
+{
+    "name": "SUSDE-HYPEREVM-SEP2025",
+    "SY": "0xcFAa9540332afA3974BceeD79BDD24D86C5Fd4ee",
+    "YT": "0x92b8dEFe476F0D5ee957533F5B2f509190d12921",
+    "PT": "0xb7379d395F3c83952ad794896205f7E33E358735",
+    "market": "0xe3765Ec51aeAd35eA0a7F3745C1975a73DcA21dC",
+    "expiry": "1758758400",
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "22651750315359998881",
+    "initialRateAnchor": "1019894979397703270",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0xfba5afee1aeba535ccfb61fce65abe8e7c15516e7d415b89933bea2f824cab8d",
+    "deployBlockNumber": 10378386,
+    "reversedFee": 0.9999999999830145
+}

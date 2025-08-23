@@ -1,0 +1,15 @@
+{
+    "name": "HWHLP-MAINNET-SEP2025",
+    "SY": "0x86F6817C22a14393550B135710eA58F311E457Ed",
+    "YT": "0x2974797BdD13d94F5B68D44b2b1267cb79795188",
+    "PT": "0x904673592a3FEbB74a30a73161e8C05A200C8961",
+    "market": "0x71d4a6bAc0FE7210309b6A3807cf2BaD13d7C1E1",
+    "expiry": "1758758400",
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "16605644181017969374",
+    "initialRateAnchor": "1026573721554309599",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0x247eda9b08414a21375809220572ac7dc7a2091be010f26254e12e806428df0d",
+    "deployBlockNumber": 22979965,
+    "reversedFee": 0.9999999999830145
+}

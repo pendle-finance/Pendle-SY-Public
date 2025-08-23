@@ -7,6 +7,7 @@ import "../../../../interfaces/IPExchangeRateOracle.sol";
 import "../../../../interfaces/Lombard/ILBTCMinterBase.sol";
 import "../../../../interfaces/IPDecimalsWrapperFactory.sol";
 import "../../../../interfaces/IPDecimalsWrapper.sol";
+import "../../../../interfaces/IPExchangeRateOracle.sol";
 
 contract PendleLBTCBaseSYScaled18 is SYBaseUpg, IStandardizedYieldExtended {
     // solhint-disable immutable-vars-naming
@@ -18,10 +19,15 @@ contract PendleLBTCBaseSYScaled18 is SYBaseUpg, IStandardizedYieldExtended {
 
     address public immutable wrapper;
     address public immutable CBBTCWrapper;
+    address public immutable oracle;
 
-    constructor(address _wrapperFactory) SYBaseUpg(IPDecimalsWrapperFactory(_wrapperFactory).getOrCreate(LBTC, 18)) {
+    constructor(
+        address _wrapperFactory,
+        address _oracle
+    ) SYBaseUpg(IPDecimalsWrapperFactory(_wrapperFactory).getOrCreate(LBTC, 18)) {
         wrapper = yieldToken;
         CBBTCWrapper = IPDecimalsWrapperFactory(_wrapperFactory).getOrCreate(CBBTC, 18);
+        oracle = _oracle;
     }
 
     function initialize() external initializer {
@@ -66,7 +72,8 @@ contract PendleLBTCBaseSYScaled18 is SYBaseUpg, IStandardizedYieldExtended {
     //////////////////////////////////////////////////////////////*/
 
     function exchangeRate() public view virtual override returns (uint256) {
-        return PMath.ONE;
+        // Both yield token and asset are wrapped to 18 decimals
+        return IPExchangeRateOracle(oracle).getExchangeRate();
     }
 
     /*///////////////////////////////////////////////////////////////

@@ -8,10 +8,16 @@ import "../libraries/math/PMath.sol";
 import "../libraries/TokenHelper.sol";
 import "../libraries/ArrayLib.sol";
 import "../libraries/Errors.sol";
-import "../libraries/BoringOwnableUpgradeable.sol";
+import "../libraries/BoringOwnableUpgradeable__deprecated.sol";
 import "@openzeppelin/contracts/security/Pausable.sol";
 
-abstract contract SYBase is IStandardizedYield, PendleERC20Permit, TokenHelper, BoringOwnableUpgradeable, Pausable {
+abstract contract SYBase is
+    IStandardizedYield,
+    PendleERC20Permit,
+    TokenHelper,
+    BoringOwnableUpgradeable__deprecated,
+    Pausable
+{
     using PMath for uint256;
 
     address public immutable yieldToken;
@@ -22,7 +28,7 @@ abstract contract SYBase is IStandardizedYield, PendleERC20Permit, TokenHelper, 
         address _yieldToken
     ) PendleERC20Permit(_name, _symbol, IERC20Metadata(_yieldToken).decimals()) initializer {
         yieldToken = _yieldToken;
-        __BoringOwnable_init();
+        __BoringOwnable__deprecated_init();
     }
 
     // solhint-disable no-empty-blocks

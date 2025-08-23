@@ -1,0 +1,15 @@
+{
+    "name": "TERMINAL-WETH-MAINNET-SEP2025",
+    "SY": "0xe770f7eF6C0667dc274194063e23621A82bB0C59",
+    "YT": "0x8c9922345631dF11c2243DD062CBbf757482Fc07",
+    "PT": "0xfe72382695dC280e7392a0BE795128a126E9b7AE",
+    "market": "0xEbF7FD1ec45F505175D92dB4D180B8f323C17875",
+    "expiry": "1758758400",
+    "lnFeeRateRoot": "4987541511039073",
+    "scalarRoot": "40644366350372965225",
+    "initialRateAnchor": "1016819419810153102",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0x9744ec055a1c8273017b67a08fdf28860e6f86b040aef118dc7d6b8a90af5c89",
+    "deployBlockNumber": 22878701,
+    "reversedFee": 0.49999999999608136
+}

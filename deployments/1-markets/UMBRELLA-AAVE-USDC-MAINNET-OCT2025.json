@@ -1,0 +1,15 @@
+{
+    "name": "UMBRELLA-AAVE-USDC-MAINNET-OCT2025",
+    "SY": "0x70Af3E726836ca37093912DCd421b09F113f7332",
+    "YT": "0x58c228c27Bd40dA8d1ADa92E0b6779E67132e204",
+    "PT": "0x09C8B191ff8c8d693Cd6B5b34C4e3FA11b01D499",
+    "market": "0x14cFB8B051f0b35045AFa79c70f7e4B0b1F32442",
+    "expiry": "1761782400",
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "34669363125577184366",
+    "initialRateAnchor": "1034011628725299120",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0x69f09ca387e6ed8ecd3bd9777d5f84810d2e3d733fc2cd8a4c18585937ae83a0",
+    "deployBlockNumber": 22779908,
+    "reversedFee": 0.9999999999830145
+}

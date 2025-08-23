@@ -1,0 +1,15 @@
+{
+    "name": "HYPERBEAT-USDT-HYPEREVM-DEC2025",
+    "SY": "0x642135Ff98C15cBA7fCF1766502bd493BE4D3492",
+    "YT": "0x47dD54DFa68172E3354e3cBA2F59521d3dc9D9C7",
+    "PT": "0x31A75680dE78BB2787ffe9840DA569DbDf4504f5",
+    "market": "0xaB9b8A04D21C9fb1fEE7B7D219CAB9E725a86B0A",
+    "expiry": "1766016000",
+    "lnFeeRateRoot": "11928570865273801",
+    "scalarRoot": "16335506267513706906",
+    "initialRateAnchor": "1071267778458496014",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0x7460f0a105cb9d983390564d5d4f16a11bc92bc406ff3357a8f3e0fe31d6dad0",
+    "deployBlockNumber": 9693056,
+    "reversedFee": 1.19999999997229
+}

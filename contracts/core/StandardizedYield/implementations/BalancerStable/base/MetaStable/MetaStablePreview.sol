@@ -12,10 +12,10 @@ import "./MetaStableMath.sol";
 import "../StablePoolUserData.sol";
 
 import "../StablePreviewBase.sol";
-import "../../../../../libraries/BoringOwnableUpgradeable.sol";
+import "../../../../../libraries/BoringOwnableUpgradeable__deprecated.sol";
 
 // this contract will be upgradable for the first 3-6 months, then its upgradeability will be relinquished
-contract MetaStablePreview is StablePreviewBase, BoringOwnableUpgradeable, UUPSUpgradeable {
+contract MetaStablePreview is StablePreviewBase, BoringOwnableUpgradeable__deprecated, UUPSUpgradeable {
     using FixedPoint for uint256;
     using MetaStableMath for uint256;
     using StablePoolUserData for bytes;
@@ -30,7 +30,7 @@ contract MetaStablePreview is StablePreviewBase, BoringOwnableUpgradeable, UUPSU
     constructor() initializer {}
 
     function initialize() external initializer {
-        __BoringOwnable_init();
+        __BoringOwnable__deprecated_init();
     }
 
     function _authorizeUpgrade(address newImplementation) internal override onlyOwner {}

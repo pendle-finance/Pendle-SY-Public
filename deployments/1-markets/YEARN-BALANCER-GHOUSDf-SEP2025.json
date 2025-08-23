@@ -1,0 +1,15 @@
+{
+    "name": "YEARN-BALANCER-GHOUSDf-SEP2025",
+    "SY": "0xA47E357D68523AcE098366888AD6B50e8D85f431",
+    "YT": "0xA8e91AB8b41031a37cc861185397aA16a9850e28",
+    "PT": "0x26A0e06aA1F00241e1b82AB66bDcE1F62bcfB2bB",
+    "market": "0x715055DA20BDEC5c70e344aab8DEBD80d682dC1F",
+    "expiry": "1758758400",
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "17595373319771199292",
+    "initialRateAnchor": "1047984827979842843",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0xe24db3bda818702b500a7eb29a582a92806e035234f636877b7612ad2424df6d",
+    "deployBlockNumber": 22673399,
+    "reversedFee": 0.9999999999830145
+}

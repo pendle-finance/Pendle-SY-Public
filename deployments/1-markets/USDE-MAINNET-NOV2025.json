@@ -1,0 +1,15 @@
+{
+    "name": "USDE-MAINNET-NOV2025",
+    "SY": "0x925a15bD6A1582fa7c0EbbFc3Dbd29c34f58340e",
+    "YT": "0x99C92D4Da7a81c7698EF33a39D7538d0f92623f7",
+    "PT": "0x62C6E813b9589C3631Ba0Cdb013acdB8544038B7",
+    "market": "0x4eaA571EaFCD96f51728756BD7F396459BB9B869",
+    "expiry": "1764201600",
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "22145089753437846196",
+    "initialRateAnchor": "1043440531041642786",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0x475bdd317bcdcc7f5cdb6fd1e4c127c75574e52421bcefd2f9e41c621188cc91",
+    "deployBlockNumber": 23122146,
+    "reversedFee": 0.9999999999830145
+}

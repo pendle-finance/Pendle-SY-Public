@@ -11,8 +11,6 @@ contract PendleMidasSY is SYBaseUpg {
     using DecimalsCorrectionLibrary for uint256;
     using PMath for uint256;
 
-    bytes32 public constant PENDLE_REFERRER_ID = keccak256("midas.referrers.pendle");
-
     // solhint-disable immutable-vars-naming
     address public immutable depositVault;
     address public immutable redemptionVault;
@@ -43,6 +41,11 @@ contract PendleMidasSY is SYBaseUpg {
         _safeApproveInf(yieldToken, redemptionVault);
     }
 
+    /// @dev keccak256("midas.referrers.pendle")
+    function PENDLE_REFERRER_ID() public pure virtual returns (bytes32) {
+        return 0xeebc7fb7758166393aa5eeda20861581606265fd83e1f138b4d07d0a78a0f769;
+    }
+
     function _deposit(
         address tokenIn,
         uint256 amountDeposited
@@ -57,7 +60,7 @@ contract PendleMidasSY is SYBaseUpg {
             tokenIn,
             MidasAdapterLib.tokenAmountToBase18(tokenIn, amountDeposited),
             0,
-            PENDLE_REFERRER_ID
+            PENDLE_REFERRER_ID()
         );
         return _selfBalance(yieldToken) - balanceBefore;
     }
@@ -110,7 +113,7 @@ contract PendleMidasSY is SYBaseUpg {
         return ArrayLib.append(IMidasManageableVault(depositVault).getPaymentTokens(), yieldToken);
     }
 
-    function getTokensOut() public view override returns (address[] memory res) {
+    function getTokensOut() public view virtual override returns (address[] memory res) {
         return ArrayLib.append(IMidasManageableVault(redemptionVault).getPaymentTokens(), yieldToken);
     }
 
@@ -118,7 +121,7 @@ contract PendleMidasSY is SYBaseUpg {
         return token == yieldToken || IMidasManageableVault(depositVault).tokensConfig(token).dataFeed != address(0);
     }
 
-    function isValidTokenOut(address token) public view override returns (bool) {
+    function isValidTokenOut(address token) public view virtual override returns (bool) {
         return token == yieldToken || IMidasManageableVault(redemptionVault).tokensConfig(token).dataFeed != address(0);
     }
 

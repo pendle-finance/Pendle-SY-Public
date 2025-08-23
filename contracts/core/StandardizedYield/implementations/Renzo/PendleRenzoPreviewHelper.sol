@@ -7,11 +7,11 @@ import "../../../../interfaces/Connext/IConnext.sol";
 import "../../../../interfaces/Renzo/IRenzoDepositL2.sol";
 
 import "../../../libraries/math/PMath.sol";
-import "../../../libraries/BoringOwnableUpgradeable.sol";
+import "../../../libraries/BoringOwnableUpgradeable__deprecated.sol";
 
 import "@openzeppelin/contracts/proxy/utils/UUPSUpgradeable.sol";
 
-contract PendleRenzoPreviewHelper is IPPreviewHelper, UUPSUpgradeable, BoringOwnableUpgradeable {
+contract PendleRenzoPreviewHelper is IPPreviewHelper, UUPSUpgradeable, BoringOwnableUpgradeable__deprecated {
     using PMath for uint256;
 
     address public immutable renzoDeposit;
@@ -33,7 +33,7 @@ contract PendleRenzoPreviewHelper is IPPreviewHelper, UUPSUpgradeable, BoringOwn
     }
 
     function initialize() external initializer {
-        __BoringOwnable_init();
+        __BoringOwnable__deprecated_init();
     }
 
     function previewDeposit(

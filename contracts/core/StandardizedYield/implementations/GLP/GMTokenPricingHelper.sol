@@ -2,7 +2,7 @@
 pragma solidity ^0.8.17;
 
 import "@openzeppelin/contracts/proxy/utils/UUPSUpgradeable.sol";
-import "../../../libraries/BoringOwnableUpgradeable.sol";
+import "../../../libraries/BoringOwnableUpgradeable__deprecated.sol";
 import {AggregatorV2V3Interface as IChainlinkAggregator} from "@chainlink/contracts/src/v0.8/interfaces/AggregatorV2V3Interface.sol";
 
 interface IGMXV2Oracle {
@@ -49,7 +49,7 @@ interface IGMXV2Reader {
     ) external view returns (int256, MarketPoolValueInfoProps memory);
 }
 
-contract GMTokenPricingHelper is BoringOwnableUpgradeable, UUPSUpgradeable {
+contract GMTokenPricingHelper is BoringOwnableUpgradeable__deprecated, UUPSUpgradeable {
     uint256 constant FLOAT_PRECISION = 10 ** 30;
     bytes32 public constant MARKET_TOKEN = keccak256(abi.encode("MARKET_TOKEN"));
     bytes32 public constant INDEX_TOKEN = keccak256(abi.encode("INDEX_TOKEN"));
@@ -108,7 +108,7 @@ contract GMTokenPricingHelper is BoringOwnableUpgradeable, UUPSUpgradeable {
 
     /////////////////// UPGRADABLE LOGIC ///////////////////////////
     function initialize() external initializer {
-        __BoringOwnable_init();
+        __BoringOwnable__deprecated_init();
     }
 
     function _authorizeUpgrade(address newImplementation) internal override onlyOwner {}

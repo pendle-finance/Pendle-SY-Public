@@ -1,0 +1,15 @@
+{
+    "name": "RETH-BASE-DEC2025",
+    "SY": "0x6f5672eFDfC9666707B14fc698c7C96294B04997",
+    "YT": "0xBeF1cC67f26A517c7d742A5c77f25c4285A07985",
+    "PT": "0xDd3574d0b6e58050B85091f01d62a4435B49287a",
+    "market": "0xD5dD84c7b8919DceB09536a0FEf6db9046805127",
+    "expiry": "1766016000",
+    "lnFeeRateRoot": "4987541511039073",
+    "scalarRoot": "149285733846492816872",
+    "initialRateAnchor": "1015502329519991871",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0xa163a741da4feac932cf788e91d2189e5c8deef200e30cdfb2801018ac7fd527",
+    "deployBlockNumber": 32550395,
+    "reversedFee": 0.49999999999608136
+}

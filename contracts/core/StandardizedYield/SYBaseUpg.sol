@@ -7,14 +7,14 @@ import "../libraries/math/PMath.sol";
 import "../libraries/ArrayLib.sol";
 import "../libraries/TokenHelper.sol";
 import "../libraries/Errors.sol";
-import "../libraries/BoringOwnableUpgradeable.sol";
+import "../libraries/BoringOwnableUpgradeable__deprecated.sol";
 import "@openzeppelin/contracts/security/Pausable.sol";
 
 abstract contract SYBaseUpg is
     IStandardizedYield,
     PendleERC20PermitUpg,
     TokenHelper,
-    BoringOwnableUpgradeable,
+    BoringOwnableUpgradeable__deprecated,
     Pausable
 {
     using PMath for uint256;
@@ -30,7 +30,7 @@ abstract contract SYBaseUpg is
 
     function __SYBaseUpg_init(string memory name_, string memory symbol_) internal onlyInitializing {
         __ERC20PermitUpg_init(name_, symbol_);
-        __BoringOwnable_init();
+        __BoringOwnable__deprecated_init();
     }
 
     // solhint-disable no-empty-blocks

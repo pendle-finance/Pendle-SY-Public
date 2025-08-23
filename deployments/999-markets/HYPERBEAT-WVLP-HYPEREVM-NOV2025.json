@@ -1,0 +1,15 @@
+{
+    "name": "HYPERBEAT-WVLP-HYPEREVM-NOV2025",
+    "SY": "0x0E7Fb0315EE061c407FA3fc3AD2EaF610AeAACE5",
+    "YT": "0x309b61Bc4A1Eea0A62573a57cc7C8EcbB207690d",
+    "PT": "0xaae605ABaa30566615eC835C33C861C98FEeDe24",
+    "market": "0x74Bd27939416bBE5d184D9a974d2C7358f637433",
+    "expiry": "1762992000",
+    "lnFeeRateRoot": "11928570865273801",
+    "scalarRoot": "16387544006904050920",
+    "initialRateAnchor": "1045600209755488014",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0x00262cc29af2e8c828a327a33774a225621f76c8824e7b96cc40a17a5590a970",
+    "deployBlockNumber": 11467624,
+    "reversedFee": 1.19999999997229
+}

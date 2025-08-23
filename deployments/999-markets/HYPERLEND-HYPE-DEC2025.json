@@ -1,0 +1,15 @@
+{
+    "name": "HYPERLEND-HYPE-DEC2025",
+    "SY": "0x859B7A5eaaD0Abd59A766879362829e60BcD5ffE",
+    "YT": "0x822a6c7D25474964369b329E9dF50B94d0A82141",
+    "PT": "0x415eBA65D0F3f3403f50D2e61a7BDF3fAF9aA9cA",
+    "market": "0x09b4e98dA09cCBF594A5501Dc6b5c36Dae273d6c",
+    "expiry": "1766016000",
+    "lnFeeRateRoot": "6975613736425242",
+    "scalarRoot": "29364880190290503864",
+    "initialRateAnchor": "1036616483890927582",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0x1ced804368b1402514cc16084f676064841b9ca2a6b9076fbeddcb7620ffcea6",
+    "deployBlockNumber": 10896848,
+    "reversedFee": 0.6999999999571793
+}

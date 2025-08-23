@@ -5,9 +5,9 @@ pragma solidity ^0.8.17;
 import "./CamelotV1VolatileCommon.sol";
 
 import "@openzeppelin/contracts/proxy/utils/UUPSUpgradeable.sol";
-import "../../../libraries/BoringOwnableUpgradeable.sol";
+import "../../../libraries/BoringOwnableUpgradeable__deprecated.sol";
 
-contract CamelotV1VolatilePreview is CamelotV1VolatileCommon, BoringOwnableUpgradeable, UUPSUpgradeable {
+contract CamelotV1VolatilePreview is CamelotV1VolatileCommon, BoringOwnableUpgradeable__deprecated, UUPSUpgradeable {
     address internal immutable factory;
 
     constructor(address _factory) initializer {
@@ -15,7 +15,7 @@ contract CamelotV1VolatilePreview is CamelotV1VolatileCommon, BoringOwnableUpgra
     }
 
     function initialize() external initializer {
-        __BoringOwnable_init();
+        __BoringOwnable__deprecated_init();
     }
 
     // solhint-disable-next-line

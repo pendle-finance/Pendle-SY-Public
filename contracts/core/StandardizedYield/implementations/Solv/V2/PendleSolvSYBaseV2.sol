@@ -23,7 +23,7 @@ abstract contract PendleSolvSYBaseV2 is SYBaseUpg {
         if (tokenIn == yieldToken) {
             return amountDeposited;
         }
-        return ISolvRouterV2(solvRouterV2).deposit(yieldToken, tokenIn, amountDeposited);
+        return ISolvRouterV2(solvRouterV2).deposit(yieldToken, tokenIn, amountDeposited, 0, type(uint64).max);
     }
 
     function _redeem(
