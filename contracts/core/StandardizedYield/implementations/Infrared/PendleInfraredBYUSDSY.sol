@@ -85,13 +85,8 @@ contract PendleInfraredBYUSDSY is SYBaseWithRewardsUpg {
 
     function _redeemExternalReward() internal override {
         // get rewards and unwrap WBYUSD
-        // check balance before getting rewards
-        uint256 amountWBYUSD = WBYUSD.balanceOf(address(this));
-
         IInfraredBYUSDVault(VAULT).getRewardForUser(address(this));
-        
-        // restrict redeem amounts to that gained on this call
-        amountWBYUSD = WBYUSD.balanceOf(address(this)) - amountWBYUSD;
+        uint256 amountWBYUSD = WBYUSD.balanceOf(address(this));        
         // dust check
         if (WBYUSD.previewRedeem(amountWBYUSD) > 0) {
             // redeem WBYUSD (18 decimals) for BYUSD (6 decimals)
