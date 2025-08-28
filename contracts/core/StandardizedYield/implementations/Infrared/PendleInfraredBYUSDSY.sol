@@ -1,21 +1,23 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.17;
 
-import "../../v2/SYBaseWithRewardsUpgV2.sol";
-import "../../../../interfaces/Infrared/IInfraredBYUSDVault.sol";
-import "../../../../interfaces/Infrared/IWrappedRewardToken.sol";
+import {SYBaseWithRewardsUpgV2} from "../../v2/SYBaseWithRewardsUpgV2.sol";
+import {PMath} from "contracts/core/libraries/math/PMath.sol";
+import {ArrayLib} from "contracts/core/libraries/ArrayLib.sol";
+import {IInfraredBYUSDVault} from "../../../../interfaces/Infrared/IInfraredBYUSDVault.sol";
+import {IWrappedRewardToken} from "../../../../interfaces/Infrared/IWrappedRewardToken.sol";
 
 contract PendleInfraredBYUSDSY is SYBaseWithRewardsUpgV2 {
     address public constant VAULT = 0xbbB228B0D7D83F86e23a5eF3B1007D0100581613;
     address public constant IBGT = 0xac03CABA51e17c86c921E1f6CBFBdC91F8BB2E6b;
     address public constant BYUSD = 0x688e72142674041f8f6Af4c808a4045cA1D6aC82;
-    IWrappedRewardToken public constant WBYUSD = 0x334404782aB67b4F6B2A619873E579E971f9AAB7;
+    IWrappedRewardToken public constant WBYUSD = IWrappedRewardToken(0x334404782aB67b4F6B2A619873E579E971f9AAB7);
     address public constant BYUSD_HONEY_LP = 0xdE04c469Ad658163e2a5E860a03A86B52f6FA8C8;
 
-    constructor() SYBaseUpg(BYUSD_HONEY_LP) {}
+    constructor() SYBaseWithRewardsUpgV2(BYUSD_HONEY_LP) {}
 
-    function initialize() external initializer {
-        __SYBaseUpg_init("SY Staked Infrared BYUSD-HONEY", "SY-iBYUSD-HONEY");
+    function initialize(address _owner) external initializer {
+        __SYBaseUpgV2_init("SY Staked Infrared BYUSD-HONEY", "SY-iBYUSD-HONEY", _owner);
         _safeApproveInf(BYUSD_HONEY_LP, VAULT);
     }
 
