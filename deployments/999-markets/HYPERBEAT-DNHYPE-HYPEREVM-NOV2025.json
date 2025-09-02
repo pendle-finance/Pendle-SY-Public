@@ -1,0 +1,15 @@
+{
+    "name": "HYPERBEAT-DNHYPE-HYPEREVM-NOV2025",
+    "SY": "0x8373ff674BB793825D7FC25E43B14798f4D00959",
+    "YT": "0x8000A0D4FBCb944bD726FAae8D4F5a9185b849a3",
+    "PT": "0xe2c23327e158Ded7276d0E6cdD835330F415E439",
+    "market": "0x66EDf9343d7dB8A1A970058cC2aC1C0d5484F504",
+    "expiry": "1763596800",
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "22241679353067710348",
+    "initialRateAnchor": "1029779250093499452",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0x582f1154795f05f5cc91dbed7f94316b095c281e8f54c6781f40d44e6a62cfd3",
+    "deployBlockNumber": 12756877,
+    "reversedFee": 0.9999999999830145
+}

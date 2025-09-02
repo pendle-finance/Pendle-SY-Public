@@ -1,0 +1,15 @@
+{
+    "name": "HYPERBEAT-LSTHYPE-HYPEREVM-NOV2025",
+    "SY": "0x025cbCD0D425FAf6570DceB5Cf008F0c8ED8Fd5D",
+    "YT": "0x687D9269216030d91CD27E3470cE92B6D6B2a344",
+    "PT": "0xA3Fe5786A5521c716B455ac83182CE5d94C93EEa",
+    "market": "0x6d5eF6F57d74A62234568091b68A5202BC1Fc929",
+    "expiry": "1764201600",
+    "lnFeeRateRoot": "7968169649176873",
+    "scalarRoot": "24083819633218614796",
+    "initialRateAnchor": "1028377884222129374",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0x6fa843d8dbb5d9930210a9c80057904155a9c44f02d821e83edb8ef6c93f06ab",
+    "deployBlockNumber": 12755657,
+    "reversedFee": 0.7999999999821705
+}
