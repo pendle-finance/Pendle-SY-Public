@@ -1,0 +1,15 @@
+{
+    "name": "USDE-BASE-DEC2025",
+    "SY": "0x5dFBEAEa9e41f85c334075482A20afb7031207aE",
+    "YT": "0x1490516d8391E4d0BCBD13B7A56b4FE4996478be",
+    "PT": "0x194b8FeD256C02eF1036Ed812Cae0c659ee6F7FD",
+    "market": "0x8991847176b1D187e403dd92a4E55fC8d7684538",
+    "expiry": "1765411200",
+    "lnFeeRateRoot": "7968169649176873",
+    "scalarRoot": "24309083390543761644",
+    "initialRateAnchor": "1037009908055186022",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0xc6552ba4e62b12a9e3ba8cefc6aa3064cc0eb79e3b262bf392901567394ee284",
+    "deployBlockNumber": 35127442,
+    "reversedFee": 0.7999999999821705
+}
