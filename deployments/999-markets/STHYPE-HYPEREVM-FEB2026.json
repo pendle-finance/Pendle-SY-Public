@@ -1,0 +1,15 @@
+{
+    "name": "STHYPE-HYPEREVM-FEB2026",
+    "SY": "0xE24A28fe8ECD859DB4280D1291783a10017d6fc4",
+    "YT": "0x3fE1B5550CCcb78969E9CdC660fe76cD41d6be39",
+    "PT": "0xCBaaB2463a6bA43A65A138a41C39d541a51810CF",
+    "market": "0x433081C58a8BFF30060014134EEd2601E5922759",
+    "expiry": "1772064000",
+    "lnFeeRateRoot": "4987541511039073",
+    "scalarRoot": "45291629500803448617",
+    "initialRateAnchor": "1032765920688018518",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0x5a6dd7a89631560ed187fa0c7eb2dddbb978b230316b73759ab793ff36e92126",
+    "deployBlockNumber": 11721323,
+    "reversedFee": 0.49999999999608136
+}
