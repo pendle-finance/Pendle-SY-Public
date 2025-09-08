@@ -1,32 +1,23 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
+import "../Midas/PendleMidasSY.sol";
 import "../../../../interfaces/IPTokenWithSupplyCap.sol";
-import "../../../../interfaces/Midas/IMidasDepositVault.sol";
-import "./libraries/MidasAdapterLib.sol";
 
-interface IPMidasSY {
-    function depositVault() external view returns (address);
-    function underlying() external view returns (address);
-    function yieldToken() external view returns (address);
-    function mTokenDataFeed() external view returns (address);
-}
-
-contract PendleMidasExternalCap is IPTokenWithSupplyCap {
+contract PendleHyperbeatMidasSY is PendleMidasSY, IPTokenWithSupplyCap {
     using DecimalsCorrectionLibrary for uint256;
 
-    address public immutable sy;
-    address public immutable depositVault;
-    address public immutable underlying;
-    address public immutable mToken;
-    address public immutable mTokenDataFeed;
+    constructor(
+        address _mToken,
+        address _depositVault,
+        address _redemptionVault,
+        address _mTokenDataFeed,
+        address _underlying
+    ) PendleMidasSY(_mToken, _depositVault, _redemptionVault, _mTokenDataFeed, _underlying) {}
 
-    constructor(address _sy) {
-        sy = _sy;
-        depositVault = IPMidasSY(sy).depositVault();
-        underlying = IPMidasSY(sy).underlying();
-        mToken = IPMidasSY(sy).yieldToken();
-        mTokenDataFeed = IPMidasSY(sy).mTokenDataFeed();
+    /// @dev keccak256("hyperbeat.referrers.pendle")
+    function PENDLE_REFERRER_ID() public pure override returns (bytes32) {
+        return 0x2a176b24a5fec3af048070ad484d82fe4152c8b8eb2edc993ef5700c58ef3d53;
     }
 
     function getAbsoluteSupplyCap() external view returns (uint256) {
@@ -57,6 +48,6 @@ contract PendleMidasExternalCap is IPTokenWithSupplyCap {
     }
 
     function _getAbsoluteTotalSupply() internal view returns (uint256) {
-        return IERC20(mToken).totalSupply();
+        return IERC20(yieldToken).totalSupply();
     }
 }
