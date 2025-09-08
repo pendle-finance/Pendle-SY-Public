@@ -15,7 +15,7 @@ contract PendleExternalCapGates is IPExternalCapGates, BoringOwnableUpgradeableV
 
     mapping(address => address) public externalCapContracts;
 
-    function initialize(address _owner) external initializer {
+    constructor(address _owner) initializer {
         __BoringOwnableV2_init(_owner);
     }
 
