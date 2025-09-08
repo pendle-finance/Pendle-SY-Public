@@ -4,15 +4,16 @@ pragma solidity ^0.8.17;
 import "../../../SYBaseUpg.sol";
 import "../../../../../interfaces/IStandardizedYieldAdapter.sol";
 import "../../../../../interfaces/IPStandardizedYieldWithAdapter.sol";
+import "../../../../misc/MerklRewardAbstract__NoStorage.sol";
 
-contract PendleERC20WithAdapterSY is SYBaseUpg, IPStandardizedYieldWithAdapter {
+contract PendleERC20WithAdapterSY is SYBaseUpg, MerklRewardAbstract__NoStorage, IPStandardizedYieldWithAdapter {
     using ArrayLib for address[];
 
     // solhint-disable immutable-vars-naming
     address public adapter;
     uint256[100] private __gap;
 
-    constructor(address _erc20) SYBaseUpg(_erc20) {}
+    constructor(address _erc20, address _offchainRewardManager) SYBaseUpg(_erc20) MerklRewardAbstract__NoStorage(_offchainRewardManager) {}
 
     function initialize(string memory _name, string memory _symbol, address _adapter) external virtual initializer {
         __SYBaseUpg_init(_name, _symbol);

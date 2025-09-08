@@ -5,15 +5,16 @@ import "../../../SYBaseUpg.sol";
 import "../../../../../interfaces/IERC4626.sol";
 import "../../../../../interfaces/IStandardizedYieldAdapter.sol";
 import "../../../../../interfaces/IPStandardizedYieldWithAdapter.sol";
+import "../../../../misc/MerklRewardAbstract__NoStorage.sol";
 
-contract PendleERC4626NoRedeemWithAdapterSY is SYBaseUpg, IPStandardizedYieldWithAdapter {
+contract PendleERC4626NoRedeemWithAdapterSY is SYBaseUpg, MerklRewardAbstract__NoStorage, IPStandardizedYieldWithAdapter {
     using ArrayLib for address[];
 
     address public immutable asset;
     address public adapter;
     uint256[100] private __gap;
 
-    constructor(address _erc4626) SYBaseUpg(_erc4626) {
+    constructor(address _erc4626, address _offchainRewardManager) SYBaseUpg(_erc4626) MerklRewardAbstract__NoStorage(_offchainRewardManager) {
         asset = IERC4626(_erc4626).asset();
     }
 

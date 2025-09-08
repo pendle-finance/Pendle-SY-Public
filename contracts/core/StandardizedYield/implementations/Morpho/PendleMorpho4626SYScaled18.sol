@@ -2,12 +2,12 @@
 pragma solidity ^0.8.17;
 
 import "../PendleERC4626SYScaled18.sol";
-import "../../../misc/MerklRewardAbstractUpg.sol";
+import "../../../misc/MerklRewardAbstract__NoStorage.sol";
 
-contract PendleMorpho4626SYScaled18 is PendleERC4626SYScaled18, MerklRewardAbstract {
+contract PendleMorpho4626SYScaled18 is PendleERC4626SYScaled18, MerklRewardAbstract__NoStorage {
     constructor(
         address _erc4626,
         address _decimalsWrapperFactory,
         address _offchainReceiver
-    ) PendleERC4626SYScaled18(_erc4626, _decimalsWrapperFactory) MerklRewardAbstract(_offchainReceiver) {}
+    ) PendleERC4626SYScaled18(_erc4626, _decimalsWrapperFactory) MerklRewardAbstract__NoStorage(_offchainReceiver) {}
 }

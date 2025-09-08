@@ -4,12 +4,10 @@ pragma solidity ^0.8.0;
 import "../libraries/TokenHelper.sol";
 import "../../interfaces/Angle/IAngleDistributor.sol";
 
-abstract contract MerklRewardAbstract is TokenHelper {
+abstract contract MerklRewardAbstract__NoStorage is TokenHelper {
     // solhint-disable immutable-vars-naming
     address public immutable offchainRewardManager;
     address public constant ANGLE_DISTRIBUTOR = 0x3Ef3D8bA38EBe18DB133cEc108f4D14CE00Dd9Ae; // same on every chain
-
-    uint256[49] private __gap; // reserved for future use
 
     constructor(address _offchainRewardManager) {
         offchainRewardManager = _offchainRewardManager;
@@ -23,16 +21,19 @@ abstract contract MerklRewardAbstract is TokenHelper {
         bytes32[][] calldata proofs
     ) external {
         require(msg.sender == offchainRewardManager, "MRA: unauthorized");
-        require(users.length == 1 && users[0] == address(this), "MRA: invalid users");
 
-        uint256[] memory preBalance = new uint256[](tokens.length);
-        for (uint256 i = 0; i < tokens.length; ++i) {
+        uint256 len = users.length;
+        require(len == tokens.length && len == amounts.length && len == proofs.length, "MRA: invalid lengths");
+
+        uint256[] memory preBalance = new uint256[](len);
+        for (uint256 i = 0; i < len; ++i) {
+            require(users[i] == address(this), "MRA: invalid users");
             preBalance[i] = _selfBalance(tokens[i]);
         }
 
         IAngleDistributor(ANGLE_DISTRIBUTOR).claim(users, tokens, amounts, proofs);
 
-        for (uint256 i = 0; i < tokens.length; ++i) {
+        for (uint256 i = 0; i < len; ++i) {
             uint256 amountClaimed = _selfBalance(tokens[i]) - preBalance[i];
             if (amountClaimed > 0) {
                 _transferOut(tokens[i], tokenReceiver, amountClaimed);
