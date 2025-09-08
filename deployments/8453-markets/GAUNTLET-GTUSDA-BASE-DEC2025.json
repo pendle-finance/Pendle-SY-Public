@@ -1,0 +1,15 @@
+{
+    "name": "GAUNTLET-GTUSDA-BASE-DEC2025",
+    "SY": "0x7F45Ce7CdF902Aa1abEe8624F89E540a6C2AA99d",
+    "YT": "0x888f73c4030BAA5361D0389fA082D4EB8883c4b7",
+    "PT": "0xbC4df9839d7A14dab0E1a5B44ABEd8a69324A74F",
+    "market": "0x496F251487F6FdC8355dF5EB5940C6285ef7314a",
+    "expiry": "1766016000",
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "24247375685398996707",
+    "initialRateAnchor": "1039675914086279233",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0xb2deda692611574c7b81eeb10aa3697ac2d312942b1e051c3db2eda7a9a6e201",
+    "deployBlockNumber": 35136584,
+    "reversedFee": 0.9999999999830145
+}
