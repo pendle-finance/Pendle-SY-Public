@@ -1,0 +1,15 @@
+{
+    "name": "BBSNECT-BERA-OCT2025",
+    "SY": "0x1EC04eDCc6571EC0691642a72cf5f3CD1233E25E",
+    "YT": "0x0048a3a1eEA03B615D906567A7b5fD827F7E7007",
+    "PT": "0xF36BaB567E7b2B8D334716166c3768b13C47184b",
+    "market": "0xcfe3B22D9a6900b7411658224371Abd50CC3Caf7",
+    "expiry": "1759968000",
+    "lnFeeRateRoot": "5982071677547463",
+    "scalarRoot": "32414846608502096886",
+    "initialRateAnchor": "1015285443525412559",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0x137e39d0c962d57414391fdc47412c5cd4362a37dd838732662dbb41fe27f6be",
+    "deployBlockNumber": 9448965,
+    "reversedFee": 0.5999999999449335
+}
