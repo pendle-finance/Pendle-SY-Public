@@ -1,0 +1,15 @@
+{
+    "name": "MIDAS-MAPOLLO-MAINNET-NOV2025",
+    "SY": "0xE1e22D55e23900f30599D8Bee74A0801F09b4e58",
+    "YT": "0xe2334D31784D98d32FC44AEc9FB640726E4E0627",
+    "PT": "0x8CfEd6A728017A8641a213Bd9E2Ea6183dE275E8",
+    "market": "0x71d857c437c56562a27Aa087BC3fe529b35b6948",
+    "expiry": "1763596800",
+    "lnFeeRateRoot": "8959741371471904",
+    "scalarRoot": "20762322523680847717",
+    "initialRateAnchor": "1037224074743251569",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0xd36355f04082e9784d6ec19bed506d6ed636c0487f94823165ddc302f54a2c29",
+    "deployBlockNumber": 23245900,
+    "reversedFee": 0.8999999999523833
+}
