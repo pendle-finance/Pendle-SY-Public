@@ -1,0 +1,15 @@
+{
+    "name": "GMXV2-ETHUSD-JAN2026",
+    "SY": "0xb85ae9fb0fb67949b6b4e846e661c88956767DA5",
+    "YT": "0x950A0875b67c716c64A4ff13Fb5ef818E02286eC",
+    "PT": "0xc3869D889FDf0d6E0a2dF0992E46027405701890",
+    "market": "0x358925D171380e05B12036A2bf7051704CB85fAB",
+    "expiry": "1769644800",
+    "lnFeeRateRoot": "4987541511039073",
+    "scalarRoot": "30945778166488609882",
+    "initialRateAnchor": "1035256308696873335",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0x7734f3688bd774f73d8cc56b60d5db52fb2e0fd29269e826fbf6ad9b8529759f",
+    "deployBlockNumber": 377290724,
+    "reversedFee": 0.49999999999608136
+}
