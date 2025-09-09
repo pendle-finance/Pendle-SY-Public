@@ -10,23 +10,23 @@ contract PendleSyrupArbitrumSY is PendleERC20SYUpgV2 {
     using PMath for int256;
 
     address public immutable chainlinkFeed;
-    address internal immutable underlyingAssetOnEthAddr;
-    uint8 internal immutable underlyingAssetOnEthDecimals;
+    address internal immutable underlyingAssetAddr;
+    uint8 internal immutable underlyingAssetDecimals;
 
     constructor(
         address _yieldToken,
         address _chainlinkFeed,
-        address _underlyingAssetOnEthAddr,
-        uint8 _underlyingAssetOnEthDecimals
+        address _underlyingAssetAddr,
+        uint8 _underlyingAssetDecimals
     ) PendleERC20SYUpgV2(_yieldToken) {
         chainlinkFeed = _chainlinkFeed;
-        underlyingAssetOnEthAddr = _underlyingAssetOnEthAddr;
-        underlyingAssetOnEthDecimals = _underlyingAssetOnEthDecimals;
+        underlyingAssetAddr = _underlyingAssetAddr;
+        underlyingAssetDecimals = _underlyingAssetDecimals;
     }
 
     function exchangeRate() public view override returns (uint256 res) {
         uint8 oracleDecimals = IChainlinkAggregator(chainlinkFeed).decimals();
-        (, int256 latestAnswer, , , ) = IChainlinkAggregator(chainlinkFeed).latestRoundData();
+        (, int256 latestAnswer,,,) = IChainlinkAggregator(chainlinkFeed).latestRoundData();
         return latestAnswer.Uint().divDown(10 ** oracleDecimals);
     }
 
@@ -36,6 +36,6 @@ contract PendleSyrupArbitrumSY is PendleERC20SYUpgV2 {
         override
         returns (AssetType assetType, address assetAddress, uint8 assetDecimals)
     {
-        return (AssetType.TOKEN, underlyingAssetOnEthAddr, underlyingAssetOnEthDecimals);
+        return (AssetType.TOKEN, underlyingAssetAddr, underlyingAssetDecimals);
     }
 }
