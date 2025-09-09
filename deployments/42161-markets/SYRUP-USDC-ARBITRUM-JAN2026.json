@@ -1,0 +1,15 @@
+{
+    "name": "SYRUP-USDC-ARBITRUM-JAN2026",
+    "SY": "0x2288b0558610e8FdfcACCb92d4266676d1eA3827",
+    "YT": "0x3746743B546E7D2Caf2c59cb44159414d2Faa42D",
+    "PT": "0x1Ef58a7aF39883CC95c59a2c106b726C64c2ECC6",
+    "market": "0xAE4116499F20f27F82524363c5d5529fA24Fdf10",
+    "expiry": "1769644800",
+    "lnFeeRateRoot": "7968169649176873",
+    "scalarRoot": "26422850045727728073",
+    "initialRateAnchor": "1051451343623578432",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0x388bd16ced200bcf0acd104d31593a688523ae5dcc8995893e10446573ed0b3d",
+    "deployBlockNumber": 377210821,
+    "reversedFee": 0.7999999999821705
+}
