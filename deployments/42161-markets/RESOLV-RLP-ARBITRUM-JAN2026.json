@@ -1,0 +1,15 @@
+{
+    "name": "RESOLV-RLP-ARBITRUM-JAN2026",
+    "SY": "0x8608cC009e64D0ebe6ae071a3c6107e0124EFF41",
+    "YT": "0x2B1fD950F3362b3B79F16770c0C38B9D2BC6276e",
+    "PT": "0x6a7f876141B776c9DF43697Af16c916C1Ca26bF1",
+    "market": "0x573813D3F0BFAF847a04ef12739bE4e38675B3C7",
+    "expiry": "1769644800",
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "20122407293731490780",
+    "initialRateAnchor": "1061450855304877130",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0xf1cc5fe7b0ad16aaf2aa716ddaffd283b9b157dd08f1feefbe475136d48b1476",
+    "deployBlockNumber": 377304279,
+    "reversedFee": 0.9999999999830145
+}
