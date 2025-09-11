@@ -3,12 +3,16 @@ pragma solidity ^0.8.17;
 
 import "../SYBaseUpg.sol";
 import "../../../interfaces/IERC4626.sol";
+import "../../misc/MerklRewardAbstract__NoStorage.sol";
 
-contract PendleERC4626NoRedeemNoDepositUpgSY is SYBaseUpg {
+contract PendleERC4626NoRedeemNoDepositUpgSY is SYBaseUpg, MerklRewardAbstract__NoStorage {
     using PMath for uint256;
     address public immutable asset;
 
-    constructor(address _erc4626) SYBaseUpg(_erc4626) {
+    constructor(
+        address _erc4626,
+        address _offchainRewardManager
+    ) SYBaseUpg(_erc4626) MerklRewardAbstract__NoStorage(_offchainRewardManager) {
         asset = IERC4626(_erc4626).asset();
     }
 
