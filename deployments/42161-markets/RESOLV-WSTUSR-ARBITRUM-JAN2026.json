@@ -1,0 +1,15 @@
+{
+    "name": "RESOLV-WSTUSR-ARBITRUM-JAN2026",
+    "SY": "0x9E9093A12b343C0f4d519Ab093BEF989b1936F73",
+    "YT": "0x1A4E2416aecBAff968797228D9AA6109Fa1b814a",
+    "PT": "0xD34f5c82490d1aab7a6F66D338C06D791a36B6E9",
+    "market": "0x6dD74DEf62C5877D7b3E1748f3Bfa7d2646E41Dc",
+    "expiry": "1769644800",
+    "lnFeeRateRoot": "7968169649176873",
+    "scalarRoot": "23920565850544027931",
+    "initialRateAnchor": "1054056843305189837",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0x16a7da4a8eae603c7e8b226b42876a7b12064d3dfc5e78d3634ed8c6c04dc33d",
+    "deployBlockNumber": 377901500,
+    "reversedFee": 0.7999999999821705
+}
