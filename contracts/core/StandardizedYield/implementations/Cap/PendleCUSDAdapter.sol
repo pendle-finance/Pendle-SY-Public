@@ -20,20 +20,15 @@ contract PendleCUSDAdapter is IStandardizedYieldAdapter, TokenHelper {
         return ICUSD(cUSD).burn(tokenOut, amountPivotTokenIn, 0, msg.sender, MAX_DEADLINE);
     }
 
-    function previewConvertToDeposit(address tokenIn, uint256 amountTokenIn)
-        external
-        view
-        returns (uint256 amountOut)
-    {
-        (amountOut,) = ICUSD(cUSD).getMintAmount(tokenIn, amountTokenIn);
+    function previewConvertToDeposit(address tokenIn, uint256 amountTokenIn) external view returns (uint256 amountOut) {
+        (amountOut, ) = ICUSD(cUSD).getMintAmount(tokenIn, amountTokenIn);
     }
 
-    function previewConvertToRedeem(address tokenOut, uint256 amountPivotTokenIn)
-        external
-        view
-        returns (uint256 amountOut)
-    {
-        (amountOut,) = ICUSD(cUSD).getBurnAmount(tokenOut, amountPivotTokenIn);
+    function previewConvertToRedeem(
+        address tokenOut,
+        uint256 amountPivotTokenIn
+    ) external view returns (uint256 amountOut) {
+        (amountOut, ) = ICUSD(cUSD).getBurnAmount(tokenOut, amountPivotTokenIn);
     }
 
     function getAdapterTokensDeposit() external view returns (address[] memory tokens) {
@@ -42,7 +37,7 @@ contract PendleCUSDAdapter is IStandardizedYieldAdapter, TokenHelper {
 
         uint256 supportedAssetsLength;
 
-        for (uint256 i = 0; i < allAssets.length;) {
+        for (uint256 i = 0; i < allAssets.length; ) {
             if (!ICUSD(cUSD).paused(allAssets[i])) {
                 tokens[supportedAssetsLength++] = allAssets[i];
             }

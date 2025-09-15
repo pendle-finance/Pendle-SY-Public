@@ -15,9 +15,12 @@ abstract contract PendleNucleusBoringVaultBaseSY is SYBaseUpgV2 {
 
     uint256[100] private __gap;
 
-    constructor(address _boringVault, address _boringTeller, address _depositor, address _underlyingAsset)
-        SYBaseUpgV2(_boringVault)
-    {
+    constructor(
+        address _boringVault,
+        address _boringTeller,
+        address _depositor,
+        address _underlyingAsset
+    ) SYBaseUpgV2(_boringVault) {
         communityDepositor = _depositor;
         boringTeller = _boringTeller;
         accountant = INucleusBoringTeller(boringTeller).accountant();
@@ -27,57 +30,52 @@ abstract contract PendleNucleusBoringVaultBaseSY is SYBaseUpgV2 {
 
     function PENDLE_COMMUNITY_CODE() internal pure virtual returns (bytes memory);
 
-    function _deposit(address tokenIn, uint256 amountDeposited)
-        internal
-        virtual
-        override
-        returns (uint256 amountSharesOut)
-    {
+    function _deposit(
+        address tokenIn,
+        uint256 amountDeposited
+    ) internal virtual override returns (uint256 amountSharesOut) {
         if (tokenIn == yieldToken) {
             return amountDeposited;
         }
 
         amountSharesOut = INucleusBoringDepositor(communityDepositor).deposit(
-            tokenIn, amountDeposited, 0, address(this), PENDLE_COMMUNITY_CODE()
+            tokenIn,
+            amountDeposited,
+            0,
+            address(this),
+            PENDLE_COMMUNITY_CODE()
         );
     }
 
-    function _redeem(address receiver, address /*tokenOut*/, uint256 amountSharesToRedeem)
-        internal
-        virtual
-        override
-        returns (uint256 /*amountTokenOut*/)
-    {
+    function _redeem(
+        address receiver,
+        address /*tokenOut*/,
+        uint256 amountSharesToRedeem
+    ) internal virtual override returns (uint256 /*amountTokenOut*/) {
         _transferOut(yieldToken, receiver, amountSharesToRedeem);
         return amountSharesToRedeem;
     }
 
     function exchangeRate() external view virtual override returns (uint256 res) {
-        return INucleusBoringAccountant(accountant).getRateInQuoteSafe(underlyingAsset) * PMath.ONE / ONE_SHARE;
+        return (INucleusBoringAccountant(accountant).getRateInQuoteSafe(underlyingAsset) * PMath.ONE) / ONE_SHARE;
     }
 
-    function _previewDeposit(address tokenIn, uint256 amountTokenToDeposit)
-        internal
-        view
-        virtual
-        override
-        returns (uint256 amountSharesOut)
-    {
+    function _previewDeposit(
+        address tokenIn,
+        uint256 amountTokenToDeposit
+    ) internal view virtual override returns (uint256 amountSharesOut) {
         if (tokenIn == yieldToken) {
             return amountTokenToDeposit;
         }
-        
+
         uint256 rate = INucleusBoringAccountant(accountant).getRateInQuoteSafe(tokenIn);
         amountSharesOut = (amountTokenToDeposit * ONE_SHARE) / rate;
     }
 
-    function _previewRedeem(address /*tokenOut*/, uint256 amountSharesToRedeem)
-        internal
-        view
-        virtual
-        override
-        returns (uint256 /*amountTokenOut*/)
-    {
+    function _previewRedeem(
+        address /*tokenOut*/,
+        uint256 amountSharesToRedeem
+    ) internal view virtual override returns (uint256 /*amountTokenOut*/) {
         return amountSharesToRedeem;
     }
 

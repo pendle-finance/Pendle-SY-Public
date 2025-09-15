@@ -2,8 +2,7 @@
 pragma solidity ^0.8.17;
 
 import "../PendleERC20SYUpgV2.sol";
-import {AggregatorV2V3Interface as IChainlinkAggregator} from
-    "@chainlink/contracts/src/v0.8/interfaces/AggregatorV2V3Interface.sol";
+import {AggregatorV2V3Interface as IChainlinkAggregator} from "@chainlink/contracts/src/v0.8/interfaces/AggregatorV2V3Interface.sol";
 
 contract PendleSyrupArbitrumSY is PendleERC20SYUpgV2 {
     using PMath for uint256;
@@ -26,7 +25,7 @@ contract PendleSyrupArbitrumSY is PendleERC20SYUpgV2 {
 
     function exchangeRate() public view override returns (uint256 res) {
         uint8 oracleDecimals = IChainlinkAggregator(chainlinkFeed).decimals();
-        (, int256 latestAnswer,,,) = IChainlinkAggregator(chainlinkFeed).latestRoundData();
+        (, int256 latestAnswer, , , ) = IChainlinkAggregator(chainlinkFeed).latestRoundData();
         return latestAnswer.Uint().divDown(10 ** oracleDecimals);
     }
 

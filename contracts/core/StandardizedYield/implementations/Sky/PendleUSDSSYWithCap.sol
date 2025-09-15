@@ -10,7 +10,10 @@ contract PendleUSDSSYWithCap is PendleERC20WithAdapterSY, IPTokenWithSupplyCap {
     event SupplyCapUpdated(uint256 newSupplyCap);
     error SupplyCapExceeded(uint256 totalSupply, uint256 supplyCap);
 
-    constructor(address _erc20, address _offchainRewardManager) PendleERC20WithAdapterSY(_erc20, _offchainRewardManager) {}
+    constructor(
+        address _erc20,
+        address _offchainRewardManager
+    ) PendleERC20WithAdapterSY(_erc20, _offchainRewardManager) {}
 
     function getAbsoluteSupplyCap() external view returns (uint256) {
         return supplyCap;

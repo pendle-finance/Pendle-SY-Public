@@ -8,7 +8,7 @@ import "../../../interfaces/IStHYPE.sol";
 contract PendleStakedHYPESY is SYBaseUpgV2 {
     address public constant stHYPE = 0xfFaa4a3D97fE9107Cef8a3F48c069F577Ff76cC1;
     address public constant wstHYPE = 0x94e8396e0869c9F2200760aF0621aFd240E1CF38;
-    
+
     uint256 public constant balanceToSharesDecimal = 10 ** 6;
     uint256 public constant ONE_SHARE = 10 ** 24;
     address public constant OVERSEER = 0xB96f07367e69e86d6e9C3F29215885104813eeAE;
@@ -30,11 +30,11 @@ contract PendleStakedHYPESY is SYBaseUpgV2 {
         }
     }
 
-    function _redeem(address receiver, address tokenOut, uint256 amountSharesToRedeem)
-        internal
-        override
-        returns (uint256 amountTokenOut)
-    {
+    function _redeem(
+        address receiver,
+        address tokenOut,
+        uint256 amountSharesToRedeem
+    ) internal override returns (uint256 amountTokenOut) {
         if (tokenOut == wstHYPE) {
             amountTokenOut = amountSharesToRedeem;
         } else {
@@ -48,12 +48,10 @@ contract PendleStakedHYPESY is SYBaseUpgV2 {
         return IStHYPE(stHYPE).sharesToBalance(ONE_SHARE);
     }
 
-    function _previewDeposit(address tokenIn, uint256 amountTokenToDeposit)
-        internal
-        view
-        override
-        returns (uint256 amountSharesOut)
-    {
+    function _previewDeposit(
+        address tokenIn,
+        uint256 amountTokenToDeposit
+    ) internal view override returns (uint256 amountSharesOut) {
         if (tokenIn == wstHYPE) {
             amountSharesOut = amountTokenToDeposit;
         } else {
@@ -61,12 +59,10 @@ contract PendleStakedHYPESY is SYBaseUpgV2 {
         }
     }
 
-    function _previewRedeem(address tokenOut, uint256 amountSharesToRedeem)
-        internal
-        view
-        override
-        returns (uint256 amountTokenOut)
-    {
+    function _previewRedeem(
+        address tokenOut,
+        uint256 amountSharesToRedeem
+    ) internal view override returns (uint256 amountTokenOut) {
         if (tokenOut == wstHYPE) {
             amountTokenOut = amountSharesToRedeem;
         } else {

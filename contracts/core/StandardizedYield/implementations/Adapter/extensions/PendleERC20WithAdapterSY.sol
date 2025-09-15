@@ -13,7 +13,10 @@ contract PendleERC20WithAdapterSY is SYBaseUpg, MerklRewardAbstract__NoStorage, 
     address public adapter;
     uint256[100] private __gap;
 
-    constructor(address _erc20, address _offchainRewardManager) SYBaseUpg(_erc20) MerklRewardAbstract__NoStorage(_offchainRewardManager) {}
+    constructor(
+        address _erc20,
+        address _offchainRewardManager
+    ) SYBaseUpg(_erc20) MerklRewardAbstract__NoStorage(_offchainRewardManager) {}
 
     function initialize(string memory _name, string memory _symbol, address _adapter) external virtual initializer {
         __SYBaseUpg_init(_name, _symbol);

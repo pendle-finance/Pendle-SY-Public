@@ -35,13 +35,10 @@ contract PendleKinetiqVKHYPESY is PendleVedaBaseSYV2, IPTokenWithSupplyCap {
         return IVedaTeller(teller).bulkDeposit(tokenIn, amountDeposited, 0, address(this));
     }
 
-    function _previewDeposit(address tokenIn, uint256 amountTokenToDeposit)
-        internal
-        view
-        virtual
-        override
-        returns (uint256 amountSharesOut)
-    {
+    function _previewDeposit(
+        address tokenIn,
+        uint256 amountTokenToDeposit
+    ) internal view virtual override returns (uint256 amountSharesOut) {
         amountSharesOut = super._previewDeposit(tokenIn, amountTokenToDeposit);
 
         if (tokenIn == yieldToken) {

@@ -14,7 +14,10 @@ contract PendleERC4626WithAdapterSY is SYBaseUpg, MerklRewardAbstract__NoStorage
     address public adapter;
     uint256[100] private __gap;
 
-    constructor(address _erc4626, address _offchainRewardManager) SYBaseUpg(_erc4626) MerklRewardAbstract__NoStorage(_offchainRewardManager) {
+    constructor(
+        address _erc4626,
+        address _offchainRewardManager
+    ) SYBaseUpg(_erc4626) MerklRewardAbstract__NoStorage(_offchainRewardManager) {
         asset = IERC4626(_erc4626).asset();
     }
 

@@ -2,13 +2,21 @@
 pragma solidity ^0.8.0;
 
 interface ICUSD {
-    function mint(address _asset, uint256 _amountIn, uint256 _minAmountOut, address _receiver, uint256 _deadline)
-        external
-        returns (uint256 amountOut);
+    function mint(
+        address _asset,
+        uint256 _amountIn,
+        uint256 _minAmountOut,
+        address _receiver,
+        uint256 _deadline
+    ) external returns (uint256 amountOut);
 
-    function burn(address _asset, uint256 _amountIn, uint256 _minAmountOut, address _receiver, uint256 _deadline)
-        external
-        returns (uint256 amountOut);
+    function burn(
+        address _asset,
+        uint256 _amountIn,
+        uint256 _minAmountOut,
+        address _receiver,
+        uint256 _deadline
+    ) external returns (uint256 amountOut);
 
     function assets() external view returns (address[] memory assetList);
     function paused(address _asset) external view returns (bool isPaused);

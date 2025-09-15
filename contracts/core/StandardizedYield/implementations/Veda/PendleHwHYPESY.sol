@@ -10,11 +10,7 @@ contract PendleHwHYPESY is PendleVedaBaseSYV2 {
 
     constructor() PendleVedaBaseSYV2(HWHYPE, teller, 10 ** 18, false) {}
 
-    function initialize(
-        string memory _name,
-        string memory _symbol,
-        address _owner
-    ) external override initializer {
+    function initialize(string memory _name, string memory _symbol, address _owner) external override initializer {
         __SYBaseUpgV2_init(_name, _symbol, _owner);
         _safeApproveInf(WHYPE, HWHYPE);
     }

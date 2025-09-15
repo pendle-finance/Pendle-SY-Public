@@ -35,8 +35,9 @@ contract PendleMidasExternalCap is IPTokenWithSupplyCap {
         uint256 totalAmountMTokenCanMint = 0;
 
         for (uint256 i = 0; i < tokensInLength; ++i) {
-            IMidasDepositVault.TokenConfig memory tokenInConfig =
-                IMidasDepositVault(depositVault).tokensConfig(tokensIn[i]);
+            IMidasDepositVault.TokenConfig memory tokenInConfig = IMidasDepositVault(depositVault).tokensConfig(
+                tokensIn[i]
+            );
 
             if (tokenInConfig.allowance == type(uint256).max) {
                 return type(uint256).max;
@@ -45,7 +46,10 @@ contract PendleMidasExternalCap is IPTokenWithSupplyCap {
             uint256 tokenInDecimals = IERC20Metadata(tokensIn[i]).decimals();
 
             totalAmountMTokenCanMint += MidasAdapterLib.estimateAmountOutDeposit(
-                depositVault, mTokenDataFeed, tokensIn[i], tokenInConfig.allowance.convertFromBase18(tokenInDecimals)
+                depositVault,
+                mTokenDataFeed,
+                tokensIn[i],
+                tokenInConfig.allowance.convertFromBase18(tokenInDecimals)
             );
         }
 

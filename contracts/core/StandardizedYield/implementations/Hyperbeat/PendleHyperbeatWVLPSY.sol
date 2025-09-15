@@ -22,12 +22,10 @@ contract PendleHyperbeatWVLPSY is PendleMidasSY, IPTokenWithSupplyCap {
         return 0x2a176b24a5fec3af048070ad484d82fe4152c8b8eb2edc993ef5700c58ef3d53;
     }
 
-    function _previewDeposit(address tokenIn, uint256 amountTokenToDeposit)
-        internal
-        view
-        override
-        returns (uint256 /*amountSharesOut*/ )
-    {
+    function _previewDeposit(
+        address tokenIn,
+        uint256 amountTokenToDeposit
+    ) internal view override returns (uint256 /*amountSharesOut*/) {
         if (tokenIn == yieldToken) {
             return amountTokenToDeposit;
         }
@@ -38,7 +36,9 @@ contract PendleHyperbeatWVLPSY is PendleMidasSY, IPTokenWithSupplyCap {
 
         if (amountTokenToDepositBase18 > tokenInConfig.allowance) {
             revert HyperbeatWVLPAssetLimitExceeded(
-                tokenIn, tokenInConfig.allowance.convertFromBase18(tokenDecimals), amountTokenToDeposit
+                tokenIn,
+                tokenInConfig.allowance.convertFromBase18(tokenDecimals),
+                amountTokenToDeposit
             );
         }
 
@@ -58,13 +58,17 @@ contract PendleHyperbeatWVLPSY is PendleMidasSY, IPTokenWithSupplyCap {
         uint256 tokensInLength = tokensIn.length;
         uint256 totalAmountMTokenCanMint = 0;
 
-        for (uint256 i = 0; i < tokensInLength;) {
-            IMidasDepositVault.TokenConfig memory tokenInConfig =
-                IMidasDepositVault(depositVault).tokensConfig(tokensIn[i]);
+        for (uint256 i = 0; i < tokensInLength; ) {
+            IMidasDepositVault.TokenConfig memory tokenInConfig = IMidasDepositVault(depositVault).tokensConfig(
+                tokensIn[i]
+            );
             uint256 tokenInDecimals = IERC20Metadata(tokensIn[i]).decimals();
 
             totalAmountMTokenCanMint += MidasAdapterLib.estimateAmountOutDeposit(
-                depositVault, mTokenDataFeed, tokensIn[i], tokenInConfig.allowance.convertFromBase18(tokenInDecimals)
+                depositVault,
+                mTokenDataFeed,
+                tokensIn[i],
+                tokenInConfig.allowance.convertFromBase18(tokenInDecimals)
             );
 
             unchecked {

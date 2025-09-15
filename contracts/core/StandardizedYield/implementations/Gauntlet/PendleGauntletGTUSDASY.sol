@@ -14,9 +14,13 @@ contract PendleGauntletGTUSDASY is PendleERC20SYUpgV2 {
     constructor() PendleERC20SYUpgV2(gtUSDa) {}
 
     function exchangeRate() public view override returns (uint256 res) {
-        return IGauntletPriceAndFeeCalculator(PRICE_FEE_CALCULATOR).convertUnitsToTokenIfActive(
-            gtUSDa, USDC, 10 ** 18, FLOOR_ROUNDING
-        );
+        return
+            IGauntletPriceAndFeeCalculator(PRICE_FEE_CALCULATOR).convertUnitsToTokenIfActive(
+                gtUSDa,
+                USDC,
+                10 ** 18,
+                FLOOR_ROUNDING
+            );
     }
 
     function assetInfo()
