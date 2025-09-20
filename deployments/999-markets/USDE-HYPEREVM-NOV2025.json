@@ -1,0 +1,15 @@
+{
+    "name": "USDE-HYPEREVM-NOV2025",
+    "SY": "0x1d78C45512c569Ad7487103D687F9A44df06bCDe",
+    "YT": "0x4386391E9481050Cfc2D694d65914A1Ae05a0727",
+    "PT": "0xb884DDc29F7a0a66934Be8C03f25976A365a4Ea2",
+    "market": "0x3b26334D4f11cF879e468144804cf82A8BBc5a90",
+    "expiry": "1764201600",
+    "lnFeeRateRoot": "7968169649176873",
+    "scalarRoot": "24565278235319108698",
+    "initialRateAnchor": "1026104213074081772",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0xa7bb2e5fbae03b697a17b9c372672c4324a828d45ac7bd1d74e0e5f00cb16e35",
+    "deployBlockNumber": 14236766,
+    "reversedFee": 0.7999999999821705
+}
