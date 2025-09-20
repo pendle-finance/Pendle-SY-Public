@@ -7,4 +7,8 @@ interface IInfraredBGTVault {
     function withdraw(uint256 amount) external;
 
     function getRewardForUser(address _user) external;
+
+    function balanceOf(address account) external view returns (uint256);
+
+    function earned(address account, address _rewardsToken) external view returns (uint256);
 }
