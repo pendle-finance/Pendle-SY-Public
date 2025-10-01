@@ -58,7 +58,7 @@ contract PendleERC20SY is SYBase {
         return token == yieldToken;
     }
 
-    function assetInfo() external view returns (AssetType assetType, address assetAddress, uint8 assetDecimals) {
+    function assetInfo() external view virtual returns (AssetType assetType, address assetAddress, uint8 assetDecimals) {
         return (AssetType.TOKEN, yieldToken, IERC20Metadata(yieldToken).decimals());
     }
 }
