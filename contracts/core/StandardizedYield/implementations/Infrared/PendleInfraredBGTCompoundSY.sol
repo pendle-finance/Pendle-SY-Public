@@ -121,10 +121,10 @@ contract PendleInfraredBGTCompoundSY is SYBaseWithRewardsUpg {
 
     function getTotalAssetOwned() public view returns (uint256 totalAssetOwned) {
         uint256 stakedAmount = IInfraredBGTVault(VAULT).balanceOf(address(this));
-        uint256 pendingRewardAmount = IInfraredBGTVault(VAULT).earned(address(this), IBGT);
+        // uint256 pendingRewardAmount = IInfraredBGTVault(VAULT).earned(address(this), IBGT);
         uint256 floatingAmount = _selfBalance(IBGT);
 
-        totalAssetOwned = stakedAmount + pendingRewardAmount + floatingAmount;
+        totalAssetOwned = stakedAmount + floatingAmount;
     }
 
     function harvestAndCompound() external nonReentrant {
