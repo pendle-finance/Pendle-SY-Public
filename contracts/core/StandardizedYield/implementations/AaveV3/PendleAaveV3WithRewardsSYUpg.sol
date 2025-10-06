@@ -122,7 +122,7 @@ contract PendleAaveV3WithRewardsSYUpg is SYBaseWithRewardsUpg {
     /**
      * @dev See {IStandardizedYield-getRewardTokens}
      */
-    function _getRewardTokens() internal view override returns (address[] memory res) {
+    function _getRewardTokens() internal view virtual override returns (address[] memory res) {
         return ArrayLib.create(defaultRewardToken);
     }
 
