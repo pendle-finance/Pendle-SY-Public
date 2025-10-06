@@ -1,0 +1,15 @@
+{
+    "name": "sUSDai-PLASMA-DEC2025",
+    "SY": "0x601aFAcd8FbDbF44E71201B13d449441621332b9",
+    "YT": "0x117677bEB84Bb93e8dAdd36950483A59660f3835",
+    "PT": "0x3A4Aac2e8cbAC65da238330de6B24Bdac7f3a521",
+    "market": "0xE5dDc9F8C828226192C196678119C7008f2ced9F",
+    "expiry": "1766016000",
+    "lnFeeRateRoot": "14888612493750654",
+    "scalarRoot": "13780414176019662491",
+    "initialRateAnchor": "1049696555852671715",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0xa2b482daf0ab140e10b4b424bf19bad7f3ae975968c74c572af30c743c7d084a",
+    "deployBlockNumber": 2201111,
+    "reversedFee": 1.4999999999238067
+}

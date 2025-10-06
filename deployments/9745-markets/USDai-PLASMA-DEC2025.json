@@ -1,0 +1,15 @@
+{
+    "name": "USDai-PLASMA-DEC2025",
+    "SY": "0xe090d9d417E54116c50E5D5dDe1509aF91102ec3",
+    "YT": "0xDb595aF89633176A79900C8f63D2f3ED3d7F1C1E",
+    "PT": "0xa536c9A209c290FD58bB235721c92DE75ac4Ad71",
+    "market": "0x6e214063930B52f06f97985705d21D6c493F83d3",
+    "expiry": "1766016000",
+    "lnFeeRateRoot": "14888612493750654",
+    "scalarRoot": "12351769880949851855",
+    "initialRateAnchor": "1053667838679474432",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0xf6d3981cbf9f60f7bc942ad8c1e5373cc1efb337d84fba515e148a1ac1d548c5",
+    "deployBlockNumber": 2208199,
+    "reversedFee": 1.4999999999238067
+}

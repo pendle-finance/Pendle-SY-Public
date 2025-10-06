@@ -1,0 +1,15 @@
+{
+    "name": "USDE-PLASMA-JAN2026",
+    "SY": "0xe10B8c2B029C3369F7A910710ED4Fa2B25059674",
+    "YT": "0x000668f32DA0C691149Ac736024433d36a16b941",
+    "PT": "0x93B544c330F60A2aa05ceD87aEEffB8D38FD8c9a",
+    "market": "0xFD3eB62302fa3cBc3c7e59e887b92dBBc814285D",
+    "expiry": "1768435200",
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "18296841269198462353",
+    "initialRateAnchor": "1049925071138311444",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0x720a7c2ca1c84977bc311095c29ed78dd7329167ae80e33e89c2729084b5a6a9",
+    "deployBlockNumber": 2202519,
+    "reversedFee": 0.9999999999830145
+}

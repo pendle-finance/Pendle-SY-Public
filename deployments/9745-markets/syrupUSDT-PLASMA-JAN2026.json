@@ -1,0 +1,15 @@
+{
+    "name": "syrupUSDT-PLASMA-JAN2026",
+    "SY": "0xD8B49Fba7054a6eE2C4bd6813cdD6064430dB85C",
+    "YT": "0x44920a786043F663693D2eA1C7De8551D90B3213",
+    "PT": "0x8dFb9A39dFab16bFFE77f15544B5bf03e377e419",
+    "market": "0x18d89b23d2875590C502cd3eAC8f448f3CcF9999",
+    "expiry": "1769644800",
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "18181776997722284839",
+    "initialRateAnchor": "1056680568649262371",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0x767ecc42fd4d595ec461c2b9fd2f363486dd35f824c95e02684a5083b0f13468",
+    "deployBlockNumber": 2203309,
+    "reversedFee": 0.9999999999830145
+}
