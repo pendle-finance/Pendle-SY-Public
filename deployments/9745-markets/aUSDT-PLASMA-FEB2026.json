@@ -1,0 +1,15 @@
+{
+    "name": "aUSDT-PLASMA-FEB2026",
+    "SY": "0x0E09e465476C7eA1Fd7f6cea1Bd459ab74e2bC62",
+    "YT": "0x0B47Cf5F2DBae10DF506D51A1BD0851AFFe5CAae",
+    "PT": "0x467436FA814aE2d90ef192e3AaC16eEcC91E05A5",
+    "market": "0xDd32691dc601C14eae73b675420adB5215DEa72f",
+    "expiry": "1772064000",
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "22104350950730508848",
+    "initialRateAnchor": "1053817966881878727",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0x224ac130b2d4a6fea273cbe99b3dbd1616896071f16cb33065f9af44c96e3643",
+    "deployBlockNumber": 2473133,
+    "reversedFee": 0.9999999999830145
+}
