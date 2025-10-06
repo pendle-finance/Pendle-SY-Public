@@ -1,0 +1,15 @@
+{
+    "name": "PLASMAUSD-PLASMA-JAN2026",
+    "SY": "0x1e31C52936fC48146343A10f72C63c69dcddcd19",
+    "YT": "0xcC4fABf1f3623e4FdD05f119F296169bb56Ea3aF",
+    "PT": "0xa5c48Dda8a0491FEc19Af54477Eb280373c9418e",
+    "market": "0x7209D228CD585f4b77A031f7B902f989439AC319",
+    "expiry": "1769644800",
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "18214342481200274497",
+    "initialRateAnchor": "1054758536183687029",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0xedfc4cc17feab95ad069b40380fe30087b71d5fbf1d4d867583b947fb7d0f77b",
+    "deployBlockNumber": 2546076,
+    "reversedFee": 0.9999999999830145
+}
