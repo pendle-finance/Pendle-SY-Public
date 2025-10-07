@@ -1,0 +1,15 @@
+{
+    "name": "DUSD-MAINNET-DEC2025",
+    "SY": "0x4A312Fca9b7E568ab99E4E5CcbfB409221E1Ed36",
+    "YT": "0xa612a1972b484Ed0C7D59B0ab4d34e627Fc76F42",
+    "PT": "0x9e311C327496fA6f089f2396eA8cce857C8a6FF2",
+    "market": "0x5491F502E9eb4B8813aA7f57895A4A6d0055a25b",
+    "expiry": "1766016000",
+    "lnFeeRateRoot": "11928570865273801",
+    "scalarRoot": "17123461872075111542",
+    "initialRateAnchor": "1038565251419201288",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0xf7fd0c219c1d8cb08955549dd99706e787c8beaacbc1397f5902980ce22fb8ce",
+    "deployBlockNumber": 23524576,
+    "reversedFee": 1.19999999997229
+}
