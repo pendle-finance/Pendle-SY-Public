@@ -1,0 +1,15 @@
+{
+    "name": "SPLUSD-PLASMA-JAN2026",
+    "SY": "0xad96C88eC5D39fc5020851075ECb756B2b228060",
+    "YT": "0x13E695e95601545657cAaa7cD62a22fa87B62bDD",
+    "PT": "0xA6C55E31154d39bb0Aa3CA2FF9F7665BDA4e47FC",
+    "market": "0x9D0676EC013cB50B7bF9b291c22B618e9fe86832",
+    "expiry": "1769644800",
+    "lnFeeRateRoot": "11928570865273801",
+    "scalarRoot": "15802068112449063214",
+    "initialRateAnchor": "1063431579191087331",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0xf52726f4c4fe91c27741de54a29a9dccd5e99edb9d75bc554732c1e12c27360c",
+    "deployBlockNumber": 3071057,
+    "reversedFee": 1.19999999997229
+}
