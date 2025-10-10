@@ -1,0 +1,15 @@
+{
+    "name": "HYPERBEAT-LIQUIDHYPE-HYPEREVM-JAN2026",
+    "SY": "0x41D81Daf401a0AA7422a769243fa933f351a0D64",
+    "YT": "0x38230d78C1969049734A32421fBCdD61EfeD216c",
+    "PT": "0xd8093043d5a7fE963773912fB2511190c06150BF",
+    "market": "0xCBBe57475a6199c74f7Cee5f4440665A6a8A4747",
+    "expiry": "1769644800",
+    "lnFeeRateRoot": "7968169649176873",
+    "scalarRoot": "21326554405563783788",
+    "initialRateAnchor": "1038629760491330194",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0xc446f529da8804f256b0dda1a3de468c93a4cc70317810723b99384ce59ab373",
+    "deployBlockNumber": 16124974,
+    "reversedFee": 0.7999999999821705
+}
