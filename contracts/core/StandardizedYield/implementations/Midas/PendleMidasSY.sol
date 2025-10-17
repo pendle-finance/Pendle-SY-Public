@@ -109,7 +109,7 @@ contract PendleMidasSY is SYBaseUpg {
         return MidasAdapterLib.estimateAmountOutRedeem(redemptionVault, mTokenDataFeed, tokenOut, amountSharesToRedeem);
     }
 
-    function getTokensIn() public view override returns (address[] memory res) {
+    function getTokensIn() public view virtual override returns (address[] memory res) {
         return ArrayLib.append(IMidasManageableVault(depositVault).getPaymentTokens(), yieldToken);
     }
 
@@ -117,7 +117,7 @@ contract PendleMidasSY is SYBaseUpg {
         return ArrayLib.append(IMidasManageableVault(redemptionVault).getPaymentTokens(), yieldToken);
     }
 
-    function isValidTokenIn(address token) public view override returns (bool) {
+    function isValidTokenIn(address token) public view virtual override returns (bool) {
         return token == yieldToken || IMidasManageableVault(depositVault).tokensConfig(token).dataFeed != address(0);
     }
 
