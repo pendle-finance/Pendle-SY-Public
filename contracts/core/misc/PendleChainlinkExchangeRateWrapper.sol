@@ -10,15 +10,23 @@ contract PendleChainlinkExchangeRateWrapper is IPExchangeRateOracle {
     using PMath for uint256;
 
     address public immutable chainlinkFeed;
-    uint256 public immutable scalingDivisor;
+    uint8 public immutable oracleDecimals;
+    int8 public immutable tokenDecimalsOffset;
 
-    constructor(address _chainlinkFeed, uint8 _tokenDecimalsOffset) {
+    constructor(address _chainlinkFeed, int8 _tokenDecimalsOffset) {
         chainlinkFeed = _chainlinkFeed;
-        scalingDivisor = 10 ** (IChainlinkAggregator(_chainlinkFeed).decimals() + _tokenDecimalsOffset);
+        oracleDecimals = IChainlinkAggregator(_chainlinkFeed).decimals();
+        tokenDecimalsOffset = _tokenDecimalsOffset;
     }
 
-    function getExchangeRate() external view returns (uint256) {
+    function getExchangeRate() external view returns (uint256 res) {
         (, int256 latestAnswer, , , ) = IChainlinkAggregator(chainlinkFeed).latestRoundData();
-        return latestAnswer.Uint().divDown(scalingDivisor);
+
+        res = latestAnswer.Uint().divDown(10 ** oracleDecimals);
+        if (tokenDecimalsOffset < 0) {
+            res = res * 10 ** uint8(-tokenDecimalsOffset);
+        } else {
+            res = res / 10 ** uint8(tokenDecimalsOffset);
+        }
     }
 }
