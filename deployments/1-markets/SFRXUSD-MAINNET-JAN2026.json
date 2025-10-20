@@ -1,0 +1,15 @@
+{
+    "name": "sfrxUSD-MAINNET-JAN2026",
+    "SY": "0x44A4ff3934cf3833903a04261BD0d962F008d2c3",
+    "YT": "0x501C1738FE316C414B8A182C38569863D496cF5B",
+    "PT": "0xFD6944B60F41DCbD7A3037De1329b17B6b3a0819",
+    "market": "0x3d0EF4B41975c52A004C401Ee736428620C3BA71",
+    "expiry": "1768435200",
+    "lnFeeRateRoot": "7968169649176873",
+    "scalarRoot": "23765738478433218765",
+    "initialRateAnchor": "1032424286353389163",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0xe4300a99762c59695831474d10f32243dfc165b54ca6679f97abf5efd78eacd7",
+    "deployBlockNumber": 23618142,
+    "reversedFee": 0.7999999999821705
+}
