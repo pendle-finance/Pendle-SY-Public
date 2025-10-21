@@ -1,0 +1,15 @@
+{
+    "name": "RLP-PLASMA-FEB2026",
+    "SY": "0x641066Fc5b4f53432c4ad9aD745A175AF4DA7233",
+    "YT": "0xdff365879600a918b1F57de6f7bbdC7092dF39fC",
+    "PT": "0x48F119b3fCA8244274531f2e06B74AC4B1F5fe58",
+    "market": "0x23280356de3a7aEc0B0710CD9b902AC8f431368C",
+    "expiry": "1772064000",
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "18781587002155359361",
+    "initialRateAnchor": "1058110281050446542",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0xac4f5ced4dd378737f4664de19648d5c06169f2525a0da078f35fd3ca8ebf060",
+    "deployBlockNumber": 4108122,
+    "reversedFee": 0.9999999999830145
+}

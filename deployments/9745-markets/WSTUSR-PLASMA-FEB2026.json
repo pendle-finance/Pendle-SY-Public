@@ -1,0 +1,15 @@
+{
+    "name": "WSTUSR-PLASMA-FEB2026",
+    "SY": "0x2B04604c6f27B7d2cb910735110170bc26c33a4f",
+    "YT": "0xdc8c86bC1cbC61946DDE5e084e44f59619dfa75E",
+    "PT": "0xFFaF49f320b8Ae1Bb9Ea596197040077a3666105",
+    "market": "0x23180d15651FE6e4415ce27b212Cf8e5d2dEDa96",
+    "expiry": "1772064000",
+    "lnFeeRateRoot": "7968169649176873",
+    "scalarRoot": "20469891492517648113",
+    "initialRateAnchor": "1049628443874875847",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0xc63a0cb51e189fe8cfb3bc47fbe1465a3b514ba1659fd761c67e9a8192ed60b6",
+    "deployBlockNumber": 4108885,
+    "reversedFee": 0.7999999999821705
+}

@@ -1,0 +1,15 @@
+{
+    "name": "MHYPER-PLASMA-JAN2026",
+    "SY": "0x825645Da91d741e429247F7fC01cA2DfaCb61420",
+    "YT": "0xEB9445e79047807E8A6fb394C2b66c42cA621463",
+    "PT": "0xceA23aB8FdE0b90e4D08EB68e8876E43933721D2",
+    "market": "0xCA2d052fCEDbf532CA8ceF2d3d1D84A041a258f7",
+    "expiry": "1769644800",
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "17976748709884210927",
+    "initialRateAnchor": "1052003022957654977",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0x9e5f650fdcce0d1fc93c2ad9ff0b435eab52945c11496d4c68b069099c38c4d0",
+    "deployBlockNumber": 4107238,
+    "reversedFee": 0.9999999999830145
+}
