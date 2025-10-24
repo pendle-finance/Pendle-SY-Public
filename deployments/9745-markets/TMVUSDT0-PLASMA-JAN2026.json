@@ -1,0 +1,15 @@
+{
+    "name": " TMVUSDT0-PLASMA-JAN2026",
+    "SY": "0xE91d6EAEa1015F69babFE186ef1010126f77E34c",
+    "YT": "0x56fcA0D576EA762e7062528f9138Dd5E631043e4",
+    "PT": "0x64babFDDA037010214D68fCA6F896a8503BE45DE",
+    "market": "0xa2d4Dd85C24c73Ddc8d815689F5913Ec2166402C",
+    "expiry": "1768435200",
+    "lnFeeRateRoot": "11137744410455925",
+    "scalarRoot": "20487682479293021609",
+    "initialRateAnchor": "1033193960424959338",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0x4a54472a9c979066a56cfb9bec41a7f0b3368d451dd4ea29cb02808b284e233e",
+    "deployBlockNumber": 4367262,
+    "reversedFee": 1.1199999999538912
+}

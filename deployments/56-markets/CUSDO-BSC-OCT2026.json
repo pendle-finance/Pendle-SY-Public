@@ -1,0 +1,15 @@
+{
+    "name": "CUSDO-BSC-OCT2026",
+    "SY": "0x7a657c50c6B640ECaAb7Bb8dAD86344169bF8C16",
+    "YT": "0x4894ad20C952C6e4A91c2E9ba6B96e65D9BC2664",
+    "PT": "0xcd18d94FDa553BB956D6130ad217B63EF65888d0",
+    "market": "0x03bc522D619fE24b788B9a2a39944f7DE1685239",
+    "expiry": "1793232000",
+    "lnFeeRateRoot": "11928570865273801",
+    "scalarRoot": "16551318834663362629",
+    "initialRateAnchor": "1169848697992450736",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0x14159b52fedd4a6d03258952e831a6b7dfba815dc46977084bc29bee6a23df86",
+    "deployBlockNumber": 65736674,
+    "reversedFee": 1.19999999997229
+}

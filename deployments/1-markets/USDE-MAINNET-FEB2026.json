@@ -1,0 +1,15 @@
+{
+    "name": "USDE-MAINNET-FEB2026",
+    "SY": "0x925a15bD6A1582fa7c0EbbFc3Dbd29c34f58340e",
+    "YT": "0x5a62AE8118536CF2De315E2c42f9Af035d8129f2",
+    "PT": "0x1F84a51296691320478c98b8d77f2Bbd17D34350",
+    "market": "0xAADBC004DAcF10e1fdbd87ca1a40ecAF77CC5B02",
+    "expiry": "1770249600",
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "22444756029403044525",
+    "initialRateAnchor": "1037586953274785135",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0xd3e4bac79c4ac3786b82ee552228e6b9b988242668568382c84f1353ddadf640",
+    "deployBlockNumber": 23646691,
+    "reversedFee": 0.9999999999830145
+}
