@@ -1,0 +1,15 @@
+{
+    "name": "DETH-MAINNET-JAN2026",
+    "SY": "0xc34E7D9D5eC0626ED14B6b7cEe02fE904bec4C8D",
+    "YT": "0xa60C325069B2B10BC63926818A4f4320A28b5bba",
+    "PT": "0x8209b01357946A64a0793e9773F6F3Fe5A5F2526",
+    "market": "0x937c7868824ae53dB3b7C634de209FB7a74E362c",
+    "expiry": "1769644800",
+    "lnFeeRateRoot": "5982071677547463",
+    "scalarRoot": "28026238844179412674",
+    "initialRateAnchor": "1026533331918353747",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0xb179ab69cffb0bafedf04ee6f05498a4bf54680f05bea3ac776d0c5146e6a431",
+    "deployBlockNumber": 23696346,
+    "reversedFee": 0.5999999999449335
+}

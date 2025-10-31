@@ -1,0 +1,15 @@
+{
+    "name": "IPSRETH-MAINNET-JAN2026",
+    "SY": "0x47B50dA0E1186B27A2413B81a352D05853699629",
+    "YT": "0x00c5976916600a69Ad469b542C594B86CC7ee38a",
+    "PT": "0xACa52350B03617e08721BFE3590B45Fc94DfeC6b",
+    "market": "0xd6f43b44c9Cf3489044D0a6DcB73B61887C08285",
+    "expiry": "1769040000",
+    "lnFeeRateRoot": "5982071677547463",
+    "scalarRoot": "31504394897624648077",
+    "initialRateAnchor": "1021397986740401659",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0xfa2184588f9f7d7a741dc99dfa89b67751c61da0a9ff8d7c7a95cbe7abfab4b8",
+    "deployBlockNumber": 23696169,
+    "reversedFee": 0.5999999999449335
+}

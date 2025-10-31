@@ -1,0 +1,15 @@
+{
+    "name": "DBIT-MAINNET-JAN2026",
+    "SY": "0x725e18142472384e45e15084e308dbeaE43381aa",
+    "YT": "0x469c74C25c6BDeDFf41aB69370CEEA55f9f64e6d",
+    "PT": "0xE93694da1BEcAACD3cE5E1AEB484D43BEEC3e83b",
+    "market": "0x9A4e45841DdB012f1946372e8Bd9D65bB17a7768",
+    "expiry": "1769644800",
+    "lnFeeRateRoot": "3992021269537452",
+    "scalarRoot": "38511420132957763322",
+    "initialRateAnchor": "1016457282799809161",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0x24382d70e3ba7918c1a1511f7f5428a483290a0f44041770ec31d2d8cb2e323c",
+    "deployBlockNumber": 23696242,
+    "reversedFee": 0.3999999999460435
+}
