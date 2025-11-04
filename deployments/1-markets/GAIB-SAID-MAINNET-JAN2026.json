@@ -1,0 +1,15 @@
+{
+    "name": "GAIB-SAID-MAINNET-JAN2026",
+    "SY": "0x39FB0Bb5D696ec6Da2d827649CF3A3F00299d2dd",
+    "YT": "0x11F20e5268CDB45ef2337A64A4A2cc12e264fa5A",
+    "PT": "0x7e65eb932FCe864989681E224036dB2aEF316C25",
+    "market": "0x83FBF88733474f8d6b27A6c7df24F83c07846301",
+    "expiry": "1769644800",
+    "lnFeeRateRoot": "14691548742989756",
+    "scalarRoot": "15825110077604289968",
+    "initialRateAnchor": "1044201095824725949",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0xa6b3042d8742a43ce58c4ad057cdd1cc8f2d5ddb4c89bb84157faa719831a0db",
+    "deployBlockNumber": 23723277,
+    "reversedFee": 1.4799999998995617
+}

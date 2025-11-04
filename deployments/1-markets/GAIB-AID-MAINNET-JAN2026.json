@@ -1,0 +1,15 @@
+{
+    "name": "GAIB-AID-MAINNET-JAN2026",
+    "SY": "0xfd737331e7248B32d13e7273800130b5D85629a3",
+    "YT": "0xD9101817B78889BEEe27E27260673F57E88c5E0E",
+    "PT": "0x6554BC7E300b3f77D34b7100a26e515F52B462fa",
+    "market": "0x43137fC40F8Bb704aE6E1e912D85d90556167d69",
+    "expiry": "1769644800",
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "22586294355529873628",
+    "initialRateAnchor": "1031007792630827219",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0xf8b4a246dfaabd225945d998b452be5b9e3c1f41abd19a3802d345de5cae4554",
+    "deployBlockNumber": 23723261,
+    "reversedFee": 0.9999999999830145
+}
