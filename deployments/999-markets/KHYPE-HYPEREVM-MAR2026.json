@@ -1,0 +1,15 @@
+{
+    "name": "KHYPE-HYPEREVM-MAR2026",
+    "SY": "0x57FC55dFF8CeCa86EE94a6bF255af2f0ED90eB9e",
+    "YT": "0x8e8df024CF6d3e916Be0821FF3177dB6981fcAd2",
+    "PT": "0xea84ca9849D9e76a78B91F221F84e9Ca065FC9f5",
+    "market": "0x31104779B2A07A273D6C662419377773083d0b2E",
+    "expiry": "1773878400",
+    "lnFeeRateRoot": "7571265496318075",
+    "scalarRoot": "27546233380319562682",
+    "initialRateAnchor": "1035151213080276464",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0x81af8fd49c13371ed2ef419f7ecb9644f9d89871214663c9aaf40cc034f1e220",
+    "deployBlockNumber": 18807783,
+    "reversedFee": 0.7599999999679419
+}
