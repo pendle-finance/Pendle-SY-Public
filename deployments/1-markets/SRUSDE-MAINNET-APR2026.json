@@ -1,0 +1,15 @@
+{
+    "name": "SRUSDE-MAINNET-APR2026",
+    "SY": "0xc9bfeBc79a722C05Dc34bd2A227eF2db19Fd1b8E",
+    "YT": "0x31F9e6692e87D81ff8d64De1f475FCe6880a030f",
+    "PT": "0x9Bf45ab47747F4B4dD09B3C2c73953484b4eB375",
+    "market": "0xAFB7d6d1e9BcA5B675aDC9b4f52F0CDfDdec9654",
+    "expiry": "1775088000",
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "25914524111069539075",
+    "initialRateAnchor": "1031326688912462167",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0xc4cba114031e75d476ff7d018f6047958e511265dc501a7771d65fa600abd26d",
+    "deployBlockNumber": 24101617,
+    "reversedFee": 0.9999999999830145
+}

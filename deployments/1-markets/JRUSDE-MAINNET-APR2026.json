@@ -1,0 +1,15 @@
+{
+    "name": "JRUSDE-MAINNET-APR2026",
+    "SY": "0x4F6673346aB4813F1665327aB39087008Cc7d76F",
+    "YT": "0xA595FC1B1D45EA8C3f1Cd73078F5104e716327BC",
+    "PT": "0xd0609Ac13000d88B0BEbf5Bb21074916eDd92Bb1",
+    "market": "0xfAbEEFC5369aA5270B401f4Ee062D17fb5f1EC2A",
+    "expiry": "1775088000",
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "19201896253852941386",
+    "initialRateAnchor": "1039406319598421310",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0x91372b3f06cc67ebc7591a0aad58c4040cd81181321097f7c941b9de987361ec",
+    "deployBlockNumber": 24096366,
+    "reversedFee": 0.9999999999830145
+}
