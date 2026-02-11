@@ -1,0 +1,15 @@
+{
+    "name": "UNIBTC-BASE-FEB2026",
+    "SY": "0xDA89510D10f1bA01d45669049Aa885d66fEf2588",
+    "YT": "0x28888f74ca99924D5a2d48E82BF3D32cC7ec0355",
+    "PT": "0xf2A69E0191aaD3a7a124397972D0cA0405C1d8d1",
+    "market": "0x4aC60D0F9F98287764681DF14298C1A11006aEFd",
+    "expiry": "1771459200",
+    "lnFeeRateRoot": "1399020913707341",
+    "scalarRoot": "148816845577494625573",
+    "initialRateAnchor": "1003924821368969564",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0x445b51ba6aad27132bc666c31e4871151c22a300ee142e0266b9e68b744128c0",
+    "deployBlockNumber": 39202164,
+    "reversedFee": 0.13999999992917456
+}

@@ -1,0 +1,15 @@
+{
+    "name": "SUSDE-PLASMA-APR2026",
+    "SY": "0xdb3FaAD4436E2d133fdaB0788332845df9b0ABdF",
+    "YT": "0xF57bf85A1067bdDb44a34152d9a2992882baCcE5",
+    "PT": "0xab509448ad489e2E1341e25CC500f2596464Cc82",
+    "market": "0x5Fa69163085efd4767f24639eB1fB87Ed34bBB12",
+    "expiry": "1775692800",
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "22302053088424335738",
+    "initialRateAnchor": "1044320090814152778",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0x56b00fda7122961b3fd7666370bfb29f7f4c1ed77d9c6f03cf7f75e64e38db05",
+    "deployBlockNumber": 8262771,
+    "reversedFee": 0.9999999999830145
+}
