@@ -9,4 +9,10 @@ interface IStrataStrategy {
         uint256 baseAssets,
         Math.Rounding rounding
     ) external view returns (uint256 tokenAmount);
+
+    function convertToAssets(
+        address token,
+        uint256 tokenAmount,
+        Math.Rounding rounding
+    ) external view returns (uint256 baseAssets);
 }

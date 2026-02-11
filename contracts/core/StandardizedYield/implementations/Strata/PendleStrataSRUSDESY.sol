@@ -4,6 +4,7 @@ pragma solidity ^0.8.0;
 import "../Adapter/extensions/PendleERC4626NoRedeemWithAdapterSY.sol";
 import "../../../../interfaces/Strata/IStrataTranche.sol";
 import "../../../../interfaces/Strata/IStrataCDO.sol";
+import "../../../../interfaces/Strata/IStrataStrategy.sol";
 
 contract PendleStrataSRUSDESY is PendleERC4626NoRedeemWithAdapterSY {
     address public immutable srUSDe;
@@ -41,7 +42,7 @@ contract PendleStrataSRUSDESY is PendleERC4626NoRedeemWithAdapterSY {
         }
 
         uint256 baseAssets = IERC4626(srUSDe).previewRedeem(amountSharesToRedeem);
-        uint256 tokenAssets = IStrataCDO(cdo).strategy().convertToTokens(sUSDe, baseAssets, Math.Rounding.Down);
+        uint256 tokenAssets = IStrataStrategy(IStrataCDO(cdo).strategy()).convertToTokens(sUSDe, baseAssets, Math.Rounding.Down);
 
         return tokenAssets;
     }
