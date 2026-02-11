@@ -1,0 +1,15 @@
+{
+    "name": "SUSDE-MAINNET-MAY2026",
+    "SY": "0xBF98480425A29197e5d99D003017f63a1e595D02",
+    "YT": "0x30775B422b9c7415349855346352FAA61fD97E41",
+    "PT": "0x3de0ff76E8b528C092d47b9DaC775931cef80F49",
+    "market": "0x8dAe8ECe668cf80d348873F23D456448E8694883",
+    "expiry": "1778112000",
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "23897892126747078100",
+    "initialRateAnchor": "1041123980939537475",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0xed0010e500595f3428d750a32253fe06cecbb3988a80c3df05e8673dd7839992",
+    "deployBlockNumber": 24188933,
+    "reversedFee": 0.9999999999830145
+}

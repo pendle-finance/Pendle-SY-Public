@@ -1,0 +1,15 @@
+{
+    "name": "USDE-MAINNET-MAY2026",
+    "SY": "0xf0bAcD9C3D94fC924DBcaaF644208C4E3f4d3bB4",
+    "YT": "0x4265ebF36F738D4D623C201BecBbc0f92bE57198",
+    "PT": "0xAeBf0Bb9f57E89260d57f31AF34eB58657d96Ce0",
+    "market": "0xA3336f04f7AfbF26714331e395054F33B77C9b8D",
+    "expiry": "1778112000",
+    "lnFeeRateRoot": "9950330853168082",
+    "scalarRoot": "23897787613880783053",
+    "initialRateAnchor": "1041128596384966658",
+    "doCacheIndexSameBlock": true,
+    "deployTxHash": "0xa77c4c1dcdd34967249ed624021eac3a92d630139b77cfd3563924d59555ada2",
+    "deployBlockNumber": 24188841,
+    "reversedFee": 0.9999999999830145
+}
