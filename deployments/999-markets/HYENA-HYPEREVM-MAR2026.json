@@ -1,0 +1,15 @@
+{
+    "name": "HYENA-HYPEREVM-MAR2026",
+    "SY": "0x4C9384312333F8dE90E8173DA572F4DcfcA43fd2",
+    "YT": "0x70Ba7944c34e050202B1DdCB13CF1b2C726d4125",
+    "PT": "0x7b9C903de833D4000023D3fc28209e74Fa64EdB6",
+    "market": "0x6155eC7b6A4BD56c8A13Ee833c0C4b5b565ACF93",
+    "expiry": "1773878400",
+    "lnFeeRateRoot": "12718772407774688",
+    "scalarRoot": "18345049614719423311",
+    "initialRateAnchor": "1047124059849238131",
+    "doCacheIndexSameBlock": false,
+    "deployTxHash": "0xd05a47ab2e07ba1e6e07a2f5358bbf64574d59ce94c8d7169ab7404adba10254",
+    "deployBlockNumber": 21172959,
+    "reversedFee": 1.279999999921544
+}
