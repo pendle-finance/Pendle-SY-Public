@@ -60,7 +60,11 @@ contract PendleERC4626SYYieldTokenScaled18 is SYBaseUpgV2 {
             amountTokenOut = amountSharesToRedeem / yieldTokenDecimalsOffset;
             _transferOut(erc4626, receiver, amountTokenOut);
         } else {
-            amountTokenOut = IERC4626(erc4626).redeem(amountSharesToRedeem / yieldTokenDecimalsOffset, receiver, address(this));
+            amountTokenOut = IERC4626(erc4626).redeem(
+                amountSharesToRedeem / yieldTokenDecimalsOffset,
+                receiver,
+                address(this)
+            );
         }
     }
 
@@ -111,5 +115,9 @@ contract PendleERC4626SYYieldTokenScaled18 is SYBaseUpgV2 {
         returns (AssetType assetType, address assetAddress, uint8 assetDecimals)
     {
         return (AssetType.TOKEN, assetScaled18, 18);
+    }
+
+    function pricingInfo() external view override returns (address refToken, bool refStrictlyEqual) {
+        return (erc4626, true);
     }
 }
