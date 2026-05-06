@@ -3,6 +3,7 @@ pragma solidity ^0.8.0;
 
 interface IStrataTranche {
     function cdo() external view returns (address);
+    function asset() external view returns (address);
     function deposit(address token, uint256 tokenAmount, address receiver) external returns (uint256);
     function redeem(address token, uint256 shares, address receiver, address owner) external returns (uint256);
     function previewDeposit(address token, uint256 tokenAmount) external view returns (uint256);
