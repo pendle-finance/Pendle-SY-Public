@@ -5,17 +5,20 @@ import "../../v2/SYBaseUpgV2.sol";
 import "../../../../interfaces/Strata/IStrataTranche.sol";
 import "../../../../interfaces/Strata/IStrataCDO.sol";
 import "../../../../interfaces/Strata/IStrataSNUSDStrategy.sol";
+import "../../../../interfaces/Neutrl/IInstantUnstaking.sol";
 
 contract PendleStrataNUSDTrancheSY is SYBaseUpgV2 {
     address public immutable strata;
     bool public immutable isJrt;
     address public immutable nusd;
     address public immutable sNusd;
+    address public immutable instantUnstaking;
 
-    constructor(address _strata, address _nusd, address _sNusd) SYBaseUpgV2(_strata) {
+    constructor(address _strata, address _nusd, address _sNusd, address _instantUnstaking) SYBaseUpgV2(_strata) {
         strata = _strata;
         nusd = _nusd;
         sNusd = _sNusd;
+        instantUnstaking = _instantUnstaking;
 
         isJrt = IStrataCDO(IStrataTranche(strata).cdo()).isJrt(strata);
     }
@@ -48,8 +51,23 @@ contract PendleStrataNUSDTrancheSY is SYBaseUpgV2 {
         if (tokenOut == strata) {
             _transferOut(strata, receiver, amountSharesToRedeem);
             return amountSharesToRedeem;
+        } else {
+            // redeem sNusd from ERC4626
+            uint256 amountTokenOut = IStrataTranche(strata).redeem(
+                sNusd,
+                amountSharesToRedeem,
+                address(this),
+                address(this)
+            );
+
+            if (tokenOut == nusd) {
+                _safeApprove(sNusd, instantUnstaking, amountTokenOut);
+                amountTokenOut = IInstantUnstaking(instantUnstaking).instantUnstake(amountTokenOut, 0);
+            }
+
+            _transferOut(tokenOut, receiver, amountTokenOut);
+            return amountTokenOut;
         }
-        return IStrataTranche(strata).redeem(tokenOut, amountSharesToRedeem, receiver, address(this));
     }
 
     function _previewDeposit(
@@ -69,9 +87,18 @@ contract PendleStrataNUSDTrancheSY is SYBaseUpgV2 {
     ) internal view virtual override returns (uint256 /*amountTokenOut*/) {
         if (tokenOut == strata) {
             return amountSharesToRedeem;
-        }
+        } else {
+            uint256 amountTokenOut = IStrataTranche(strata).previewRedeem(sNusd, amountSharesToRedeem);
 
-        return IStrataTranche(strata).previewRedeem(tokenOut, amountSharesToRedeem);
+            if (tokenOut == nusd) {
+                (amountTokenOut, ) = IInstantUnstaking(instantUnstaking).quoteInstantUnstake(
+                    address(this),
+                    amountTokenOut
+                );
+            }
+
+            return amountTokenOut;
+        }
     }
 
     function getTokensIn() public view virtual override returns (address[] memory res) {
@@ -79,7 +106,7 @@ contract PendleStrataNUSDTrancheSY is SYBaseUpgV2 {
     }
 
     function getTokensOut() public view virtual override returns (address[] memory res) {
-        if (_isSNUSDValidTokenOut()) return ArrayLib.create(strata, sNusd);
+        if (_isSNUSDValidTokenOut()) return ArrayLib.create(strata, sNusd, nusd);
         return ArrayLib.create(strata);
     }
 
@@ -88,7 +115,7 @@ contract PendleStrataNUSDTrancheSY is SYBaseUpgV2 {
     }
 
     function isValidTokenOut(address token) public view virtual override returns (bool) {
-        return token == strata || (token == sNusd && _isSNUSDValidTokenOut());
+        return token == strata || ((token == sNusd || token == nusd) && _isSNUSDValidTokenOut());
     }
 
     function assetInfo() external view returns (AssetType assetType, address assetAddress, uint8 assetDecimals) {
