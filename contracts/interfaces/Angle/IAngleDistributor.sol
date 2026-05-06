@@ -9,4 +9,13 @@ interface IAngleDistributor {
         uint256[] calldata amounts,
         bytes32[][] calldata proofs
     ) external;
+
+    function claimWithRecipient(
+        address[] calldata users,
+        address[] calldata tokens,
+        uint256[] calldata amounts,
+        bytes32[][] calldata proofs,
+        address[] calldata recipients,
+        bytes[] memory datas
+    ) external;
 }

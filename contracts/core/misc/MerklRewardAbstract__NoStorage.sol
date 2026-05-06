@@ -14,30 +14,31 @@ abstract contract MerklRewardAbstract__NoStorage is TokenHelper {
     }
 
     function claimOffchainRewards(
-        address tokenReceiver,
         address[] calldata users,
         address[] calldata tokens,
         uint256[] calldata amounts,
-        bytes32[][] calldata proofs
+        bytes32[][] calldata proofs,
+        address[] calldata recipients,
+        bytes[] calldata datas
     ) external {
         require(msg.sender == offchainRewardManager, "MRA: unauthorized");
 
         uint256 len = users.length;
-        require(len == tokens.length && len == amounts.length && len == proofs.length, "MRA: invalid lengths");
+        require(
+            len == tokens.length && len == amounts.length && len == proofs.length && len == recipients.length
+                && len == datas.length,
+            "MRA: invalid lengths"
+        );
 
-        uint256[] memory preBalance = new uint256[](len);
+        address recipient = recipients[0];
+
+        require(recipient != address(0), "MRA: invalid recipient");
+
         for (uint256 i = 0; i < len; ++i) {
             require(users[i] == address(this), "MRA: invalid users");
-            preBalance[i] = _selfBalance(tokens[i]);
+            require(recipients[i] == recipient, "MRA: recipients mismatch");
         }
 
-        IAngleDistributor(ANGLE_DISTRIBUTOR).claim(users, tokens, amounts, proofs);
-
-        for (uint256 i = 0; i < len; ++i) {
-            uint256 amountClaimed = _selfBalance(tokens[i]) - preBalance[i];
-            if (amountClaimed > 0) {
-                _transferOut(tokens[i], tokenReceiver, amountClaimed);
-            }
-        }
+        IAngleDistributor(ANGLE_DISTRIBUTOR).claimWithRecipient(users, tokens, amounts, proofs, recipients, datas);
     }
 }
