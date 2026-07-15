@@ -10,7 +10,7 @@ function viaIR(version: string, runs: number) {
                 enabled: true,
                 runs: runs,
             },
-            evmVersion: 'paris',
+            evmVersion: 'cancun',
             viaIR: true,
         },
     };
@@ -25,16 +25,7 @@ const config: HardhatUserConfig = {
     },
     solidity: {
         compilers: [
-            {
-                version: '0.8.24',
-                settings: {
-                    optimizer: {
-                        enabled: true,
-                        runs: 0,
-                    },
-                    evmVersion: 'paris'
-                },
-            }
+            viaIR('0.8.30', 0)
         ],
         overrides: {
         },
