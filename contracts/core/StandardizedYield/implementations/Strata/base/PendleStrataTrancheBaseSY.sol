@@ -2,14 +2,17 @@
 pragma solidity ^0.8.0;
 
 import "../../../v2/SYBaseUpgV2.sol";
+import "../../../../misc/TokenWithSupplyCapUpg.sol";
 import "../../../../../interfaces/Strata/IStrataTranche.sol";
 import "../../../../../interfaces/Strata/IStrataCDO.sol";
 
-abstract contract PendleStrataTrancheBaseSY is SYBaseUpgV2 {
+abstract contract PendleStrataTrancheBaseSY is SYBaseUpgV2, TokenWithSupplyCapUpg {
     address public immutable strata;
     bool public immutable isJrt;
     address public immutable baseAsset;
     address public immutable stakedAsset;
+
+    uint256[100] private __gap;
 
     constructor(address _strata, address _baseAsset, address _stakedAsset) SYBaseUpgV2(_strata) {
         strata = _strata;
@@ -21,6 +24,7 @@ abstract contract PendleStrataTrancheBaseSY is SYBaseUpgV2 {
 
     function initialize(string memory name_, string memory symbol_, address _owner) external virtual initializer {
         __SYBaseUpgV2_init(name_, symbol_, _owner);
+        __tokenWithSupplyCap_init(type(uint256).max);
         _safeApproveInf(baseAsset, strata);
         _safeApproveInf(stakedAsset, strata);
     }
@@ -60,12 +64,11 @@ abstract contract PendleStrataTrancheBaseSY is SYBaseUpgV2 {
     function _previewDeposit(
         address tokenIn,
         uint256 amountTokenToDeposit
-    ) internal view virtual override returns (uint256 /*amountSharesOut*/) {
-        if (tokenIn == strata) {
-            return amountTokenToDeposit;
-        }
-
-        return IStrataTranche(strata).previewDeposit(tokenIn, amountTokenToDeposit);
+    ) internal view virtual override returns (uint256 amountSharesOut) {
+        amountSharesOut = tokenIn == strata
+            ? amountTokenToDeposit
+            : IStrataTranche(strata).previewDeposit(tokenIn, amountTokenToDeposit);
+        _checkSupplyCap(totalSupply() + amountSharesOut);
     }
 
     function _previewRedeem(
@@ -98,6 +101,15 @@ abstract contract PendleStrataTrancheBaseSY is SYBaseUpgV2 {
 
     function assetInfo() external view returns (AssetType assetType, address assetAddress, uint8 assetDecimals) {
         return (AssetType.TOKEN, baseAsset, IERC20Metadata(baseAsset).decimals());
+    }
+
+    function _afterTokenTransfer(address from, address, uint256) internal view override {
+        if (from != address(0)) return;
+        _checkSupplyCap(totalSupply());
+    }
+
+    function getAbsoluteTotalSupply() external view returns (uint256) {
+        return totalSupply();
     }
 
     function _isStakedAssetValidTokenOut() internal view virtual returns (bool);
