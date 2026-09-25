@@ -2,9 +2,10 @@
 pragma solidity ^0.8.0;
 
 import "../../v2/SYBaseUpgV2.sol";
+import "../../../misc/TokenWithSupplyCapUpg.sol";
 import "../../../../interfaces/Upshift/ITokenizedVault.sol";
 
-contract PendleUpshiftTokenizedVaultSY is SYBaseUpgV2 {
+contract PendleUpshiftTokenizedVaultSY is SYBaseUpgV2, TokenWithSupplyCapUpg {
     using ArrayLib for address[];
 
     error MaxDepositAmountReached();
@@ -25,6 +26,7 @@ contract PendleUpshiftTokenizedVaultSY is SYBaseUpgV2 {
 
     function initialize(string memory name_, string memory symbol_, address _owner) external initializer {
         __SYBaseUpgV2_init(name_, symbol_, _owner);
+        __tokenWithSupplyCap_init(type(uint256).max);
     }
 
     function _deposit(
@@ -125,5 +127,20 @@ contract PendleUpshiftTokenizedVaultSY is SYBaseUpgV2 {
 
     function assetInfo() external view returns (AssetType assetType, address assetAddress, uint8 assetDecimals) {
         return (AssetType.TOKEN, asset, IERC20Metadata(asset).decimals());
+    }
+
+    /*///////////////////////////////////////////////////////////////
+                               SUPPLY-CAP
+    //////////////////////////////////////////////////////////////*/
+
+    function getAbsoluteTotalSupply() external view returns (uint256) {
+        return totalSupply();
+    }
+
+    function _afterTokenTransfer(address from, address, uint256) internal view override {
+        if (from != address(0)) {
+            return;
+        }
+        _checkSupplyCap(totalSupply());
     }
 }
