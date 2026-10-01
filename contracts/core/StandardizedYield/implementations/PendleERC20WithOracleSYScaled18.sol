@@ -5,13 +5,16 @@ import "../v2/SYBaseUpgV2.sol";
 import {IPDecimalsWrapperFactory} from "../../../interfaces/IPDecimalsWrapperFactory.sol";
 import {IPExchangeRateOracle} from "../../../interfaces/IPExchangeRateOracle.sol";
 import {MerklRewardAbstract__NoStorage} from "../../misc/MerklRewardAbstract__NoStorage.sol";
+import {TokenWithSupplyCapUpg} from "../../misc/TokenWithSupplyCapUpg.sol";
 
-contract PendleERC20WithOracleSYScaled18 is SYBaseUpgV2, MerklRewardAbstract__NoStorage {
+contract PendleERC20WithOracleSYScaled18 is SYBaseUpgV2, TokenWithSupplyCapUpg, MerklRewardAbstract__NoStorage {
     address public immutable rawYieldToken;
     address public immutable underlyingAsset;
     address public immutable underlyingAssetScaled18;
     address public immutable exchangeRateOracle;
     uint256 public immutable yieldTokenDecimalsOffset;
+
+    uint256[100] private __gap;
 
     constructor(
         address _rawYieldToken,
@@ -47,6 +50,7 @@ contract PendleERC20WithOracleSYScaled18 is SYBaseUpgV2, MerklRewardAbstract__No
 
     function initialize(string memory _name, string memory _symbol, address _owner) external virtual initializer {
         __SYBaseUpgV2_init(_name, _symbol, _owner);
+        __tokenWithSupplyCap_init(type(uint256).max);
     }
 
     // ==== DEPOSIT / REDEEM ====
@@ -116,5 +120,16 @@ contract PendleERC20WithOracleSYScaled18 is SYBaseUpgV2, MerklRewardAbstract__No
 
     function pricingInfo() external view virtual override returns (address refToken, bool refStrictlyEqual) {
         return (rawYieldToken, true);
+    }
+
+    function getAbsoluteTotalSupply() external view virtual override returns (uint256) {
+        return totalSupply();
+    }
+
+    function _afterTokenTransfer(address from, address, uint256) internal view override {
+        if (from != address(0)) {
+            return;
+        }
+        _checkSupplyCap(totalSupply());
     }
 }
