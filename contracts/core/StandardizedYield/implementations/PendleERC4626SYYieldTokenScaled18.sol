@@ -4,13 +4,16 @@ pragma solidity ^0.8.17;
 import "../v2/SYBaseUpgV2.sol";
 import "../../../interfaces/IERC4626.sol";
 import "../../../interfaces/IPDecimalsWrapperFactory.sol";
+import {TokenWithSupplyCapUpg} from "../../misc/TokenWithSupplyCapUpg.sol";
 
-contract PendleERC4626SYYieldTokenScaled18 is SYBaseUpgV2 {
+contract PendleERC4626SYYieldTokenScaled18 is SYBaseUpgV2, TokenWithSupplyCapUpg {
     address public immutable erc4626;
     address public immutable asset;
     address public immutable assetScaled18;
     uint256 public immutable scaledSharesUnit;
     uint256 public immutable yieldTokenDecimalsOffset;
+
+    uint256[100] private __gap;
 
     constructor(
         address _erc4626,
@@ -37,6 +40,7 @@ contract PendleERC4626SYYieldTokenScaled18 is SYBaseUpgV2 {
 
     function initialize(string memory _name, string memory _symbol, address _owner) external virtual initializer {
         __SYBaseUpgV2_init(_name, _symbol, _owner);
+        __tokenWithSupplyCap_init(type(uint256).max);
         _safeApproveInf(asset, erc4626);
     }
 
@@ -119,5 +123,16 @@ contract PendleERC4626SYYieldTokenScaled18 is SYBaseUpgV2 {
 
     function pricingInfo() external view override returns (address refToken, bool refStrictlyEqual) {
         return (erc4626, true);
+    }
+
+    function getAbsoluteTotalSupply() external view virtual returns (uint256) {
+        return totalSupply();
+    }
+
+    function _afterTokenTransfer(address from, address, uint256) internal view virtual override {
+        if (from != address(0)) {
+            return;
+        }
+        _checkSupplyCap(totalSupply());
     }
 }
