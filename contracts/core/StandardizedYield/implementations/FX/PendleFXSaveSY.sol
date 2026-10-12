@@ -4,6 +4,7 @@ pragma solidity ^0.8.17;
 import "../PendleERC4626UpgSYV2.sol";
 import "../../../../interfaces/FX/IFXBase.sol";
 import "./PendleFxCurvePoolHelper.sol";
+import "../../../../interfaces/IPTokenWithSupplyCap.sol";
 
 interface IFxUSDBasePool {
     function instantRedeem(
@@ -18,12 +19,18 @@ interface IFxUSDBasePool {
     ) external view returns (uint256 amountYieldOut, uint256 amountStableOut);
 }
 
-contract PendleFXSaveSY is PendleERC4626UpgSYV2, PendleFxCurvePoolHelper {
+contract PendleFXSaveSY is PendleERC4626UpgSYV2, PendleFxCurvePoolHelper, IPTokenWithSupplyCap {
     using PMath for uint256;
+
+    event SupplyCapUpdated(uint256 newSupplyCap);
+
+    error SupplyCapExceeded(uint256 totalSupply, uint256 supplyCap);
 
     address public constant FXSAVE = 0x7743e50F534a7f9F1791DdE7dCD89F7783Eefc39;
     address public constant USDC = 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48;
     address public constant FXUSD = 0x085780639CC2cACd35E474e71f4d000e2405d8f6;
+
+    uint256 public supplyCap;
 
     constructor() PendleERC4626UpgSYV2(FXSAVE) {}
 
@@ -32,6 +39,8 @@ contract PendleFXSaveSY is PendleERC4626UpgSYV2, PendleFxCurvePoolHelper {
         _safeApproveInf(asset, yieldToken);
         _safeApproveInf(USDC, asset);
         _safeApproveInf(FXUSD, asset);
+        _approveForCurvePool();
+        _updateSupplyCap(type(uint256).max);
     }
 
     function approveForCurvePool() external virtual {
@@ -122,5 +131,34 @@ contract PendleFXSaveSY is PendleERC4626UpgSYV2, PendleFxCurvePoolHelper {
 
     function isValidTokenIn(address token) public view virtual override returns (bool) {
         return token == USDC || token == FXUSD || token == yieldToken || token == asset;
+    }
+
+    function updateSupplyCap(uint256 newSupplyCap) external onlyOwner {
+        _updateSupplyCap(newSupplyCap);
+    }
+
+    function _updateSupplyCap(uint256 newSupplyCap) internal {
+        supplyCap = newSupplyCap;
+        emit SupplyCapUpdated(newSupplyCap);
+    }
+
+    function _afterTokenTransfer(address from, address, uint256) internal virtual override {
+        if (from != address(0)) {
+            return;
+        }
+
+        uint256 _supply = totalSupply();
+        uint256 _supplyCap = supplyCap;
+        if (_supply > _supplyCap) {
+            revert SupplyCapExceeded(_supply, _supplyCap);
+        }
+    }
+
+    function getAbsoluteSupplyCap() external view returns (uint256) {
+        return supplyCap;
+    }
+
+    function getAbsoluteTotalSupply() external view returns (uint256) {
+        return totalSupply();
     }
 }
