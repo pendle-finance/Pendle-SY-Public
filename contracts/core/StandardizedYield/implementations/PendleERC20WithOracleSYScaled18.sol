@@ -23,7 +23,7 @@ contract PendleERC20WithOracleSYScaled18 is SYBaseUpgV2, TokenWithSupplyCapUpg, 
         address _decimalsWrapperFactory,
         address _offchainRewardManager
     )
-        SYBaseUpgV2(IPDecimalsWrapperFactory(_decimalsWrapperFactory).getOrCreate(_rawYieldToken, 18))
+        SYBaseUpgV2(_scaleToken(_decimalsWrapperFactory, _rawYieldToken))
         MerklRewardAbstract__NoStorage(_offchainRewardManager)
     {
         rawYieldToken = _rawYieldToken;
@@ -36,16 +36,14 @@ contract PendleERC20WithOracleSYScaled18 is SYBaseUpgV2, TokenWithSupplyCapUpg, 
         assert(rawYieldTokenDecimals <= 18);
         assert(assetDecimals <= 18);
 
-        if (assetDecimals < 18) {
-            underlyingAssetScaled18 = IPDecimalsWrapperFactory(_decimalsWrapperFactory).getOrCreate(
-                _underlyingAsset,
-                18
-            );
-        } else {
-            underlyingAssetScaled18 = _underlyingAsset;
-        }
-
+        underlyingAssetScaled18 = _scaleToken(_decimalsWrapperFactory, _underlyingAsset);
         yieldTokenDecimalsOffset = 10 ** (18 - rawYieldTokenDecimals);
+    }
+
+    function _scaleToken(address _decimalsWrapperFactory, address _token) private returns (address scaledToken) {
+        scaledToken = IERC20Metadata(_token).decimals() == 18
+            ? _token
+            : IPDecimalsWrapperFactory(_decimalsWrapperFactory).getOrCreate(_token, 18);
     }
 
     function initialize(string memory _name, string memory _symbol, address _owner) external virtual initializer {
