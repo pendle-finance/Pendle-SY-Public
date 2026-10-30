@@ -28,6 +28,16 @@ const config: HardhatUserConfig = {
             viaIR('0.8.30', 0)
         ],
         overrides: {
+            'contracts/core/StandardizedYield/implementations/Ethena/PendleEthenaCreditSY.sol': {
+                version: '0.8.30',
+                settings: {
+                    optimizer: {
+                        enabled: true,
+                        runs: 0,
+                    },
+                    evmVersion: 'cancun',
+                },
+            },
         },
     },
     contractSizer: {
