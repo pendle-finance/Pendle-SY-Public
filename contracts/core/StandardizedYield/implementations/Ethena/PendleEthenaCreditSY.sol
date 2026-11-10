@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
-pragma solidity ^0.8.28;
+pragma solidity ^0.8.34;
 
 import "../PendleERC20SYUpgV2.sol";
 import "../../../misc/TokenWithSupplyCapUpg.sol";
@@ -10,39 +10,57 @@ interface IPYieldTokenMinimal {
     function mintPY(address receiverPT, address receiverYT) external returns (uint256);
 }
 
-/// @dev The credit minter mints credit SY into PT + YT for `merkl`, tracked as `debt`.
-/// The SY burner burns the SY that `merkl` receives against `debt`, so the USDe that buyers pay stays in the SY.
+/// @dev Merkl queues unbacked PT + YT, tracked as `creditDebt`. Mint cancellers can cancel before execution.
+/// Burners burn the SY that `merkl` receives against `creditDebt`, so the USDe that buyers pay stays in the SY.
 contract PendleEthenaCreditSY is PendleERC20SYUpgV2, TokenWithSupplyCapUpg {
+    enum Role {
+        MintCanceller,
+        MintExecutor,
+        Burner
+    }
+
+    struct QueuedMint {
+        uint256 amount;
+        uint256 readyAt;
+    }
+
     address public yt;
     address public merkl;
-    address public creditMinter;
-    address public syBurner;
-    uint256 public debt;
+    uint256 public creditDebt;
+
+    QueuedMint public queuedMint;
+    uint256 public mintDelay;
+    bool public isSeeded;
+
+    mapping(Role => mapping(address => bool)) public hasRole;
 
     bool private transient _mintingPY;
 
     uint256[100] private __gap;
 
-    event YTSet(address indexed yt);
     event MerklSet(address indexed merkl);
-    event CreditMinterSet(address indexed creditMinter);
-    event SyBurnerSet(address indexed syBurner);
-    event MintPYCredit(uint256 amount);
+    event MintDelaySet(uint256 mintDelay);
+    event RoleSet(Role indexed role, address indexed account, bool enabled);
+    event MintQueued(uint256 amount, uint256 readyAt);
+    event MintCancelled(uint256 amount);
+    event MintExecuted(uint256 amount);
     event DebtBurned(uint256 amount);
 
     error YTAlreadySet();
     error YTMismatch();
-    error NotCreditMinter();
-    error NotSyBurner();
+    error NotMerkl();
+    error NotRole(Role role);
+    error MintNotReady();
+    error AlreadySeeded();
     error SYTransferToYTLocked();
 
-    modifier onlyCreditMinter() {
-        require(msg.sender == creditMinter || msg.sender == owner, NotCreditMinter());
+    modifier onlyMerkl() {
+        require(msg.sender == merkl, NotMerkl());
         _;
     }
 
-    modifier onlySyBurner() {
-        require(msg.sender == syBurner || msg.sender == owner, NotSyBurner());
+    modifier onlyRole(Role role) {
+        require(hasRole[role][msg.sender], NotRole(role));
         _;
     }
 
@@ -56,13 +74,51 @@ contract PendleEthenaCreditSY is PendleERC20SYUpgV2, TokenWithSupplyCapUpg {
     ) external initializer {
         __SYBaseUpgV2_init(_name, _symbol, _owner);
         __tokenWithSupplyCap_init(_initialSupplyCap);
+        mintDelay = 12 hours;
+    }
+
+    /// @dev Queueing again replaces the queued mint and restarts `mintDelay`.
+    function queueMint(uint256 amount) external onlyMerkl {
+        uint256 readyAt = block.timestamp + mintDelay;
+        queuedMint = QueuedMint(amount, readyAt);
+        emit MintQueued(amount, readyAt);
+    }
+
+    function cancelMint() external onlyRole(Role.MintCanceller) {
+        emit MintCancelled(queuedMint.amount);
+        delete queuedMint;
+    }
+
+    function executeMint() external onlyRole(Role.MintExecutor) nonReentrant {
+        QueuedMint memory queued = queuedMint;
+        require(block.timestamp >= queued.readyAt, MintNotReady());
+        delete queuedMint;
+        emit MintExecuted(queued.amount);
+
+        creditDebt += queued.amount;
+        _mintPY(queued.amount, merkl);
+    }
+
+    /// @dev The owner pays `amount` USDe, so this PT + YT carries no debt.
+    function seed(uint256 amount) external onlyOwner nonReentrant {
+        require(!isSeeded, AlreadySeeded());
+        isSeeded = true;
+
+        _transferIn(yieldToken, msg.sender, amount);
+        _mintPY(amount, msg.sender);
+    }
+
+    function burnMerklSY() external onlyRole(Role.Burner) nonReentrant {
+        uint256 amount = PMath.min(balanceOf(merkl), creditDebt);
+        creditDebt -= amount;
+        _burn(merkl, amount);
+        emit DebtBurned(amount);
     }
 
     function setYT(address _yt) external onlyOwner {
         require(yt == address(0), YTAlreadySet());
         require(IPYieldTokenMinimal(_yt).SY() == address(this), YTMismatch());
         yt = _yt;
-        emit YTSet(_yt);
     }
 
     function setMerkl(address _merkl) external onlyOwner {
@@ -70,38 +126,29 @@ contract PendleEthenaCreditSY is PendleERC20SYUpgV2, TokenWithSupplyCapUpg {
         emit MerklSet(_merkl);
     }
 
-    function setCreditMinter(address _creditMinter) external onlyOwner {
-        creditMinter = _creditMinter;
-        emit CreditMinterSet(_creditMinter);
+    function setMintDelay(uint256 _mintDelay) external onlyOwner {
+        mintDelay = _mintDelay;
+        emit MintDelaySet(_mintDelay);
     }
 
-    function setSyBurner(address _syBurner) external onlyOwner {
-        syBurner = _syBurner;
-        emit SyBurnerSet(_syBurner);
-    }
-
-    function mintPYCredit(uint256 amount) external onlyCreditMinter nonReentrant {
-        _mintingPY = true;
-        _mint(yt, amount);
-        _mintingPY = false;
-
-        IPYieldTokenMinimal(yt).mintPY(merkl, merkl);
-        debt += amount;
-        emit MintPYCredit(amount);
-    }
-
-    function burnMerklSY() external onlySyBurner nonReentrant {
-        uint256 amount = PMath.min(balanceOf(merkl), debt);
-        debt -= amount;
-        _burn(merkl, amount);
-        emit DebtBurned(amount);
+    function setRole(Role role, address account, bool enabled) external onlyOwner {
+        hasRole[role][account] = enabled;
+        emit RoleSet(role, account, enabled);
     }
 
     function getAbsoluteTotalSupply() external view returns (uint256) {
         return totalSupply();
     }
 
-    /// @dev Anyone can mint PT + YT from SY sitting in the YT, so only `mintPYCredit` may put SY there.
+    function _mintPY(uint256 amount, address receiver) private {
+        _mintingPY = true;
+        _mint(yt, amount);
+        _mintingPY = false;
+
+        IPYieldTokenMinimal(yt).mintPY(receiver, receiver);
+    }
+
+    /// @dev Anyone can mint PT + YT from SY sitting in the YT, so only `_mintPY` may put SY there.
     /// `to == address(0)` lets burns through while `yt` is unset.
     function _beforeTokenTransfer(address from, address to, uint256 amount) internal override {
         super._beforeTokenTransfer(from, to, amount);

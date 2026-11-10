@@ -29,7 +29,7 @@ const config: HardhatUserConfig = {
         ],
         overrides: {
             'contracts/core/StandardizedYield/implementations/Ethena/PendleEthenaCreditSY.sol': {
-                version: '0.8.30',
+                version: '0.8.34',
                 settings: {
                     optimizer: {
                         enabled: true,
