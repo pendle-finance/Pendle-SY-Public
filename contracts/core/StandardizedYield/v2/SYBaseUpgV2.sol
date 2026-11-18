@@ -2,16 +2,24 @@
 pragma solidity ^0.8.17;
 
 import "../../../interfaces/IStandardizedYield.sol";
+import "../../../interfaces/IStandardizedYieldExtended.sol";
 import "../../erc20/PendleERC20Upg.sol";
 import "../../libraries/math/PMath.sol";
 import "../../libraries/ArrayLib.sol";
 import "../../libraries/TokenHelper.sol";
 import "../../libraries/Errors.sol";
 import "../../libraries/BoringOwnableUpgradeableV2.sol";
+import "../../misc/TokenWithRateLimit.sol";
 import "@openzeppelin/contracts/security/Pausable.sol";
-import "../../../interfaces/IStandardizedYieldExtended.sol";
 
-abstract contract SYBaseUpgV2 is IStandardizedYield, PendleERC20Upg, TokenHelper, BoringOwnableUpgradeableV2, Pausable {
+abstract contract SYBaseUpgV2 is
+    IStandardizedYield,
+    PendleERC20Upg,
+    TokenHelper,
+    BoringOwnableUpgradeableV2,
+    Pausable,
+    TokenWithRateLimit
+{
     using PMath for uint256;
 
     address public immutable yieldToken;
@@ -168,6 +176,16 @@ abstract contract SYBaseUpgV2 is IStandardizedYield, PendleERC20Upg, TokenHelper
 
     function unpause() external onlyOwner {
         _unpause();
+    }
+
+    function _mint(address account, uint256 amount) internal virtual override {
+        super._mint(account, amount);
+        _rateLimitMint(amount);
+    }
+
+    function _burn(address account, uint256 amount) internal virtual override {
+        super._burn(account, amount);
+        _rateLimitBurn(amount);
     }
 
     function _beforeTokenTransfer(address, address, uint256) internal virtual override whenNotPaused {}

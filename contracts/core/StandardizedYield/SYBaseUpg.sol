@@ -8,6 +8,7 @@ import "../libraries/ArrayLib.sol";
 import "../libraries/TokenHelper.sol";
 import "../libraries/Errors.sol";
 import "../libraries/BoringOwnableUpgradeable__deprecated.sol";
+import "../misc/TokenWithRateLimit.sol";
 import "@openzeppelin/contracts/security/Pausable.sol";
 
 abstract contract SYBaseUpg is
@@ -15,7 +16,8 @@ abstract contract SYBaseUpg is
     PendleERC20PermitUpg,
     TokenHelper,
     BoringOwnableUpgradeable__deprecated,
-    Pausable
+    Pausable,
+    TokenWithRateLimit
 {
     using PMath for uint256;
 
@@ -173,6 +175,16 @@ abstract contract SYBaseUpg is
 
     function unpause() external onlyOwner {
         _unpause();
+    }
+
+    function _mint(address account, uint256 amount) internal virtual override {
+        super._mint(account, amount);
+        _rateLimitMint(amount);
+    }
+
+    function _burn(address account, uint256 amount) internal virtual override {
+        super._burn(account, amount);
+        _rateLimitBurn(amount);
     }
 
     function _beforeTokenTransfer(address, address, uint256) internal virtual override whenNotPaused {}
